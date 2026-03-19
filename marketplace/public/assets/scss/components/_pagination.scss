@@ -1,0 +1,49 @@
+@use '../utils' as *;
+/*----------------------------------------*/
+/*  2.6 Pagination
+/*----------------------------------------*/
+
+.#{$theme-prefix}-pagination{
+	& ul{
+		@include flexbox();
+		
+		& li{
+			display: inline-block;
+			&:not(:last-child){
+				margin-right: 6px;
+			}
+			& button,
+			& span{
+				display: inline-block;
+				width: 44px;
+				height: 44px;
+				line-height: 43px;
+				text-align: center;
+				font-size: 16px;
+				font-weight: 500;
+				color: var(--tp-heading-primary);
+				box-shadow: 0px 1px 3px 0px rgba(3, 4, 28, 0.10);
+				&.next-page-number,
+				&.prev-page-number{
+					width: 96px;
+					font-weight: 700;
+					& svg{
+						margin: 0 5px;
+					}
+				}
+
+				&:hover,
+				&.current{
+					background: var(--tp-heading-primary) !important;
+					border-color: var(--tp-heading-primary);
+					color: var(--tp-common-white);
+				}
+
+				& svg{
+					@extend %svg-2;
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,94 @@
+# README - Paleta De Colores Actual
+
+Este documento resume la paleta de colores actual del proyecto y dónde se define.
+
+## 1. Fuente principal de colores
+
+Archivo base:
+
+- `public/assets/scss/utils/_colors.scss`
+
+Paleta base actual:
+
+### Common
+
+- `white`: `#ffffff`
+- `black`: `#000`
+- `gray`: `#F0F4FD`
+
+### Theme
+
+- `primary`: `#5758D6`
+- `secondary`: `#F0F4FD`
+
+### Heading
+
+- `primary`: `#262B35`
+- `secondary`: `#1F242C`
+
+### Text
+
+- `body`: `#787878`
+- `1`: `#01103D`
+
+### Border
+
+- `primary`: `#FEF3DF`
+- `secondary`: `#F0F2F4`
+
+## 2. Variables CSS generadas (uso global)
+
+Archivo generador:
+
+- `public/assets/scss/utils/_root.scss`
+
+Desde el mapa `$colors`, se generan variables en `:root` con el patrón:
+
+- `--tp-common-*`
+- `--tp-theme-*`
+- `--tp-heading-*`
+- `--tp-text-*`
+- `--tp-border-*`
+
+Ejemplos reales:
+
+- `--tp-theme-primary: #5758D6`
+- `--tp-theme-secondary: #F0F4FD`
+- `--tp-heading-primary: #262B35`
+- `--tp-text-body: #787878`
+- `--tp-common-white: #ffffff`
+
+## 3. Colores visuales custom activos en header (estado actual)
+
+Archivos relevantes:
+
+- `public/assets/scss/layout/header/_header-2.scss`
+- `public/assets/scss/layout/header/_header.scss`
+
+Además de la paleta base, el header usa valores RGBA para efectos glass/cápsulas:
+
+- Cápsula nav (glass): `rgba(255, 255, 255, 0.09)` con borde `rgba(255, 255, 255, 0.26)`
+- Overlays blancos de iconos: `rgba(255, 255, 255, 0.92)`
+- Sombras suaves: `rgba(3, 4, 28, 0.10)` a `rgba(3, 4, 28, 0.16)`
+- Fondo logo badge: `rgba(8, 12, 20, 0.26)`
+
+## 4. Dónde cambiar la paleta sin romper estilos
+
+Orden recomendado de cambio:
+
+1. Cambiar colores base en `public/assets/scss/utils/_colors.scss`.
+2. Mantener nombres de tokens (`theme.primary`, `heading.primary`, etc.) para no romper referencias.
+3. Ajustar colores custom del header en `public/assets/scss/layout/header/_header-2.scss` solo si quieres cambiar el look glass.
+4. Verificar contraste en:
+   - nav principal
+   - botones (`tp-btn`)
+   - textos sobre imagen/hero
+   - iconos (favoritos, usuario, redes)
+
+## 5. Nota técnica importante
+
+En `public/assets/scss/utils/_colors.scss` existe esta línea:
+
+- `$black : #0000;`
+
+Ese valor es transparente (no negro sólido). No afecta directamente al token `common.black` (que sí está en `#000`), pero conviene corregirlo si se quiere consistencia total en variables SCSS auxiliares.

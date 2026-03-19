@@ -1,0 +1,220 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.1 Main menu css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-main-menu{
+    & ul{
+        & li{
+        position: relative;
+        list-style: none;
+        display: inline-block;
+        transition: none;
+        &:not(:last-of-type){
+            margin-right: 35px;
+            @media #{$xl} {
+                margin-right: 25px;
+            }
+        }
+        & > a{
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-block;
+            padding: 38px 0 38px 0;
+            color: var(--tp-heading-primary);
+        }
+        &.has-dropdown{
+            & > a{
+                &::after{
+                    content: "\f107";
+                    font-size: 18px;
+                    font-weight: 400;
+                    margin-left: 6px;
+                    display: inline-block;
+                    @include transition();
+                    color: var(--tp-heading-primary);
+                    font-family: var(--tp-ff-fontawesome);
+                }
+                &.hover{
+
+                }
+            }
+            &.p-static{
+                position: static;
+            }
+        }
+        & .sub-menu{
+            position: absolute;
+            top: 104%;
+            left: 0;
+            width: 220px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            padding: 15px 0 25px;
+            background: var(--tp-common-white);
+            @include transition(.3s, ease-out, all);
+            @include transform-rotateX(-90deg, 0 0);
+            box-shadow: 0px 30px 70px 0px rgba(11, 6, 70, 0.08);
+            & li{
+                display: block;
+                width: 100%;
+                margin: 0;
+                padding: 4px 30px;
+                transform: translateY(5px);
+                transition: all .2s cubic-bezier(.4, .28, .31, 1.28) 0s;
+                &.has-dropdown{
+                    & > a{
+                        &::after{
+                            position: absolute;
+                            top: 50%;
+                            right: 25px;
+                            @include transform(translateY(-50%) rotate(-90deg));
+                        }
+                    }
+                }
+                & > a{
+                    position: relative;
+                    font-size: 15px;
+                    width: 100%;
+                    z-index: 1;
+                    padding: 0;
+                    transition: none;
+                    &::before{
+                        position: absolute;
+                        content: "";
+                        top: 12PX;
+                        left: 0px;
+                        height: 2px;
+                        width: 0;
+                        background: var(--tp-theme-primary);
+                        transition: all 0.3s ease-in-out;
+                    }
+                    & span{
+                        @include transition();
+                    }
+                }
+                & > .sub-menu{
+                    left: 120%;
+                    top:0;
+                    visibility: hidden;
+                    opacity: 0;
+                }
+                &:hover{
+                    & > a{
+                        color: var(--tp-theme-primary);
+                        & span{
+                            margin-left: 14px;
+                        }
+                        
+                        &::before{
+                            width: 10px;
+                        }
+                        
+                    }
+                    & > .sub-menu{
+                        left: 100%;
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        &:hover{
+            & > a{
+                color: var(--tp-theme-primary);
+                &.hover{
+                    &::after{
+                        transform: rotate(180deg);
+                        color: var(--tp-theme-primary);
+                    }
+                }
+                &::after{
+                    transform: rotate(180deg);
+                    color: var(--tp-theme-primary);
+                }
+            }
+            & .sub-menu,
+            & .tp-mega-menu{
+                opacity: 1;
+                visibility: visible;
+                -webkit-transform: rotateX(0);
+                -ms-transform: rotateX(0);
+                transform: rotateX(0);
+            }
+        }
+      }
+   }
+}
+
+.tp-mega-menu {
+    position: absolute;
+    top: 104%;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    width: 1200px;
+    margin: 0 auto;
+    visibility: hidden;
+    padding: 25px 25px 20px;
+    background-color: var(--tp-common-white);
+    @include transition(.3s, ease-out, all);
+    @include transform-rotateX(-90deg, 0 0);
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 8px 24px;
+    @media #{$lg,$md,$xs}{
+        width: auto;
+        opacity: 1;
+        visibility: visible;
+        transition: none;
+        position: static;
+        display: none;
+        -webkit-transform: rotateX(0);
+        -ms-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+    @media #{$xl} {
+       width: 1100px;
+    }
+    & .tp-home{
+        &-menu{
+            position: relative;
+            & a{
+                &:hover{
+                 & .tp-home-title{
+                    color: var(--tp-theme-primary);
+                 }   
+                }
+            }
+        }
+        &-thumb{
+            position: relative;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(185, 182, 182, 0.44);
+            box-shadow: rgba(149, 157, 165, 0.28) 0px 1px 2px;
+            & img{
+                width: 100%;
+                object-fit: cover;
+                transform: scale(1) translateZ(0);
+                transition: transform 0.6s cubic-bezier(0.5, 1, 0.89, 1);
+            }
+            &:hover{
+                & img{
+                    transform: scale(1.1) translateZ(0);
+                }
+            }
+        }
+        &-title{
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 0;
+            text-align: center;
+            @include transition();
+            @media #{$lg,$md,$xs} {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

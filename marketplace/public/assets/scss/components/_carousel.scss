@@ -1,0 +1,60 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.11 Carousel
+/*----------------------------------------*/
+
+
+/** Swiper styles **/
+ .tp-slider-active{
+    height: 940px;
+    @media #{$xl,$lg,$md} {
+      height: 650px;
+    }
+    @media #{$xs} {
+      height: 540px;
+    }
+    & .swiper-slide-active {
+      & .tp-hero-3{
+        &-title{
+          & div span {
+            opacity: 1;
+            transform: translateY(0px);
+            -webkit-transform: translateY(0px);
+          }
+          &-pre{
+            & div span {
+              opacity: 1;
+              transform: translateY(0px);
+              -webkit-transform: translateY(0px);
+            }
+          }
+        }
+        &-button-wrapper .tp-btn{
+          opacity: 1;
+          transform: translateY(0px);
+          -webkit-transform: translateY(0px);
+        }
+      }
+    }
+ }
+
+  
+.#{$theme-prefix}-slider-image{
+  &-ptb{
+    @media #{$lg,$md,$xs} {
+      padding-bottom: 80px;
+    }
+  }
+  &-wrapper{
+    margin: 0 -670px;
+    @media #{$lg,$md,$xs} {
+      margin: 0;
+    }
+  }
+  &-thumb{
+    & img{
+      width: 100%;
+    }
+  }
+}

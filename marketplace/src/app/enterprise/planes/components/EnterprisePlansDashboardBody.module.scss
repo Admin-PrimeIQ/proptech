@@ -1,0 +1,600 @@
+.pageWrap {
+  padding: 0;
+  background: #f2f4f8;
+}
+
+.fullViewport {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.desktopOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.dashboardShell {
+  border: 1px solid #e6e9f0;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: none;
+  overflow: visible;
+  min-height: 100vh;
+}
+
+.contentWrap {
+  padding: 54px 32px 30px;
+}
+
+.welcomeTitle {
+  margin: 0 0 4px;
+  font-size: 42px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #111a2f;
+}
+
+.dateLine {
+  margin: 0;
+  color: #74809a;
+  font-size: 15px;
+}
+
+.actionRow {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary,
+.btnSecondary,
+.upgradeBtn {
+  border-radius: 10px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnPrimary {
+  background: #1170de;
+  color: #ffffff;
+}
+
+.btnSecondary {
+  background: #ffffff;
+  border-color: #e2e7f1;
+  color: #2e3a54;
+}
+
+.subscriptionCard {
+  margin-top: 24px;
+  border: 1px solid #e7ecf5;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  min-height: 230px;
+  overflow: hidden;
+}
+
+.subscriptionInfo {
+  padding: 26px 26px 24px;
+
+  h2 {
+    margin: 12px 0 8px;
+    font-size: 40px;
+    line-height: 1.15;
+    color: #101a31;
+  }
+
+  p {
+    margin: 0;
+    max-width: 640px;
+    color: #5f6e88;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f0f5ff;
+  color: #0f67cd;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.upgradeBtn {
+  margin-top: 16px;
+  background: #f6f8fc;
+  border-color: #e4e9f3;
+  color: #2c3851;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.subscriptionArt {
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graphArt {
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 80% 30%, #264f9f 0%, rgba(38, 79, 159, 0.35) 22%, transparent 55%),
+    linear-gradient(150deg, #0c182f 0%, #0e274a 48%, #0b1c35 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.graphArt::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% 0;
+  height: 68%;
+  background: repeating-linear-gradient(
+    -9deg,
+    rgba(115, 176, 255, 0.45) 0 2px,
+    rgba(115, 176, 255, 0) 2px 14px
+  );
+}
+
+.bottomGrid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.mapCard,
+.metricCard {
+  border: 1px solid #e7ecf5;
+  border-radius: 16px;
+  padding: 18px;
+  background: #ffffff;
+  position: relative;
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+
+  h3 {
+    margin: 0;
+    color: #152039;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  a {
+    color: #126fdc;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+.mapMock {
+  border-radius: 12px;
+  min-height: 300px;
+  background: linear-gradient(150deg, #d8e4f6 0%, #cbd9ed 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.mapMock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.mapPin {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1270de;
+  position: absolute;
+  left: 56%;
+  top: 54%;
+  z-index: 1;
+  box-shadow: 0 0 0 8px rgba(18, 112, 222, 0.18);
+}
+
+.mapCity {
+  position: absolute;
+  left: 52%;
+  top: 59%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #25314a;
+  z-index: 1;
+}
+
+.growthLabel {
+  color: #18a27c;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.metricLabel {
+  margin: 8px 0 0;
+  color: #67758f;
+  font-size: 15px;
+}
+
+.metricValue {
+  margin: 2px 0 0;
+  font-size: 52px;
+  font-weight: 800;
+  color: #0f1930;
+}
+
+.chartBars {
+  margin-top: 12px;
+  height: 210px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+
+.barCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 8px;
+  height: 100%;
+
+  small {
+    color: #8a95ab;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.bar {
+  width: 100%;
+  border-radius: 8px 8px 4px 4px;
+  background: #ebeff6;
+  min-height: 22px;
+}
+
+.barActive {
+  background: #126fdb;
+}
+
+.feedbackText {
+  margin: 0;
+  color: #5f6e88;
+  font-size: 15px;
+}
+
+.mobileContent {
+  padding: 18px 16px 96px;
+}
+
+.mobileTitle {
+  margin: 3rem 0 0;
+  color: #111a2f;
+  font-size: 46px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.mobileRole {
+  margin: 8px 0 0;
+  color: #8892a6;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.mobileSectionTitle {
+  margin: 18px 0 10px;
+  color: #4f5b72;
+  font-size: 14px;
+  letter-spacing: 0.09em;
+  font-weight: 800;
+}
+
+.mobileActionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.mobileActionCard {
+  border-radius: 14px;
+  min-height: 102px;
+  border: 1px solid #e2e7f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.mobileActionPrimary {
+  background: #1270de;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.mobileActionSecondary {
+  background: #ffffff;
+  color: #2a3650;
+}
+
+.actionIcon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.mobilePlanCard {
+  margin-top: 18px;
+  border-radius: 16px;
+  padding: 16px;
+  background: linear-gradient(120deg, #0e1d3a 0%, #0e2a5c 60%, #152444 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 24px rgba(16, 31, 64, 0.24);
+
+  p {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 700;
+  }
+
+  h3 {
+    margin: 4px 0 2px;
+    font-size: 33px;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+
+  small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  a {
+    min-width: 92px;
+    height: 40px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #2f9bff 0%, #0c73e8 100%);
+    box-shadow: 0 8px 18px rgba(21, 123, 233, 0.45);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+}
+
+.mobileMapCard,
+.mobileMetricCard {
+  border: 1px solid #e7ecf5;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(17, 30, 55, 0.05);
+  position: relative;
+}
+
+.mobileMapCard {
+  margin-bottom: 14px;
+}
+
+.mobileCardHead,
+.mobileMetricHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mobileCardTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  strong {
+    color: #1f2a41;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+    color: #7f8ca5;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+}
+
+.iconBox {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: #eff4fd;
+  color: #136fdc;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.liveBadge {
+  border-radius: 999px;
+  background: #e6fff4;
+  color: #1e9c75;
+  padding: 4px 8px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+}
+
+.mobileMapMock {
+  margin-top: 10px;
+  border-radius: 12px;
+  min-height: 176px;
+  background: linear-gradient(150deg, #d4e2f6 0%, #c7d6eb 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobileMapMock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.45) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+.mobileGrowth {
+  text-align: right;
+
+  strong {
+    display: block;
+    color: #11203c;
+    font-size: 33px;
+    line-height: 1;
+  }
+
+  small {
+    color: #179874;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.mobileBars {
+  margin-top: 14px;
+  height: 96px;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0;
+  align-items: end;
+  border-radius: 10px;
+  overflow: hidden;
+
+  span {
+    display: block;
+    background: #9ab5d5;
+  }
+
+  span:last-child {
+    background: #0f6fd9;
+  }
+}
+
+.mobileBottomNav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  height: 68px;
+  background: #ffffff;
+  border-top: 1px solid #e6eaf2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  padding: 0 8px;
+
+  a {
+    text-decoration: none;
+    color: #919bb0;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.mobileNavActive {
+  color: #1170de !important;
+}
+
+.metricOverlayLink {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 1199px) {
+  .subscriptionCard {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .welcomeTitle {
+    font-size: 34px;
+  }
+
+  .subscriptionInfo h2 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+}

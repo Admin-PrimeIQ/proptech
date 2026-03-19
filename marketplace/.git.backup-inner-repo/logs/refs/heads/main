@@ -1,0 +1,35 @@
+0000000000000000000000000000000000000000 423233989c8e247d6b56f96d4c40f3461a10aabd joshuacirilo <jcirilo.alegria@gmail.com> 1769462921 -0600	clone: from https://github.com/joshuacirilo/marketplace
+423233989c8e247d6b56f96d4c40f3461a10aabd 3cfc31aac4d42b86a6ffffe921fcbecd0e2653ab joshuacirilo <jcirilo.alegria@gmail.com> 1769474647 -0600	commit: fix: refactor database and fix endpoints
+3cfc31aac4d42b86a6ffffe921fcbecd0e2653ab 695a284212eeea8670f1d8d7ccfca9efceb77f60 joshuacirilo <jcirilo.alegria@gmail.com> 1769524985 -0600	commit: update: remove newsletter in the footer
+695a284212eeea8670f1d8d7ccfca9efceb77f60 014098d4792fb73d4080db9c998455fef4a0810d joshuacirilo <jcirilo.alegria@gmail.com> 1769528645 -0600	commit: feat: conect front and back in the function of add property
+014098d4792fb73d4080db9c998455fef4a0810d d48fe3fcfb4451926634575dfb4f3dc77ea80143 joshuacirilo <jcirilo.alegria@gmail.com> 1769535182 -0600	commit: fix: bug with newletter, company name, storage bucket and price
+d48fe3fcfb4451926634575dfb4f3dc77ea80143 ba1aa8712cf4d5ff04b20e53ef1678b9fd99e107 joshuacirilo <jcirilo.alegria@gmail.com> 1769536798 -0600	commit: add: filter to the propery section in the admin folder
+ba1aa8712cf4d5ff04b20e53ef1678b9fd99e107 862d62822265a7a8bc419cb72434f84cf27a99b0 joshuacirilo <jcirilo.alegria@gmail.com> 1769548846 -0600	commit: feat: clean de page and order al the moduls
+862d62822265a7a8bc419cb72434f84cf27a99b0 bdc962b54466afa9a2a4e4f4042c15c67ce52338 joshuacirilo <jcirilo.alegria@gmail.com> 1769621404 -0600	commit: feat: 3 section in the home page, create the administrator panel for the home page
+bdc962b54466afa9a2a4e4f4042c15c67ce52338 16b223e81358e35e53fc269041fab8b42cddde3b joshuacirilo <jcirilo.alegria@gmail.com> 1769630416 -0600	commit: add: add join section and feature property and our category
+16b223e81358e35e53fc269041fab8b42cddde3b 426b4cd802fcb57e542a1dbf08bd19ad0b935f5a joshuacirilo <jcirilo.alegria@gmail.com> 1769638977 -0600	commit: feat: home complete
+426b4cd802fcb57e542a1dbf08bd19ad0b935f5a 03f66bb59d4aa2eb75eab5d4e96f136b1ff57ec1 joshuacirilo <jcirilo.alegria@gmail.com> 1769639904 -0600	commit: add: changed color in section feature property
+03f66bb59d4aa2eb75eab5d4e96f136b1ff57ec1 f8c0acc83822bddddfd416795804860a8d89bf4d joshuacirilo <jcirilo.alegria@gmail.com> 1769645276 -0600	commit: fix: filters in the home page and properties
+f8c0acc83822bddddfd416795804860a8d89bf4d 519bd4019807286078de9e434650cdc2ed688cf0 joshuacirilo <jcirilo.alegria@gmail.com> 1769695395 -0600	commit: fix: filter in properties page
+519bd4019807286078de9e434650cdc2ed688cf0 e96404eca8fbcbd02ec7af28167fb0dd17f1e866 joshuacirilo <jcirilo.alegria@gmail.com> 1769703538 -0600	commit: feat: add reques in the administrator panel, fix: frontend things and filters, add: details properties
+e96404eca8fbcbd02ec7af28167fb0dd17f1e866 339f67e4493c8509884a81edd7c946fe55a1ef89 joshuacirilo <jcirilo.alegria@gmail.com> 1769716442 -0600	commit: feat: add 3 tables to the db and concect with the frontend for the part of details of properties
+339f67e4493c8509884a81edd7c946fe55a1ef89 2ee74a8dcf60b5f661159a7f156c5740c96796d6 joshuacirilo <jcirilo.alegria@gmail.com> 1769717531 -0600	commit: feat: complete details page
+2ee74a8dcf60b5f661159a7f156c5740c96796d6 42a1bb5ab4287e981749061b3803f91b9883d6b1 joshuacirilo <jcirilo.alegria@gmail.com> 1769717940 -0600	commit: add: color to the details property page
+42a1bb5ab4287e981749061b3803f91b9883d6b1 eac789466505dac1cf31d3f3336b2cd4cc36487f joshuacirilo <jcirilo.alegria@gmail.com> 1769719072 -0600	commit: fix: favorite page
+eac789466505dac1cf31d3f3336b2cd4cc36487f f2e0e3eda86e5cdf855cc18acde636453c0e97e4 joshuacirilo <jcirilo.alegria@gmail.com> 1769722372 -0600	commit: feat. add credentials to the project
+f2e0e3eda86e5cdf855cc18acde636453c0e97e4 268b075ac7ae2dc9a5118917b2f1fe672dc70ce9 joshuacirilo <jcirilo.alegria@gmail.com> 1769785182 -0600	commit: feat: user visibility permissions
+268b075ac7ae2dc9a5118917b2f1fe672dc70ce9 8e86f609dd5425b945e7db26f67f211ea5697bcd joshuacirilo <jcirilo.alegria@gmail.com> 1769789370 -0600	commit: feat: Agregar visibiliadd para que el vendedor solo pueeda modificar y editar sus propiedades pero que pueda ver todas sus propiedades
+8e86f609dd5425b945e7db26f67f211ea5697bcd 4d9a882a254c12eab7c11a1f40851d041c49c2d7 joshuacirilo <jcirilo.alegria@gmail.com> 1769796128 -0600	commit: add: ingreso con gmail , google y reinicio de contraseña
+4d9a882a254c12eab7c11a1f40851d041c49c2d7 b2030a3667cc7cd954db4973b55225925bf08d32 joshuacirilo <jcirilo.alegria@gmail.com> 1769802603 -0600	commit: Fix: problem with the forgot password
+b2030a3667cc7cd954db4973b55225925bf08d32 6dd2b290760ee8cd972603ab8e140a23317376d6 joshuacirilo <jcirilo.alegria@gmail.com> 1769809336 -0600	commit: feat(db): agregar nombre_usuario y estructura para página Acerca de Nosotros
+6dd2b290760ee8cd972603ab8e140a23317376d6 3097afbd93ce88dba24b5def0f53cadcd131106e joshuacirilo <jcirilo.alegria@gmail.com> 1769813886 -0600	commit: feat: page complete
+3097afbd93ce88dba24b5def0f53cadcd131106e fb4230a7cfd53e1dd69c4c598986e7bcf1053c14 joshuacirilo <jcirilo.alegria@gmail.com> 1770053565 -0600	commit: fix: movil view
+fb4230a7cfd53e1dd69c4c598986e7bcf1053c14 91819bf60dec189651687fff8133dc5fcfcd2e34 joshuacirilo <jcirilo.alegria@gmail.com> 1770057845 -0600	commit: fix frontend movil view
+91819bf60dec189651687fff8133dc5fcfcd2e34 61048744aed097eb2c0ce2958a899f2b0b9d34f9 joshuacirilo <jcirilo.alegria@gmail.com> 1770063708 -0600	commit: fix: header color
+61048744aed097eb2c0ce2958a899f2b0b9d34f9 08cfc615fd1bad116358ef919c6f7d940962c94e joshuacirilo <jcirilo.alegria@gmail.com> 1770065268 -0600	commit: fix: favorite page
+08cfc615fd1bad116358ef919c6f7d940962c94e da28a324361298888c125ae1e71d03433125a92d joshuacirilo <jcirilo.alegria@gmail.com> 1770069254 -0600	commit: tests
+da28a324361298888c125ae1e71d03433125a92d 1fecfc92d35eecc3d291f5e87872d13b97584793 joshuacirilo <jcirilo.alegria@gmail.com> 1770071055 -0600	commit: fix; bug with the favorite properties and bug with the profile image
+1fecfc92d35eecc3d291f5e87872d13b97584793 f69c209ad8506dc302358fb4164939c19b51e806 joshuacirilo <jcirilo.alegria@gmail.com> 1770071535 -0600	commit: Fix: bug with the contactCard
+f69c209ad8506dc302358fb4164939c19b51e806 6cab62d78473324a88a9af0ab62c7cdd58e347f3 joshuacirilo <jcirilo.alegria@gmail.com> 1770073402 -0600	commit: fix: bug with the contries in the new properties
+6cab62d78473324a88a9af0ab62c7cdd58e347f3 362772ae40b3f16502641d64c18b7494d6d26b15 joshuacirilo <jcirilo.alegria@gmail.com> 1770128127 -0600	commit: fix: problema que se veia el logo de la plantilla anteriror y algunos componentes mas
+362772ae40b3f16502641d64c18b7494d6d26b15 fb8c7be827cf07ce658b6f6f4f5496a69c14ea11 joshuacirilo <jcirilo.alegria@gmail.com> 1770129838 -0600	commit: try to fix the blank space between the header and the hero section

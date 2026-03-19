@@ -1,0 +1,131 @@
+🎨 Paleta Extraída – PropIQ
+🎯 1️⃣ Azul Corporativo (Primary)
+
+Este es el color más dominante del branding.
+
+#1E5A91
+
+
+Uso:
+
+Hero overlays
+
+Botones principales
+
+Sección About
+
+Estadísticas
+
+Links activos
+
+Este azul transmite:
+
+Confianza
+
+Profesionalismo
+
+Empresa estable
+
+Sector inmobiliario serio
+
+🌿 2️⃣ Verde Institucional (Secondary Brand)
+#1F7A4D
+
+
+Uso:
+
+Elementos secundarios
+
+Indicadores
+
+Detalles de confianza
+
+Posible asociación con crecimiento / inversión
+
+Este verde suaviza el azul y aporta balance.
+
+🟡 3️⃣ Amarillo Dorado (Accent)
+#F2C043
+
+
+Uso:
+
+Destacados
+
+Hover states
+
+Indicadores
+
+Elementos de llamada visual
+
+No es chillón. Es un dorado elegante.
+
+⚙️ 4️⃣ Gris Medio (UI Neutral)
+#8A8A8A
+
+
+Uso:
+
+Texto secundario
+
+Bordes
+
+Metadata
+
+Secciones suaves
+
+⚪ 5️⃣ Gris Claro / Fondo
+#DADADA
+
+
+Uso:
+
+Fondos suaves
+
+Secciones alternas
+
+Espacios negativos
+
+⚫ 6️⃣ Negro Profundo (Footer / Secciones fuertes)
+#0B0B0B
+
+
+Uso:
+
+Footer
+
+Sección “Why Choose”
+
+Bloques institucionales
+
+🧠 Estructura Visual de la Marca
+
+Esta paleta está construida así:
+
+🔵 Base: Azul corporativo
+
+🌿 Complemento: Verde institucional
+
+🟡 Accent: Dorado elegante
+
+⚙️ Soporte: Grises neutros
+
+⚫ Peso visual: Negro profundo
+
+Es una identidad tipo:
+
+Real Estate Corporativo Premium
+
+📦 Versión Lista para SCSS
+:root {
+  --color-primary: #1E5A91;
+  --color-secondary: #1F7A4D;
+  --color-accent: #F2C043;
+
+  --color-dark: #0B0B0B;
+
+  --color-gray-medium: #8A8A8A;
+  --color-gray-light: #DADADA;
+
+  --color-white: #FFFFFF;
+}

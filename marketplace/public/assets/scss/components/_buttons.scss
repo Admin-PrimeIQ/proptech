@@ -1,0 +1,100 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.2 Buttons
+/*----------------------------------------*/
+
+.#{$theme-prefix}-btn{
+	position: relative;
+	overflow: hidden;
+  font-weight: 600;
+  font-size: 16px;
+	line-height: 1.26;
+	padding: 19px 40px 17px;
+	display: inline-block;
+  color: var(--tp-common-white);
+  background-color: var(--tp-theme-primary);
+	-webkit-transition: 500ms all ease;
+  transition: 500ms all ease;
+	& .btn-wrap{
+		z-index: 1;
+		overflow: hidden;
+		position: relative;
+		display: inline-block;
+		& b{
+			font-weight: 600;
+		}
+		& .text{
+			&-1{
+				display: block;
+				position: relative;
+				@include transition();
+				-webkit-box-align: center;
+			}
+			&-2{
+				top: 100%;
+				position: absolute;
+				display: block;
+				@include transition();
+				-webkit-box-align: center;
+			}
+		}
+	}
+	&:hover{
+		color: var(--tp-common-white);
+		& .text{
+			&-1{
+				transform: translateY(-150%);
+				-webkit-transform: translateY(-150%);
+			}
+			&-2{
+				top: 50%;
+				transform: translateY(-50%);
+				-webkit-transform: translateY(-50%);
+			}
+		}
+	}
+	&:focus{
+		color: var(--tp-common-white);
+	}
+
+}
+
+/* hamburger btn */
+
+.hamburger-btn{
+	width: 50px;
+	height: 50px;
+	border: 0;
+	outline: 0;
+	transform: translateX(0%);
+	background: var(--tp-common-white);
+	&:hover{
+			background-color: var(--tp-theme-primary);
+			& span{
+					background-color: var(--tp-common-white);
+			}
+	}
+	& span{
+			display: inline-block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 2px;
+			width: 25px;
+			opacity: 1;
+			z-index: 1;
+			@include transition();
+			transform: translate(-50%, -50%);
+			background: var(--tp-theme-primary);
+			&:nth-child(1){
+					top: 20px;
+			}
+			&:nth-child(2){
+					top: 25px;
+			}
+			&:nth-child(3){
+					top: 30px;
+			}
+	}
+}

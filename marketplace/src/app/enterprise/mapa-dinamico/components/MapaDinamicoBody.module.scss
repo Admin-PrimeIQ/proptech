@@ -1,0 +1,886 @@
+.pageArea {
+  padding: clamp(56px, 5vh, 72px) 0 clamp(56px, 6vh, 80px);
+  background: linear-gradient(180deg, rgba(87, 88, 214, 0.06) 0%, #eff2f7 38%, #eef2f8 100%);
+}
+
+.pageContainer {
+  width: calc(100vw - clamp(12px, 2.2vw, 32px));
+  max-width: calc(100vw - clamp(12px, 2.2vw, 32px));
+  margin: 0 auto;
+}
+
+.titleRow {
+  margin-bottom: 10px;
+
+  h2 {
+    margin: 0;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f7ff 100%);
+    border: 1px solid #d7e0f2;
+    color: #1a2437;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.1;
+
+    span {
+      font-size: 14px;
+      color: #7a869e;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+  }
+}
+
+.layoutGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: clamp(620px, 80vh, 980px);
+  align-items: stretch;
+}
+
+.mapPanel {
+  --floating-search-width: min(640px, calc(100% - 260px));
+  --top-row-y: 16px;
+  --md-surface: var(--tp-common-white);
+  --md-heading: var(--tp-heading-primary);
+  --md-text: var(--tp-text-body);
+  --md-primary: var(--tp-theme-primary);
+  --md-secondary: var(--tp-theme-secondary);
+  --md-border: var(--tp-border-secondary);
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  background: linear-gradient(140deg, var(--md-secondary) 0%, rgba(87, 88, 214, 0.1) 100%);
+  border: 1px solid var(--md-border);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.mapCanvas {
+  --map-sidebar-width: 50%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+
+  :global(.map-root) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(.map-canvas) {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+
+  :global(.map-toolbar) {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2400;
+    display: grid;
+    gap: 8px;
+  }
+
+  :global(.map-toolbar button) {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    border: 1px solid #d8dfeb;
+    background: #ffffff;
+    color: #4f5f7d;
+    box-shadow: 0 10px 20px rgba(15, 24, 42, 0.16);
+  }
+
+  :global(.map-sidebar) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--map-sidebar-width);
+    z-index: 3200;
+    background: transparent;
+    transition: transform 0.35s ease;
+  }
+
+  :global(.map-sidebar.right) {
+    right: 0;
+    transform: translateX(100%);
+  }
+
+  :global(.map-sidebar.right.visible) {
+    transform: translateX(0);
+  }
+
+  :global(.map-sidebar.left) {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  :global(.map-sidebar.left.visible) {
+    transform: translateX(0);
+  }
+
+  :global(.marker-submenu) {
+    position: absolute;
+    top: 270px;
+    left: 10px;
+    right: auto;
+    z-index: 2400;
+  }
+
+  :global(.bars-submenu) {
+    position: absolute;
+    top: calc(var(--top-row-y) + 4px);
+    left: calc(100% - ((100% - var(--floating-search-width)) / 2 - 60px) + 8px);
+    right: auto;
+    z-index: 2400;
+  }
+
+  :global(.mapstyle-submenu) {
+    position: absolute;
+    top: 320px;
+    left: 10px;
+    right: auto;
+    z-index: 2400;
+    min-width: 180px;
+    padding: 10px;
+    border: 1px solid var(--md-border);
+    border-radius: 10px;
+    background: var(--md-surface);
+    box-shadow: 0 12px 28px rgba(15, 24, 42, 0.18);
+
+    h5 {
+      margin: 0 0 8px;
+      color: var(--md-heading);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    button {
+      width: 100%;
+      text-align: left;
+      margin: 0 0 6px;
+      padding: 6px 8px;
+      border: 1px solid #d8dfeb;
+      border-radius: 8px;
+      background: #f7f9ff;
+      color: #4f5f7d;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    button:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.sidebar-toggle) {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--map-sidebar-width) - 14px);
+    transform: translateY(-50%);
+    z-index: 3305;
+    width: 28px;
+    height: 56px;
+    border: 1px solid #cfd9ef;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #4b5c7a;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 10px 22px rgba(15, 24, 42, 0.15);
+  }
+
+  :global(.sidebar-toggle.is-collapsed) {
+    right: 8px;
+  }
+
+  :global(.sidebar-toggle.is-visible) {
+    right: calc(var(--map-sidebar-width) + 6px);
+  }
+}
+
+.markerSubmenuPanel {
+  width: 260px;
+  max-height: min(420px, calc(100vh - 230px));
+  padding: 10px;
+  border: 1px solid var(--md-border);
+  border-radius: 10px;
+  background: var(--md-surface);
+  box-shadow: 0 12px 28px rgba(15, 24, 42, 0.18);
+  overflow: auto;
+
+  h5 {
+    margin: 0 0 8px;
+    color: var(--md-heading);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--md-text);
+    font-size: 11px;
+
+    input {
+      margin-right: 6px;
+    }
+  }
+}
+
+.zoomControls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  button {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #d3d9e5;
+    background: #f8faff;
+    color: #4d5b74;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
+
+.mapMarker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: var(--tp-theme-primary);
+  box-shadow: 0 2px 10px rgba(17, 33, 62, 0.2);
+
+  span {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 10px;
+    color: #4f5e79;
+    background: #ffffff;
+    border: 1px solid #d8dfeb;
+    border-radius: 8px;
+    padding: 2px 6px;
+  }
+}
+
+.mapTooltip {
+  position: absolute;
+  left: 18%;
+  top: 44%;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d4dff5;
+  border-radius: 12px;
+  padding: 10px;
+  min-width: 208px;
+
+  h4 {
+    margin: 0 0 2px;
+    font-size: 12px;
+    color: #25324a;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0 0 4px;
+    font-size: 10px;
+    color: #75839c;
+    line-height: 1.3;
+  }
+
+  small {
+    color: var(--tp-theme-primary);
+    font-size: 10px;
+    font-weight: 600;
+  }
+}
+
+.mapTooltipThumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: #d4dae6;
+}
+
+.resultsPanel {
+  display: block;
+  min-height: 100%;
+  height: 100%;
+}
+
+.resultsBody {
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(300px, 1fr));
+  gap: 8px;
+  min-height: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-right: 0;
+}
+
+.sidebarPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #dbe3f3;
+  border-radius: 12px;
+  background: #ffffff;
+
+  span {
+    color: #6b7890;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.sidebarPaginationControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  button {
+    height: 32px;
+    padding: 0 12px;
+    border: 1px solid #ccd8ee;
+    border-radius: 8px;
+    background: #f4f7ff;
+    color: #41506d;
+    font-size: 12px;
+    font-weight: 800;
+    transition: opacity 0.2s ease;
+
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  small {
+    color: #6e7b94;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.markerTypeMenuPanel {
+  min-width: 210px;
+  padding: 10px;
+  border: 1px solid var(--md-border);
+  border-radius: 10px;
+  background: var(--md-surface);
+  box-shadow: 0 12px 28px rgba(15, 24, 42, 0.18);
+
+  h5 {
+    margin: 0 0 8px;
+    color: var(--md-heading);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--md-text);
+    font-size: 12px;
+
+    input {
+      margin-right: 6px;
+    }
+  }
+}
+
+.propertyCard {
+  background: linear-gradient(135deg, var(--md-surface) 0%, var(--md-secondary) 100%);
+  border: 1px solid var(--md-border);
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyStateCard {
+  border-radius: 14px;
+  border: 1px dashed #cad5eb;
+  background: #ffffff;
+  padding: 20px;
+
+  p {
+    margin: 0;
+    color: #6c7891;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+.cardThumb {
+  height: 50%;
+  min-height: 170px;
+  background: linear-gradient(135deg, #dce4f2 0%, #cfd9ea 100%);
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 14px;
+    color: var(--tp-theme-primary);
+    background: #eef4ff;
+    border: 1px solid #bdd2f6;
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-weight: 700;
+  }
+}
+
+.cardBody {
+  height: 50%;
+  min-height: 0;
+  padding: 8px;
+  overflow: auto;
+
+  h4 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    color: #1d2940;
+    font-weight: 800;
+    line-height: 1.08;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  p {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #728098;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  ul {
+    margin: 0 0 8px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+
+    li {
+      font-size: 12px;
+      color: #8a96ab;
+      background: #f6f8fc;
+      border-radius: 7px;
+      padding: 3px 8px;
+      border: 1px solid #e7edf6;
+      line-height: 1.2;
+    }
+  }
+}
+
+.cardProjectName {
+  margin: 0 0 6px;
+}
+
+.cardLocationText {
+  margin: 0;
+}
+
+.cardLocationRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
+.cardFigure {
+  display: inline-block;
+  font-size: 12px;
+  color: #6b7890;
+  background: #edf2fa;
+  border: 1px solid #dbe4f3;
+  border-radius: 8px;
+  padding: 3px 8px;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+
+  strong {
+    color: var(--tp-theme-primary);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  small {
+    color: #8f9ab0;
+    font-size: 10px;
+  }
+}
+
+.filterPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 156px;
+  background: #ffffff;
+  border: 1px solid #dce3f1;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  height: auto;
+  box-shadow: 0 10px 22px rgba(15, 24, 42, 0.14);
+}
+
+.filterHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h4 {
+    margin: 0;
+    color: var(--tp-heading-primary);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  button {
+    border: none;
+    background: transparent;
+    color: #8693a9;
+    font-size: 16px;
+    line-height: 1;
+  }
+}
+
+.filterGroup {
+  h5 {
+    margin: 0 0 8px;
+    color: var(--tp-heading-primary);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #697792;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 6px;
+  }
+
+  select {
+    width: 100%;
+    height: 34px;
+    margin-bottom: 8px;
+    border: 1px solid #d9e0ec;
+    border-radius: 8px;
+    padding: 0 10px;
+    color: #607089;
+    background: #f7f9fc;
+  }
+}
+
+.filterAction {
+  width: min(780px, 100%);
+  margin: 0 auto;
+  height: 58px;
+  border: none;
+  border-radius: 6px;
+  background: var(--md-primary);
+  color: var(--tp-common-white);
+  font-size: 17px;
+  font-weight: 850;
+  border: 2px solid var(--md-primary);
+  box-shadow: 0 10px 22px rgba(87, 88, 214, 0.28);
+}
+
+.resultsStatus {
+  min-height: 16px;
+
+  p {
+    margin: 0;
+    font-size: 11px;
+    color: #6a7993;
+  }
+}
+
+.floatingSearch {
+  position: absolute;
+  top: var(--top-row-y);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--floating-search-width);
+  z-index: 2350;
+}
+
+.floatingDashboard {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(360px, calc(100% - 260px));
+  z-index: 2350;
+}
+
+
+.clearDrawingBtn {
+  width: 100%;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid #ced8ee;
+  background: #f7f9ff;
+  color: #4f5f7d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.geojsonModalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 24, 42, 0.5);
+}
+
+.geojsonModal {
+  width: min(840px, calc(100vw - 24px));
+  max-height: calc(100vh - 48px);
+  background: #ffffff;
+  border: 1px solid #d4def2;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(15, 24, 42, 0.22);
+
+  pre {
+    margin: 0;
+    padding: 16px;
+    max-height: calc(100vh - 140px);
+    overflow: auto;
+    background: #f6f8fd;
+    color: #24324f;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+.geojsonModalHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e0e6f3;
+
+  h4 {
+    margin: 0;
+    color: #1d2940;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #d4deef;
+    border-radius: 8px;
+    background: #f7f9ff;
+    color: #5f6f8b;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 1199px) {
+  .mapCanvas {
+    --map-sidebar-width: 52%;
+  }
+
+  .layoutGrid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .mapPanel {
+    --floating-search-width: calc(100% - 24px);
+    min-height: clamp(360px, 52vh, 520px);
+    height: auto;
+  }
+
+  .mapCanvas :global(.sidebar-toggle) {
+    right: calc(var(--map-sidebar-width) - 14px);
+  }
+
+  .mapCanvas :global(.sidebar-toggle.is-collapsed) {
+    right: 8px;
+  }
+
+  .resultsPanel,
+  .resultsBody,
+  .cardsGrid,
+  .filterPanel {
+    min-height: auto;
+    height: auto;
+  }
+
+  .resultsBody {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    padding-right: 0;
+    overflow: auto;
+  }
+
+  .propertyCard {
+    min-height: 190px;
+    height: auto;
+  }
+
+  .filterPanel {
+    position: static;
+    width: 100%;
+  }
+
+  .floatingSearch {
+    top: 10px;
+  }
+
+  .floatingDashboard {
+    width: min(360px, calc(100% - 24px));
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .mapCanvas {
+    --map-sidebar-width: 62%;
+  }
+
+  .mapCanvas :global(.sidebar-toggle) {
+    right: calc(var(--map-sidebar-width) - 14px);
+  }
+
+  .filterPanel {
+    order: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .mapCanvas {
+    --map-sidebar-width: calc(100% - 22px);
+  }
+
+  .pageArea {
+    padding: 64px 0 64px;
+  }
+
+  .pageContainer {
+    width: calc(100vw - 12px);
+    max-width: calc(100vw - 12px);
+  }
+
+  .titleRow h2 {
+    font-size: 26px;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mapCanvas :global(.sidebar-toggle) {
+    right: calc(var(--map-sidebar-width) - 14px);
+    width: 24px;
+    height: 46px;
+  }
+
+  .mapCanvas :global(.sidebar-toggle.is-collapsed) {
+    right: 8px;
+  }
+
+  .mapCanvas :global(.marker-submenu) {
+    top: 210px;
+    left: 10px;
+    right: auto;
+  }
+
+  .mapCanvas :global(.mapstyle-submenu) {
+    top: 260px;
+    left: 10px;
+    right: auto;
+  }
+
+  .mapCanvas :global(.bars-submenu) {
+    top: 58px;
+    left: auto;
+    right: 10px;
+  }
+}
+
+.markerSubzonaList {
+  max-height: 320px;
+  overflow: auto;
+}

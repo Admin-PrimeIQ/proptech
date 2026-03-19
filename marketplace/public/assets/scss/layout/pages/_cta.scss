@@ -1,0 +1,122 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.9 Cta Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-cta{
+  &-ptb{
+    margin-top: -100px;
+    @media #{$md,$xs} {
+      margin-top: 50px;
+    }
+  }
+  &-bg{
+    background-color: var(--tp-theme-primary);
+  }
+  &-shape{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  &-icon{
+    @media #{$lg,$md,$xs} {
+      margin-right: 20px;
+    }
+  }
+  &-content{
+    padding: 67px 75px;
+    @media #{$lg} {
+      padding: 45px 40px;
+    }
+    @media #{$lg,$md,$xs} {
+      flex-wrap: wrap;
+    }
+    @media #{$md} {
+      padding: 45px 60px;
+    }
+    @media #{$xs} {
+      padding: 30px;
+    }
+    &-contact{
+      margin-right: 80px;
+      padding-right: 80px;
+      border-right: 2px solid var(--tp-common-white);
+      @media #{$xl} {
+        margin-right: 40px;
+        padding-right: 40px;
+      }
+      @media #{$lg} {
+        margin-right: 20px;
+        padding-right: 20px;
+      }
+      @media #{$md,$xs} {
+        margin-right: 0;
+        padding-right: 0;
+        border: none;
+      }
+      & p{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 26px;
+        margin-bottom: 10px;
+        color: var(--tp-common-white);
+      }
+      & a{
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.26px;
+        color: var(--tp-common-white);
+      }
+    }
+    &-text{
+      margin-right: 160px;
+      @media #{$xl,$lg,$md,$xs} {
+        margin-right: 30px;
+      }
+      @media #{$md,$xs} {
+        padding-top: 20px;
+      }
+      & span{
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 36px;
+        letter-spacing: -0.26px;
+        color: var(--tp-common-white);
+        & br{
+          @media #{$xs} {
+            display: none; 
+          }
+        }
+      }
+    }
+    &-btn{
+      @media #{$lg,$md,$xs} {
+        margin-top: 20px;
+      }
+      & .tp-btn{
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0px 30px 50px 0px rgba(1, 6, 20, 0.12);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.00) 100%);
+      }
+    }
+  }
+
+  &-4{
+    &-ptb{
+      position: absolute;
+      margin-top: -100px;
+      width: 100%;
+      z-index: 2;
+      @media #{$md} {
+        margin-top: -195px;
+      }
+      @media #{$xs} {
+        position: static;
+        margin-top: 0px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+}

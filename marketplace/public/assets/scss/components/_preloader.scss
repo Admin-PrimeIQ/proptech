@@ -1,0 +1,80 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.4 Preloader
+/*----------------------------------------*/
+
+.loader-mask {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: fixed;
+	z-index: 99999;
+	background-color: #fff;
+}
+.loader {
+	top: 50%;
+	left: 50%;
+	width: 50px;
+	height: 50px;
+	font-size: 0;
+	position: absolute;
+	text-indent: -9999em;
+	display: inline-block;
+	margin: -25px 0 0 -25px;
+	color: var(--tp-theme-primary);
+	-webkit-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	transform: translateZ(0);
+	& div {
+		top: 0;
+		left: 0;
+		opacity: .5;
+		float: none;
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		border-radius: 50%;
+		display: inline-block;
+		background-color: var(--tp-theme-primary);
+		-webkit-animation: ballPulseDouble 2s ease-in-out infinite;
+		animation: ballPulseDouble 2s ease-in-out infinite;
+	}
+}
+
+
+@-webkit-keyframes ballPulseDouble {
+
+	0%,
+	100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+	}
+
+	50% {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+	}
+}
+
+
+.loader div:last-child {
+	-webkit-animation-delay: -1s;
+	animation-delay: -1s;
+}
+
+@keyframes ballPulseDouble {
+
+	0%,
+	100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+	}
+
+	50% {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+	}
+}
+

@@ -1,0 +1,120 @@
+🎨 Paleta Extraída – Dwello Real Estate
+🎯 1️⃣ Colores Base (Brand Core)
+🟤 Primary Dark (Chocolate profundo)
+
+Color dominante en:
+
+Navbar
+
+Botones
+
+Footer
+
+Textos fuertes
+
+#2B1B12
+
+
+Sensación:
+Elegante, lujo, estabilidad, inmobiliaria premium.
+
+🟤 Secondary Brown
+
+Usado en:
+
+Hover states
+
+Variaciones de botón
+
+Elementos destacados suaves
+
+#4F3527
+
+🧸 2️⃣ Fondo Principal (Warm Neutral)
+🟤 Warm Beige Background
+#DDC7BB
+
+
+Uso:
+
+Fondo general
+
+Secciones intermedias
+
+Cards suaves
+
+Este es el color que le da el look moderno Pinterest / inmobiliaria premium.
+
+🟡 3️⃣ Accent (Amarillo mostaza elegante)
+#FFC71E
+
+
+Uso:
+
+Estrellas rating
+
+Pequeños detalles
+
+Indicadores
+
+Highlights
+
+Este no es neón, es más sobrio y corporativo.
+
+⚪ 4️⃣ Blanco
+#FFFFFF
+
+
+Uso:
+
+Cards
+
+Inputs
+
+Sección de testimonios
+
+Tarjetas de propiedades
+
+🎛 5️⃣ Escala de Soporte (Derivada visualmente)
+Beige claro para fondos suaves
+#F5EDE8
+
+Gris texto secundario
+#6B5B53
+
+Gris claro divisores
+#E5D6CE
+
+🧠 Análisis Estratégico del Estilo
+
+Este diseño trabaja con:
+
+🏠 Tonos cálidos (marrón y beige)
+
+💎 Sensación premium minimal
+
+🎯 Bajo contraste agresivo (no usa negros puros)
+
+🟡 Accent pequeño y elegante (no invasivo)
+
+Es una paleta tipo:
+
+Warm Luxury Minimal Real Estate
+
+📦 Versión Lista para CSS / SCSS
+:root {
+  --color-primary: #2B1B12;
+  --color-primary-2: #4F3527;
+
+  --color-background: #DDC7BB;
+  --color-background-soft: #F5EDE8;
+
+  --color-accent: #FFC71E;
+
+  --color-white: #FFFFFF;
+
+  --color-text-main: #2B1B12;
+  --color-text-secondary: #6B5B53;
+
+  --color-border: #E5D6CE;
+}

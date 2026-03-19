@@ -1,0 +1,113 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  8.7 Progress Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-progress{
+  position: relative;
+  background: #F0F4FD;
+  &-bar{
+    &-box{
+      overflow: hidden;
+    }
+  }
+  &-title{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--tp-heading-primary);
+  }
+  & .progress-bar {
+    height: 8px;
+    overflow: visible;
+    position: relative;
+    transition: width 0.6s ease;
+    background-color: var(--tp-theme-primary);
+    &::after{
+      position: absolute;
+      content: "";
+      right: -5px;
+      top: -3px;
+      height: 14px;
+      width: 6px;
+      z-index: 5;
+      background-color: var(--tp-theme-primary);
+    }
+  }
+  &-counter{
+    position: absolute;
+    top: -30px;
+    right: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--tp-text-body);
+  }
+
+  &-item{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    padding: 40px 60px 60px 40px;
+    @media #{$lg} {
+      background-size: cover;
+      padding: 30px 50px 20px 35px;
+    }
+    @media #{$md,$xs} {
+      background-size: cover;
+      margin-bottom: 30px;
+    }
+    &-content{
+      & span{
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: var(--tp-common-black);
+      }
+    }
+    &-title{
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--tp-common-black);
+    }
+    &-btn{
+      & a{
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0px 10px;
+        display: inline-block;
+        color: var(--tp-common-white);
+        background-color: var(--tp-theme-primary);
+      }
+    }
+    &-shape{
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      @media #{$lg} {
+        margin-top: 20px;
+        position: static;
+      }
+    }
+  }
+  &-count-box{
+    padding: 55px 35px;
+    background: var(--tp-common-white);
+    box-shadow: 0px 0px 40px 0px rgba(20, 21, 58, 0.06);
+    @media #{$md,$xs} {
+      margin-bottom: 30px;
+    }
+    & .tp-counter-title{
+      font-size: 56px;
+      letter-spacing: -2.24px;
+      @media #{$lg,$md,$xs} {
+        font-size: 45px;
+      }
+    }
+    & span{
+      font-weight: 600;
+    }
+  }
+}

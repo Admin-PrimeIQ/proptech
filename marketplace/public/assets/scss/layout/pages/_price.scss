@@ -1,0 +1,231 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  8.6 Price Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-price{
+  &-item{
+    padding: 30px;
+    @include transition();
+    background-color: var(--tp-common-white);
+    box-shadow: 0px 0px 20px 0px rgba(28, 18, 56, 0.08);
+    @media #{$xs} {
+      flex-wrap: wrap;
+    }
+    &:hover ,
+    &.active{
+      background-color: var(--tp-theme-primary);
+      & .tp-price-item{
+        &-title{
+          & span{
+            color: var(--tp-common-white);
+            & svg{
+              color: var(--tp-common-white);
+            }
+          }
+        }
+        &-btn{
+          & span{
+            background-color: var(--tp-common-white);
+            border-color: var(--tp-common-white)
+          }
+        }
+        &-price{
+          & h4{
+            color: var(--tp-common-white);
+          }
+        }
+      }
+    }
+    &-title{
+      & span{
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--tp-heading-primary);
+        & svg{
+          margin-right: 8px;
+          transform: translateY(-3px);
+          color: var(--tp-theme-primary);
+        }
+      }
+    }
+    &-btn{
+      & span{
+        display: inline-block;
+        padding: 0px 6px 1px;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid #D9D9D9;
+        color: var(--tp-heading-primary);
+        background: var(--tp-common-white);
+      }
+    }
+    &-price{
+      @media #{$xs} {
+        margin-top: 10px;
+      }
+      & h4{
+        font-size: 30px;
+        font-weight: 700;
+      }
+    }
+  }
+  &-content{
+    &-shape{
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+    }
+    &-two{
+      position: relative;
+      padding: 16px 60px;
+      @media #{$lg,$xs} {
+        padding: 16px 30px;
+      }
+      & a{
+        font-size: 16px;
+        font-weight: 600;
+        padding: 12px 30px;
+        margin-right: 30px;
+        display: inline-block;
+        color: var(--tp-common-white);
+        background-color: var(--tp-heading-primary);
+        &:hover{
+          background-color: var(--tp-theme-primary);
+        }
+      }
+    }
+  }
+  &-content-box{
+    padding: 60px 60px 40px;
+    background-color: var(--tp-common-white);
+    box-shadow: 0px 4px 60px 0px rgba(33, 30, 69, 0.06);
+    @media #{$lg,$xs} {
+      padding: 40px 30px 40px;
+    }
+    &-title{
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    &-list{
+      & ul{
+        & li{
+          font-size: 15px;
+          font-weight: 400;
+          list-style: none;
+          &:not(:last-child){
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E6E6E6;
+          }
+          & span{
+            display: inline-block;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-pricing{
+  &-ptb{
+    @media #{$xs} {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+  &-heading{
+    & .tp-section-title{
+      color: var(--tp-common-white);
+      &-pre{
+        color: var(--tp-common-white);
+      }
+    }
+  }
+  &-item{
+    padding: 50px;
+    backdrop-filter: blur(20px);
+    background: linear-gradient(239deg, rgba(255, 255, 255, 0.12) 17.93%, rgba(255, 255, 255, 0.03) 81.51%);
+    @media #{$lg,$xs} {
+      padding: 40px 30px 30px;
+    }
+    &.active{
+      & .tp-pricing-item-btn{
+        & .tp-btn{
+          border-color: var(--tp-theme-primary);
+          background-color: var(--tp-theme-primary);
+        }
+      }
+    }
+    &-heading{
+      margin-bottom: 30px;
+      & span{
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: inline-block;
+        color: var(--tp-common-white);
+      }
+    }
+    &-title{
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--tp-common-white);
+      & span{
+        margin: 0;
+      }
+    }
+    &-btn{
+      margin-bottom: 40px;
+      & .tp-btn{
+        text-align: center;
+        width: 100%;
+        margin-bottom: 12px;
+        padding: 13px 8px;
+        background-color: transparent;
+        border: 1px solid rgba($color: #fff, $alpha: 0.25);
+        &:hover{
+          border-color: var(--tp-theme-primary);
+          background-color: var(--tp-theme-primary);
+        }
+      }
+      & p{
+        text-align: center;
+        color: #80858F;
+        line-height: 1;
+      }
+    }
+    &-list{
+      & ul{
+        & li{
+          list-style: none;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 34px;
+          margin-bottom: 5px;
+          color: var(--tp-common-white);
+          & span{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    &.active{
+      &::after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        content: url("../../../img/portfolio/price-shape.png");
+      }
+    }
+  }
+}

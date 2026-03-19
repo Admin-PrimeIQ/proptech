@@ -1,0 +1,120 @@
+@use '../../utils' as *;
+/*----------------------------------------*/
+/*  5.3 Sidebar css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-sidebar {
+    &-wrapper{
+      @media #{$lg,$md,$xs} {
+        padding-left: 0;
+      }
+    }
+    &-search{
+      & input{
+        width: 100%;
+        height: 54px;
+        font-size: 15px;
+        padding-right: 70px;
+        background: #F0F4FD;
+        color: var(--tp-text-body);
+        &:focus{
+          background-color: var(--tp-common-white);
+          border-color: var(--tp-theme-primary);
+          box-shadow: 0px 0px 0px 3px rgba(70, 97, 253, 0.16);
+        }
+        &::placeholder{
+          font-size: 15px;
+          color: var(--tp-text-body);
+        }
+      }
+      &-btn{
+        position: absolute;
+        top: 50%;
+        right: 0px;
+        line-height: 1;
+        transform: translateY(-50%);
+        & span{
+            height: 54px;
+            width: 64px;
+            line-height: 50px;
+            display: inline-block;
+            color: var(--tp-common-white);
+            @include transition();
+            background-color: var(--tp-theme-primary);
+        }
+      }
+    }
+    &-widget{
+      padding: 30px;
+      background: #FEFEFE;
+      border: 1px solid rgba(32, 33, 36, 0.10);
+      &-title{
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(230, 230, 230, 0.93);
+      }
+    }
+    &-widgets{
+        &-title{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+    }
+    &-content{
+        & ul{
+          & li{
+            list-style: none;
+            &:not(:last-of-type){
+              margin-bottom: 20px;
+            }
+            & a{
+                display: block;
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--tp-text-body);
+              & span{
+                float: right;
+                font-size: 10px;
+                background-color: #F4F4F4;
+                border-radius: 50%;
+                padding: 0 5px;
+              }
+              & svg{
+                margin-right: 10px;
+                transform: translateY(-2px);
+              }
+              &:hover{
+                color: var(--tp-theme-primary);
+                & span{
+                  color: var(--tp-theme-primary);
+                }
+              }
+            }
+          }
+        }
+    }
+  }
+
+
+
+// tag cloud
+.tagcloud{
+    & a{
+      font-size: 14px;
+      line-height: 1;
+      padding: 10px 22px;
+      margin-bottom: 12px;
+      margin-right: 10px;
+      display: inline-block;
+      background: #F0F4FD;
+      color: var(--tp-text-body);
+        &:hover{
+            background-color: var(--tp-theme-primary);
+            border-color: var(--tp-theme-primary);
+            color: var(--tp-common-white);
+        }
+    }
+}

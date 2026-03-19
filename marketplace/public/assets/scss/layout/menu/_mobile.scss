@@ -1,0 +1,93 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  4.2 Mobilemenu css
+/*----------------------------------------*/
+
+.tp-offcanvas-menu ul {
+    list-style: none;
+    & li {
+        position: relative;
+
+        & > a{
+            padding: 8px 0;
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--tp-common-white);
+            &:hover{
+                color: var(--tp-theme-primary);
+            }
+        }
+
+        &:not(:last-child){
+            & > a{
+                border-bottom: 1px solid var(--tp-common-white);
+            }
+        }
+        &.active{
+            & > a{
+                color: var(--tp-theme-primary);
+            }
+            & > .tp-menu-close{
+                border-color: var(--tp-theme-primary);
+                background-color: var(--tp-theme-primary);
+                & i{
+                    @include transform(rotate(90deg));
+                }
+            }
+        }
+        & .sub-menu {
+            display: none;
+            padding-left: 20px;
+        }
+        /* Submenú móvil (Administrador, etc.): visible y legible */
+        & .tp-submenu.submenu,
+        & .offcanvas-admin-submenu {
+            display: block;
+            padding-left: 20px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            list-style: none;
+            & li {
+                margin-bottom: 4px;
+                & > a,
+                & .offcanvas-submenu-btn {
+                    padding: 6px 0;
+                    display: block;
+                    font-size: 15px;
+                    font-weight: 500;
+                    color: rgba(255, 255, 255, 0.95);
+                    background: none;
+                    border: none;
+                    width: 100%;
+                    text-align: left;
+                    cursor: pointer;
+                    text-decoration: none;
+                    @include transition();
+                    &:hover {
+                        color: var(--tp-theme-primary);
+                    }
+                }
+                & .offcanvas-submenu-btn {
+                    font: inherit;
+                }
+            }
+        }
+    }
+}
+.tp-menu-close {
+    position: absolute;
+    right: 0;
+    top: 7.5px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 29px;
+    color: var(--tp-common-white);
+    border: 1px solid var(--tp-common-white);
+    & i{
+        @include transition(.3s);
+    }
+}

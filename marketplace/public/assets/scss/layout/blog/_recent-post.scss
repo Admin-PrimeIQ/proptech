@@ -1,0 +1,41 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  5.2 Recent Post css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-recent-post {
+    &-title{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 18px;
+        margin-bottom: 5px;
+      & a{
+        &:hover{
+          color: var(--tp-theme-primary);
+        }
+      }
+    }
+    &-thumb{
+        overflow: hidden;
+        flex: 0 0 auto;
+        & img{
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.3s 0s ease-out;
+        }
+        &:hover{
+            & img{
+                transform: scale(1.08);
+            }
+        }
+    }
+    &-meta{
+        line-height: 1;
+        & span{
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tp-text-body);
+        }
+    }
+}

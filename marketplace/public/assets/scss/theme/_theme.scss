@@ -1,0 +1,313 @@
+@use '../utils' as *;
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Bhumi - Real Estate React NextJs Template
+    Author: Theme_Pure
+    Support: basictheme400@gmail.com
+    Description: Bhumi - Real Estate React NextJs Template
+    Version: 1.0
+
+-----------------------------------------------------------------------------------
+
+/************ TABLE OF CONTENTS ***************
+
+	-----------------
+    01. THEME CSS
+	-----------------
+		1.1 Theme Default
+		1.2 Common Classes
+		1.3 Default Spacing
+		
+	-----------------
+    02. COMPONENTS css
+	-----------------
+		2.1 Back to top
+		2.2 Buttons
+		2.3 Animations
+		2.4 Preloader
+		2.5 Nice Select
+		2.6 Pagination
+		2.7 Offcanvas
+		2.8 Breadcrumb
+		2.9 Section Title
+		2.10 Range Slider
+		2.11 Carousel
+	-----------------
+    03. HEADER CSS
+	-----------------
+		3.1 Header Style 1
+		3.2 Header Style 2
+
+    ---------------------------------
+	04. MENU CSS
+	---------------------------------
+		4.1 Main menu css
+		4.2 Mobile css
+
+	---------------------------------
+	05. BLOG CSS
+	---------------------------------
+		5.1 Postbox css
+		5.2 Recent Post css
+		5.3 Sidebar css
+		5.4 Blog css
+
+	---------------------------------
+	06. FOOTER CSS
+	---------------------------------
+		6.1 Footer Style 1
+		6.2 Footer Style 2
+		6.3 Footer Style 3
+	
+	---------------------------------
+	07. PAGES CSS
+	---------------------------------
+		7.1 Hero Css
+		7.2 About Css
+		7.3 Awerds
+		7.4 Counter Css
+		7.5 Video Play Css
+		7.6 Brand Css
+		7.7 Explore Css
+		7.8 Contact Css
+		7.9 Cta Css
+		8.0 Faq Css
+		8.1 Feature Css
+		8.2 Listing Css
+		8.3 Location Css
+		8.4 Offer Css
+		8.5 Portfolio Css
+		8.6 Price Css
+		8.7 Progress Css
+		8.8 Property Css
+		8.9 Rent Css
+		9.0 Service Css
+		9.1 Slider Css
+		9.2 Team Css
+		9.3 Testimonial Css
+
+
+**********************************************/
+
+
+/*----------------------------------------*/
+/*  1.1 Theme Default
+/*----------------------------------------*/
+
+@import url($font-url);
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	margin: 0;
+	padding: 0;
+}
+
+/*---------------------------------
+	typography css start
+---------------------------------*/
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: normal;
+	color: var(--tp-text-body);
+	font-family: var(--tp-ff-body);
+}
+
+
+a{
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0px;
+	font-weight: 600;
+	line-height: 1.2;
+	@include transition(color);
+	font-family: var(--tp-ff-heading);
+	color: var(--tp-heading-primary);
+}
+
+h1 {
+	font-size: 40px;
+}
+  
+h2 {
+font-size: 36px;
+}
+
+h3 {
+font-size: 28px;
+}
+
+h4 {
+font-size: 24px;
+}
+
+h5 {
+font-size: 20px;
+}
+
+h6 {
+font-size: 16px;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+p {
+	font-family: var(--tp-ff-p);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 30px;
+	margin-bottom: 0px;
+	color: var(--tp-text-body);
+}
+
+
+a,
+button,
+p,
+input,
+select,
+textarea,
+li,
+.transition-3{
+	@extend %transition;
+}
+
+a:not([href]):not([class]), 
+a:not([href]):not([class]):hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:focus,
+.button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover{
+	color: inherit;
+	text-decoration: none;
+}
+
+
+a,
+button {
+	color: inherit;
+	outline: none;
+	border: none;
+	background: transparent;
+}
+
+button:hover{
+	cursor: pointer;
+}
+
+button:focus{
+    outline: 0; 
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+.capitalize {
+	text-transform: capitalize;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+textarea{
+	outline: none;
+	height: 60px;
+	width: 100%;
+	line-height: 60px;
+	font-size: 16px;
+	font-weight: 400;
+	padding-left: 26px;
+	padding-right: 26px;
+	border: 1px solid #E0E2E3;
+
+	@include placeholder{
+		color: #787878;
+	}
+
+	@include rtl{
+		text-align: right;
+	}
+
+	&:focus{
+		border-color: var(--tp-theme-primary);
+		&::placeholder{
+			opacity: 0;
+		}
+	}
+
+}
+
+textarea{
+	line-height: 1.4;
+	padding-top: 17px;
+	padding-bottom: 17px;
+}
+
+input[type="color"] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	border-radius: 50%;
+}
+
+*::-moz-selection {
+	background: var(--tp-common-black);
+	color: var(--tp-common-white);
+	text-shadow: none;
+}
+::-moz-selection {
+	background: var(--tp-common-black);
+	color: var(--tp-common-white);
+	text-shadow: none;
+}
+::selection {
+	background: var(--tp-common-black);
+	color: var(--tp-common-white);
+	text-shadow: none;
+}
+
+
+*::-moz-placeholder {
+	color: var(--tp-common-black);
+	font-size: 14px;
+	opacity: 1;
+}
+*::placeholder {
+	color: var(--tp-common-black);
+	font-size: 14px;
+	opacity: 1;
+}

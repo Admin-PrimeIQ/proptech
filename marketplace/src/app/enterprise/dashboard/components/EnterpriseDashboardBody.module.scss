@@ -1,0 +1,192 @@
+.dashboardArea {
+  padding: 120px 0 90px;
+  background: #f5f7fb;
+}
+
+.sectionHeading {
+  margin-bottom: 16px;
+  text-align: center;
+
+  h3 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 800;
+    color: #1d2a3f;
+    letter-spacing: 0.01em;
+  }
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.kpiCard {
+  background: #ffffff;
+  border: 1px solid #e8ecf3;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 20px rgba(18, 26, 44, 0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    display: block;
+    color: #1d2a3f;
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+}
+
+.kpiPlaceholder {
+  height: 46px;
+  border-radius: 10px;
+  border: 1px dashed #cfd7e6;
+  background: linear-gradient(135deg, #f7f9fd 0%, #eef3fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5f6d84;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.kpiActionBtn {
+  height: 46px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--tp-theme-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  width: min(220px, 100%);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 0 14px;
+
+  &:hover {
+    background: #3f43be;
+    color: #fff;
+  }
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(280px, 0.95fr);
+  gap: 16px;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.sidebarGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-content: start;
+}
+
+.moduleCard {
+  background: #ffffff;
+  border: 1px solid #e8ecf3;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(18, 26, 44, 0.06);
+}
+
+.moduleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+
+  h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d2a3f;
+  }
+}
+
+.moduleSubtitle {
+  margin: 0 0 12px;
+  color: #6c7a91;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.placeholder {
+  height: 220px;
+  border-radius: 12px;
+  border: 1px dashed #cfd7e6;
+  background: linear-gradient(135deg, #f7f9fd 0%, #eef3fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #5f6d84;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 14px;
+}
+
+.hSm {
+  height: 170px;
+}
+
+.hLg {
+  height: 410px;
+}
+
+@media (max-width: 1199px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hLg {
+    height: 260px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboardArea {
+    padding: 100px 0 70px;
+  }
+
+  .sectionHeading h3 {
+    font-size: 24px;
+  }
+
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarGrid {
+    grid-template-columns: 1fr;
+  }
+}

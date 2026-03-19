@@ -1,0 +1,30 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  6.3 Footer Style 3
+/*----------------------------------------*/
+
+//footer widget style
+.#{$theme-prefix}-footer-4{
+  &-ptb{
+    padding-top: 250px;
+  }
+}
+
+
+/* footer col design for home 1 */
+.tp-footer-3-col{
+    &-1{
+
+    }
+    &-2{
+
+    }
+    &-3{
+      
+    }
+    &-4{
+
+    }
+}
+

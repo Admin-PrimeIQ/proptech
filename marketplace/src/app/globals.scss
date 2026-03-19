@@ -1,0 +1,10 @@
+@forward '../../public/assets/css/bootstrap.css'; 
+@forward '../../public/assets/css/spacing.css';
+@forward '../../public/assets/css/animate.css';
+@forward '../../public/assets/scss/main.scss';
+@forward '../../public/assets/css/font-awesome-pro.css';
+
+body.lifestyle-hide-global-footer .tp-footer-area,
+body.lifestyle-hide-global-footer .back-to-top-wrapper {
+  display: none !important;
+}

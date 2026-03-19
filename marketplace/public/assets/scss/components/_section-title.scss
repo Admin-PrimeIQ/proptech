@@ -1,0 +1,53 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.9 Section Title
+/*----------------------------------------*/
+
+.#{$theme-prefix}-section{
+    &-title{
+        font-weight: 700;
+        font-size: 55px;
+        line-height: 1.22;
+        margin-bottom: 20px;
+        letter-spacing: -1.1px;
+        font-family: var(--tp-ff-heading);
+        color: var(--tp-heading-primary);
+        &.fns-70{
+            font-size: 70px;
+            letter-spacing: -1.4px;
+            @media #{$md} {
+                font-size: 46px;
+            }
+            @media #{$xs} {
+                font-size: 42px;
+            }
+        }
+        & br{
+            @media #{$sm,$xs} {
+                display: none;
+            }
+        }
+        @media #{$xl} {
+            font-size: 45px;
+        }
+        @media #{$lg,$md} {
+            font-size: 40px;
+        }
+        @media #{$xs} {
+            font-size: 35px;
+        }
+        &-pre{
+            position: relative;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 12px;
+            margin-bottom: 15px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            display: inline-block;
+            color: var(--tp-theme-primary);
+        }
+    }
+}
+

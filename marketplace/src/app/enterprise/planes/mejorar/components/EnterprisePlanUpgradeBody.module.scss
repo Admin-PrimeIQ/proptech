@@ -1,0 +1,395 @@
+.pageWrap {
+  padding: 56px 0 90px;
+  background: #f4f6fa;
+}
+
+.pageTitle {
+  margin: 0;
+  color: #111b31;
+  font-size: 48px;
+  line-height: 1.1;
+}
+
+.pageDescription {
+  margin: 6px 0 0;
+  color: #63738f;
+  font-size: 18px;
+}
+
+.currentPlanCard {
+  margin-top: 22px;
+  border: 1px solid #e6ebf3;
+  border-radius: 16px;
+  background: #ffffff;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 0.95fr 2fr;
+}
+
+.planImageArea {
+  min-height: 305px;
+}
+
+.planImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(140deg, #4f85b2 0%, #8db6d5 36%, #3e698d 100%);
+  position: relative;
+}
+
+.planImagePlaceholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+}
+
+.planInfoArea {
+  padding: 22px 22px 16px;
+
+  h2 {
+    margin: 8px 0 4px;
+    color: #131e34;
+    font-size: 45px;
+    line-height: 1.1;
+  }
+
+  > p {
+    margin: 0;
+    color: #5f6f89;
+    font-size: 17px;
+  }
+}
+
+.activeBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: #ebf4ff;
+  color: #116fdc;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+}
+
+.featuresGrid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+}
+
+.featureItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #34425f;
+  font-size: 16px;
+}
+
+.featureIcon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.included {
+  color: #14a17a;
+  background: #e7fbf3;
+}
+
+.locked {
+  color: #aab4c7;
+  background: #f2f4f8;
+}
+
+.currentPlanFooter {
+  margin-top: 14px;
+  border-top: 1px solid #edf1f7;
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  small {
+    color: #7c89a0;
+    font-size: 15px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 9px;
+    height: 44px;
+    min-width: 146px;
+    background: #1170de;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 16px;
+  }
+}
+
+.compareTitle {
+  margin: 24px 0 12px;
+  color: #18233c;
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+.planGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.planCard {
+  border: 1px solid #e7ebf3;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 18px;
+  position: relative;
+
+  h4 {
+    margin: 0;
+    color: #202b44;
+    font-size: 36px;
+  }
+
+  ul {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #42506c;
+    font-size: 15px;
+  }
+
+  li span {
+    color: #2b84d8;
+    font-size: 10px;
+  }
+}
+
+.planCardHighlighted {
+  border-color: #2b83d8;
+  box-shadow: 0 8px 24px rgba(43, 131, 216, 0.12);
+}
+
+.recommendedTag {
+  position: absolute;
+  top: -1px;
+  right: 14px;
+  height: 22px;
+  border-radius: 0 0 7px 7px;
+  background: #1285e3;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.priceLine {
+  margin: 2px 0 0;
+  color: #1b2741;
+
+  strong {
+    font-size: 50px;
+    line-height: 1;
+  }
+
+  span {
+    color: #7b889f;
+    font-size: 24px;
+  }
+}
+
+.planDescription {
+  margin: 8px 0 0;
+  color: #677792;
+  font-size: 16px;
+  min-height: 48px;
+}
+
+.planActionBtn {
+  margin-top: 12px;
+  width: 100%;
+  border: 0;
+  border-radius: 9px;
+  height: 42px;
+  background: #1170de;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.planActionCurrent {
+  background: #eff3f9;
+  color: #9ca7bb;
+}
+
+.planActionDark {
+  background: #131f39;
+}
+
+.customCard {
+  margin-top: 18px;
+  border: 1px dashed #dce4ef;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  h4 {
+    margin: 0;
+    color: #1f2a43;
+    font-size: 31px;
+  }
+
+  p {
+    margin: 0;
+    color: #6f7f98;
+    font-size: 16px;
+  }
+
+  a {
+    color: #1170de;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+}
+
+.feedbackText {
+  margin: 0;
+  color: #5f6e88;
+  font-size: 15px;
+}
+
+.mobileBottomNav {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .pageWrap {
+    padding: 46px 0 80px;
+  }
+
+  .pageTitle {
+    font-size: 40px;
+  }
+
+  .currentPlanCard {
+    grid-template-columns: 1fr;
+  }
+
+  .planImageArea {
+    min-height: 220px;
+  }
+
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .compareTitle {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageWrap {
+    padding: 32px 0 96px;
+  }
+
+  .pageTitle {
+    font-size: 34px;
+  }
+
+  .pageDescription {
+    font-size: 16px;
+  }
+
+  .planInfoArea h2 {
+    font-size: 35px;
+  }
+
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .currentPlanFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .priceLine strong {
+    font-size: 42px;
+  }
+
+  .priceLine span {
+    font-size: 20px;
+  }
+
+  .customCard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mobileBottomNav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    height: 68px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    background: #ffffff;
+    border-top: 1px solid #e7ebf3;
+    padding: 0 8px;
+
+    a {
+      text-decoration: none;
+      color: #9aa4b7;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      gap: 2px;
+    }
+  }
+
+  .navIcon {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .mobileNavActive {
+    color: #1170de !important;
+  }
+}

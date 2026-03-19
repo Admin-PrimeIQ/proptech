@@ -1,0 +1,28 @@
+$colors: (
+    'common': (
+        'white': #ffffff,
+        'black': #000,
+        'gray': #F0F4FD,
+    ),
+    'theme': (
+        'primary': #5758D6,
+        'secondary': #F0F4FD,
+    ),
+    'heading': (
+        'primary': #262B35,
+        'secondary': #1F242C,
+    ),
+    'text': (
+        'body':#787878,
+        '1': #01103D,
+    ),
+    'border': (
+        'primary': #FEF3DF,
+        'secondary': #F0F2F4,
+    )
+);
+
+$white : #ffffff;
+$black : #0000;
+$theme-primary : #5758D6;
+$border-primary : #E6E6E6;

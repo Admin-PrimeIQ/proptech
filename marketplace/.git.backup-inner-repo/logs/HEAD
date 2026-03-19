@@ -1,0 +1,91 @@
+0000000000000000000000000000000000000000 423233989c8e247d6b56f96d4c40f3461a10aabd joshuacirilo <jcirilo.alegria@gmail.com> 1769462921 -0600	clone: from https://github.com/joshuacirilo/marketplace
+423233989c8e247d6b56f96d4c40f3461a10aabd 3cfc31aac4d42b86a6ffffe921fcbecd0e2653ab joshuacirilo <jcirilo.alegria@gmail.com> 1769474647 -0600	commit: fix: refactor database and fix endpoints
+3cfc31aac4d42b86a6ffffe921fcbecd0e2653ab 695a284212eeea8670f1d8d7ccfca9efceb77f60 joshuacirilo <jcirilo.alegria@gmail.com> 1769524985 -0600	commit: update: remove newsletter in the footer
+695a284212eeea8670f1d8d7ccfca9efceb77f60 014098d4792fb73d4080db9c998455fef4a0810d joshuacirilo <jcirilo.alegria@gmail.com> 1769528645 -0600	commit: feat: conect front and back in the function of add property
+014098d4792fb73d4080db9c998455fef4a0810d d48fe3fcfb4451926634575dfb4f3dc77ea80143 joshuacirilo <jcirilo.alegria@gmail.com> 1769535182 -0600	commit: fix: bug with newletter, company name, storage bucket and price
+d48fe3fcfb4451926634575dfb4f3dc77ea80143 ba1aa8712cf4d5ff04b20e53ef1678b9fd99e107 joshuacirilo <jcirilo.alegria@gmail.com> 1769536798 -0600	commit: add: filter to the propery section in the admin folder
+ba1aa8712cf4d5ff04b20e53ef1678b9fd99e107 862d62822265a7a8bc419cb72434f84cf27a99b0 joshuacirilo <jcirilo.alegria@gmail.com> 1769548846 -0600	commit: feat: clean de page and order al the moduls
+862d62822265a7a8bc419cb72434f84cf27a99b0 bdc962b54466afa9a2a4e4f4042c15c67ce52338 joshuacirilo <jcirilo.alegria@gmail.com> 1769621404 -0600	commit: feat: 3 section in the home page, create the administrator panel for the home page
+bdc962b54466afa9a2a4e4f4042c15c67ce52338 16b223e81358e35e53fc269041fab8b42cddde3b joshuacirilo <jcirilo.alegria@gmail.com> 1769630416 -0600	commit: add: add join section and feature property and our category
+16b223e81358e35e53fc269041fab8b42cddde3b 426b4cd802fcb57e542a1dbf08bd19ad0b935f5a joshuacirilo <jcirilo.alegria@gmail.com> 1769638977 -0600	commit: feat: home complete
+426b4cd802fcb57e542a1dbf08bd19ad0b935f5a 03f66bb59d4aa2eb75eab5d4e96f136b1ff57ec1 joshuacirilo <jcirilo.alegria@gmail.com> 1769639904 -0600	commit: add: changed color in section feature property
+03f66bb59d4aa2eb75eab5d4e96f136b1ff57ec1 f8c0acc83822bddddfd416795804860a8d89bf4d joshuacirilo <jcirilo.alegria@gmail.com> 1769645276 -0600	commit: fix: filters in the home page and properties
+f8c0acc83822bddddfd416795804860a8d89bf4d 519bd4019807286078de9e434650cdc2ed688cf0 joshuacirilo <jcirilo.alegria@gmail.com> 1769695395 -0600	commit: fix: filter in properties page
+519bd4019807286078de9e434650cdc2ed688cf0 e96404eca8fbcbd02ec7af28167fb0dd17f1e866 joshuacirilo <jcirilo.alegria@gmail.com> 1769703538 -0600	commit: feat: add reques in the administrator panel, fix: frontend things and filters, add: details properties
+e96404eca8fbcbd02ec7af28167fb0dd17f1e866 339f67e4493c8509884a81edd7c946fe55a1ef89 joshuacirilo <jcirilo.alegria@gmail.com> 1769716442 -0600	commit: feat: add 3 tables to the db and concect with the frontend for the part of details of properties
+339f67e4493c8509884a81edd7c946fe55a1ef89 2ee74a8dcf60b5f661159a7f156c5740c96796d6 joshuacirilo <jcirilo.alegria@gmail.com> 1769717531 -0600	commit: feat: complete details page
+2ee74a8dcf60b5f661159a7f156c5740c96796d6 42a1bb5ab4287e981749061b3803f91b9883d6b1 joshuacirilo <jcirilo.alegria@gmail.com> 1769717940 -0600	commit: add: color to the details property page
+42a1bb5ab4287e981749061b3803f91b9883d6b1 eac789466505dac1cf31d3f3336b2cd4cc36487f joshuacirilo <jcirilo.alegria@gmail.com> 1769719072 -0600	commit: fix: favorite page
+eac789466505dac1cf31d3f3336b2cd4cc36487f f2e0e3eda86e5cdf855cc18acde636453c0e97e4 joshuacirilo <jcirilo.alegria@gmail.com> 1769722372 -0600	commit: feat. add credentials to the project
+f2e0e3eda86e5cdf855cc18acde636453c0e97e4 268b075ac7ae2dc9a5118917b2f1fe672dc70ce9 joshuacirilo <jcirilo.alegria@gmail.com> 1769785182 -0600	commit: feat: user visibility permissions
+268b075ac7ae2dc9a5118917b2f1fe672dc70ce9 8e86f609dd5425b945e7db26f67f211ea5697bcd joshuacirilo <jcirilo.alegria@gmail.com> 1769789370 -0600	commit: feat: Agregar visibiliadd para que el vendedor solo pueeda modificar y editar sus propiedades pero que pueda ver todas sus propiedades
+8e86f609dd5425b945e7db26f67f211ea5697bcd 4d9a882a254c12eab7c11a1f40851d041c49c2d7 joshuacirilo <jcirilo.alegria@gmail.com> 1769796128 -0600	commit: add: ingreso con gmail , google y reinicio de contraseña
+4d9a882a254c12eab7c11a1f40851d041c49c2d7 b2030a3667cc7cd954db4973b55225925bf08d32 joshuacirilo <jcirilo.alegria@gmail.com> 1769802603 -0600	commit: Fix: problem with the forgot password
+b2030a3667cc7cd954db4973b55225925bf08d32 6dd2b290760ee8cd972603ab8e140a23317376d6 joshuacirilo <jcirilo.alegria@gmail.com> 1769809336 -0600	commit: feat(db): agregar nombre_usuario y estructura para página Acerca de Nosotros
+6dd2b290760ee8cd972603ab8e140a23317376d6 3097afbd93ce88dba24b5def0f53cadcd131106e joshuacirilo <jcirilo.alegria@gmail.com> 1769813886 -0600	commit: feat: page complete
+3097afbd93ce88dba24b5def0f53cadcd131106e fb4230a7cfd53e1dd69c4c598986e7bcf1053c14 joshuacirilo <jcirilo.alegria@gmail.com> 1770053565 -0600	commit: fix: movil view
+fb4230a7cfd53e1dd69c4c598986e7bcf1053c14 91819bf60dec189651687fff8133dc5fcfcd2e34 joshuacirilo <jcirilo.alegria@gmail.com> 1770057845 -0600	commit: fix frontend movil view
+91819bf60dec189651687fff8133dc5fcfcd2e34 61048744aed097eb2c0ce2958a899f2b0b9d34f9 joshuacirilo <jcirilo.alegria@gmail.com> 1770063708 -0600	commit: fix: header color
+61048744aed097eb2c0ce2958a899f2b0b9d34f9 08cfc615fd1bad116358ef919c6f7d940962c94e joshuacirilo <jcirilo.alegria@gmail.com> 1770065268 -0600	commit: fix: favorite page
+08cfc615fd1bad116358ef919c6f7d940962c94e da28a324361298888c125ae1e71d03433125a92d joshuacirilo <jcirilo.alegria@gmail.com> 1770069254 -0600	commit: tests
+da28a324361298888c125ae1e71d03433125a92d 1fecfc92d35eecc3d291f5e87872d13b97584793 joshuacirilo <jcirilo.alegria@gmail.com> 1770071055 -0600	commit: fix; bug with the favorite properties and bug with the profile image
+1fecfc92d35eecc3d291f5e87872d13b97584793 f69c209ad8506dc302358fb4164939c19b51e806 joshuacirilo <jcirilo.alegria@gmail.com> 1770071535 -0600	commit: Fix: bug with the contactCard
+f69c209ad8506dc302358fb4164939c19b51e806 6cab62d78473324a88a9af0ab62c7cdd58e347f3 joshuacirilo <jcirilo.alegria@gmail.com> 1770073402 -0600	commit: fix: bug with the contries in the new properties
+6cab62d78473324a88a9af0ab62c7cdd58e347f3 362772ae40b3f16502641d64c18b7494d6d26b15 joshuacirilo <jcirilo.alegria@gmail.com> 1770128127 -0600	commit: fix: problema que se veia el logo de la plantilla anteriror y algunos componentes mas
+362772ae40b3f16502641d64c18b7494d6d26b15 fb8c7be827cf07ce658b6f6f4f5496a69c14ea11 joshuacirilo <jcirilo.alegria@gmail.com> 1770129838 -0600	commit: try to fix the blank space between the header and the hero section
+fb8c7be827cf07ce658b6f6f4f5496a69c14ea11 fb8c7be827cf07ce658b6f6f4f5496a69c14ea11 joshuacirilo <jcirilo.alegria@gmail.com> 1770130325 -0600	checkout: moving from main to jc--branch
+fb8c7be827cf07ce658b6f6f4f5496a69c14ea11 37d41ea3515d437e018acbb895d62e3d6a580e41 joshuacirilo <jcirilo.alegria@gmail.com> 1770141258 -0600	commit: fix: menu de hamburguesa, fix filtros de propiedades
+37d41ea3515d437e018acbb895d62e3d6a580e41 43801478f8dc6320c03f36f9d67f9a1f6e2fe262 joshuacirilo <jcirilo.alegria@gmail.com> 1770141770 -0600	commit: fix: filter scroll
+43801478f8dc6320c03f36f9d67f9a1f6e2fe262 12312df6c219e19af64125c784d4b9ce10d17f99 joshuacirilo <jcirilo.alegria@gmail.com> 1770153162 -0600	commit: fix: bug with hamburger menu, fix: user creations
+12312df6c219e19af64125c784d4b9ce10d17f99 e5b7b125187510d0321e35ce542f09dbb66ea991 joshuacirilo <jcirilo.alegria@gmail.com> 1770755113 -0600	commit: fix: header, add the buy part and menu
+e5b7b125187510d0321e35ce542f09dbb66ea991 f1de7c7d5c6db7918d6758de9cdd8fde7f9be883 joshuacirilo <jcirilo.alegria@gmail.com> 1770760386 -0600	commit: fix: bug with the principal filter in the property page
+f1de7c7d5c6db7918d6758de9cdd8fde7f9be883 19d34fd71fee7e81e4ea63d092aa90ab2028178e joshuacirilo <jcirilo.alegria@gmail.com> 1770821093 -0600	commit: fix: header, less high,center links and sticky
+19d34fd71fee7e81e4ea63d092aa90ab2028178e 136290f14d135958bb01d67443bf3a0fcdb75d7d joshuacirilo <jcirilo.alegria@gmail.com> 1770827241 -0600	commit: fix: bug with problem with the sub menus
+136290f14d135958bb01d67443bf3a0fcdb75d7d 56cd5c813e0b3acc552d5a59dec0ba2c6473c7bd joshuacirilo <jcirilo.alegria@gmail.com> 1770828761 -0600	commit: fix: header problem with the mobil view
+56cd5c813e0b3acc552d5a59dec0ba2c6473c7bd f1548e4ea761020a5794afb0707f6f6ec20cf871 joshuacirilo <jcirilo.alegria@gmail.com> 1770831010 -0600	commit: feat: effecto desenfocado en la hero section
+f1548e4ea761020a5794afb0707f6f6ec20cf871 5eeb9bd7f47977a786d2cda9cb3748deb913787f joshuacirilo <jcirilo.alegria@gmail.com> 1770841360 -0600	commit: fix: hero section
+5eeb9bd7f47977a786d2cda9cb3748deb913787f f60b9a2aef0707cc0788294fd5932f88f3a6f82e joshuacirilo <jcirilo.alegria@gmail.com> 1770845261 -0600	commit: feat: complete mock of the soluciones empresariales
+f60b9a2aef0707cc0788294fd5932f88f3a6f82e 7d8336567886476cbdfbd424a3a96d198b0f3891 joshuacirilo <jcirilo.alegria@gmail.com> 1770850159 -0600	commit: feat: add 5 more tables for the servicios empresariales section
+7d8336567886476cbdfbd424a3a96d198b0f3891 c9b8427d4d5a860a2dfb295b5e2b49a4b73e7d47 joshuacirilo <jcirilo.alegria@gmail.com> 1770905286 -0600	commit: feat: conect front and back for enterprise
+c9b8427d4d5a860a2dfb295b5e2b49a4b73e7d47 709324d6b1177279f8b8d9fe66c4b0a641766ada joshuacirilo <jcirilo.alegria@gmail.com> 1770906439 -0600	commit: fix. enterprise page
+709324d6b1177279f8b8d9fe66c4b0a641766ada e8cd437425f0adf16acc9056fbf5e6fea3c9db94 joshuacirilo <jcirilo.alegria@gmail.com> 1770907475 -0600	commit: change position of about us and my profile
+e8cd437425f0adf16acc9056fbf5e6fea3c9db94 48b41753dbae0bb811b62d77334b078bd4dad950 joshuacirilo <jcirilo.alegria@gmail.com> 1770907889 -0600	commit: fix header
+48b41753dbae0bb811b62d77334b078bd4dad950 6f5fb114be45e5aec1c8cee5f7f8b3f4a46f90bd joshuacirilo <jcirilo.alegria@gmail.com> 1770909176 -0600	commit: fix: add complete overlay to the website
+6f5fb114be45e5aec1c8cee5f7f8b3f4a46f90bd 59b159cd1468e57865552fbc2a1421e05aa29fa4 joshuacirilo <jcirilo.alegria@gmail.com> 1770911582 -0600	commit: add: carusel for information section, back and front. feat: add new table for information section items
+59b159cd1468e57865552fbc2a1421e05aa29fa4 e3ebd2ed0ed9f60c9d8b5c4f41962a5d2a90d0dc joshuacirilo <jcirilo.alegria@gmail.com> 1770912533 -0600	commit: fix order in the adminsitrator panel
+e3ebd2ed0ed9f60c9d8b5c4f41962a5d2a90d0dc 98944cc4a6ad1e5ef8595a7c1c5a354a01c805da joshuacirilo <jcirilo.alegria@gmail.com> 1770916103 -0600	commit: problem with the style of the corusel
+98944cc4a6ad1e5ef8595a7c1c5a354a01c805da 7e1f96b473ca12f70588021b2039cf8afc606bba joshuacirilo <jcirilo.alegria@gmail.com> 1770927631 -0600	commit: tratando de agregar el blur pero tirra error, se dejo en forma base
+7e1f96b473ca12f70588021b2039cf8afc606bba 03879b4c685c229b4a15befe47f8bbefdc13ad65 joshuacirilo <jcirilo.alegria@gmail.com> 1770930033 -0600	commit: feat: enterprise section complete
+03879b4c685c229b4a15befe47f8bbefdc13ad65 712e7568017afa22218c076f73c06d6da8d1dfae joshuacirilo <jcirilo.alegria@gmail.com> 1770931589 -0600	commit: fix: bug with the login and logup also fix problem with the imagenes
+712e7568017afa22218c076f73c06d6da8d1dfae ea4deedd99e786064d166ce17de59874c691fa6b joshuacirilo <jcirilo.alegria@gmail.com> 1771002849 -0600	commit: feat: complete the carusel
+ea4deedd99e786064d166ce17de59874c691fa6b 209ee06c3bd2d224a6ba0341682e7cfaa6619424 joshuacirilo <jcirilo.alegria@gmail.com> 1771005764 -0600	commit: feat: good design of the header
+209ee06c3bd2d224a6ba0341682e7cfaa6619424 27fbd429caf2747ceaf29fe68100d1e66465169f joshuacirilo <jcirilo.alegria@gmail.com> 1771007457 -0600	commit: feat: header complete
+27fbd429caf2747ceaf29fe68100d1e66465169f a24cc784e85bd05c3ac6d71f953ce04f4d29408f joshuacirilo <jcirilo.alegria@gmail.com> 1771014212 -0600	commit: fix: color with thee header
+a24cc784e85bd05c3ac6d71f953ce04f4d29408f 912ffbc5df3b559089359f334e2fce546bd77862 joshuacirilo <jcirilo.alegria@gmail.com> 1771021577 -0600	commit: feat: add new pages to dinamic map and absortion map
+912ffbc5df3b559089359f334e2fce546bd77862 57cbcdfcb4fb3e90c60e5dca4ab8201aba3a4dfe joshuacirilo <jcirilo.alegria@gmail.com> 1771022047 -0600	commit: fix: structure of the program
+57cbcdfcb4fb3e90c60e5dca4ab8201aba3a4dfe ea320da2c2b03cab3faaab7d4403ada8b117b6ff joshuacirilo <jcirilo.alegria@gmail.com> 1771251790 -0600	commit: fix: dinamic map style
+ea320da2c2b03cab3faaab7d4403ada8b117b6ff 1d6926628d5506df9a4f6b3edda6a299fc173526 joshuacirilo <jcirilo.alegria@gmail.com> 1771259024 -0600	commit: feat, add maps to the page
+1d6926628d5506df9a4f6b3edda6a299fc173526 5fac0f7ff19385ce2996d89b8860e9fd5a6b8587 joshuacirilo <jcirilo.alegria@gmail.com> 1771272749 -0600	commit: feat: better arquitecture and layout of the absortion page, add sidebar with the filter options and cards
+5fac0f7ff19385ce2996d89b8860e9fd5a6b8587 c3c28a98852070cd3dd32f54356469ab1699ab4f joshuacirilo <jcirilo.alegria@gmail.com> 1771273188 -0600	commit: fix: problem with mapa and sidebar
+c3c28a98852070cd3dd32f54356469ab1699ab4f 0b38fdabff553f99d07a351bcee278c65f21ebdf joshuacirilo <jcirilo.alegria@gmail.com> 1771276649 -0600	commit: add: 3 color proposal
+0b38fdabff553f99d07a351bcee278c65f21ebdf 75c5052ca777ec7f3b79901501ee04311ebdddc3 joshuacirilo <jcirilo.alegria@gmail.com> 1771280480 -0600	commit: fix: home page, order of the moduls
+75c5052ca777ec7f3b79901501ee04311ebdddc3 344e376466e2f2dc759d91465c7e0e2c04b7ef9c joshuacirilo <jcirilo.alegria@gmail.com> 1771342745 -0600	commit: feat: nuevo esquema creado permitiendo tablas de nuevo modulo, add: geoJson data
+344e376466e2f2dc759d91465c7e0e2c04b7ef9c aef1266e046d7667ced7c000b686b72236056376 joshuacirilo <jcirilo.alegria@gmail.com> 1771348215 -0600	commit: feat: show the geojson in the map
+aef1266e046d7667ced7c000b686b72236056376 2981c4a6607af959acabc840a002b2f9ad296e7e joshuacirilo <jcirilo.alegria@gmail.com> 1771359647 -0600	commit: add: color red to the shapes
+2981c4a6607af959acabc840a002b2f9ad296e7e 243d76169e7d248d6ab658be9d052de9162733b1 joshuacirilo <jcirilo.alegria@gmail.com> 1771366430 -0600	commit: add: style to the border of the subzone
+243d76169e7d248d6ab658be9d052de9162733b1 2f45122e6a544e3b32e27c578bc15ff210232d13 joshuacirilo <jcirilo.alegria@gmail.com> 1771431487 -0600	commit: add: easybuttons to the maps
+2f45122e6a544e3b32e27c578bc15ff210232d13 10823bde39af46fca4ed71a1011676d57ac3b2bf joshuacirilo <jcirilo.alegria@gmail.com> 1771439641 -0600	commit: feat: improve in the frontend of the module
+10823bde39af46fca4ed71a1011676d57ac3b2bf 103847231b8fd626f26e7a1ee6f339b8cb45311a joshuacirilo <jcirilo.alegria@gmail.com> 1771446487 -0600	commit: fix: problem with the submenus and some icons
+103847231b8fd626f26e7a1ee6f339b8cb45311a 3a1be304e961af8f423551b1ffadcc1f6a0641a7 joshuacirilo <jcirilo.alegria@gmail.com> 1771449618 -0600	commit: feat: interactive map complete
+3a1be304e961af8f423551b1ffadcc1f6a0641a7 632d01eeff7bb165b5e0210e81e790b6b64759b8 joshuacirilo <jcirilo.alegria@gmail.com> 1771512221 -0600	commit: fix: center of the map
+632d01eeff7bb165b5e0210e81e790b6b64759b8 66542c5281eeaaf95c25b574b8203f4c845861fc joshuacirilo <jcirilo.alegria@gmail.com> 1771606589 -0600	commit: feat: render categories in the submenu and filter the markers
+66542c5281eeaaf95c25b574b8203f4c845861fc f9107c00acc052839af537a88957b5421a5ed27b joshuacirilo <jcirilo.alegria@gmail.com> 1771607988 -0600	commit: add: markers with the icons, problem to load images
+f9107c00acc052839af537a88957b5421a5ed27b 4661727a040b78c06ee1e7ccf4cb0054ff7f77f3 joshuacirilo <jcirilo.alegria@gmail.com> 1771619231 -0600	commit: fix: problem with the markers
+4661727a040b78c06ee1e7ccf4cb0054ff7f77f3 3a6c50f79cb0e5e1b12950c4db14b0d503a12605 joshuacirilo <jcirilo.alegria@gmail.com> 1771870482 -0600	commit: fix: style of map
+3a6c50f79cb0e5e1b12950c4db14b0d503a12605 0852a5e9c57f54e5f1bca01dd83f3098c120f2b2 joshuacirilo <jcirilo.alegria@gmail.com> 1771885914 -0600	commit: feat: Add Leaflet dynamic map component, including new types, styles, and dependencies.
+0852a5e9c57f54e5f1bca01dd83f3098c120f2b2 8b63f55ad33ec2524166fbaf3654187893ab08de joshuacirilo <jcirilo.alegria@gmail.com> 1773237491 -0600	commit: feat(mapa-dinamico): mejorar figuras persistentes y personalizar iconos del mapa
+8b63f55ad33ec2524166fbaf3654187893ab08de b5d52f6dc68fd45537a02e2003f0e3313e8d4bde joshuacirilo <jcirilo.alegria@gmail.com> 1773694277 -0600	commit: refactor: replace Leaflet with custom MapContainer component, update dependencies, and clean up unused styles
+b5d52f6dc68fd45537a02e2003f0e3313e8d4bde 5e633fcaffc947e07a8dd04f8e13cb42e6943f31 joshuacirilo <jcirilo.alegria@gmail.com> 1773755772 -0600	commit: feat: enhance LifestyleMatcherPointsBody with new map controls, isochrone features, and updated styles
+5e633fcaffc947e07a8dd04f8e13cb42e6943f31 892782597481251be1a6c8bc3b01c6ffd1de5135 joshuacirilo <jcirilo.alegria@gmail.com> 1773864376 -0600	commit: feat: update map integration with new marker visibility states, enhance filters, and improve styles
+892782597481251be1a6c8bc3b01c6ffd1de5135 9ab7b707ef8d243a18422cebf44d16514776ac9b joshuacirilo <jcirilo.alegria@gmail.com> 1773928029 -0600	commit: feat: integrate Turf.js for advanced geospatial calculations, enhance isochrone processing, and improve API response handling, Feat: create tests for the iso
+9ab7b707ef8d243a18422cebf44d16514776ac9b 5ef1014b9b84e83bd57c69073d8831b521d95781 joshuacirilo <jcirilo.alegria@gmail.com> 1773944312 -0600	commit: chore: remove outdated class diagram documentation for communication diagram

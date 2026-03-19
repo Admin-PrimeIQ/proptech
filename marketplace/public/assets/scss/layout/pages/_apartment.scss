@@ -1,0 +1,162 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.4 Apartment Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-apartment{
+  &-wrap{
+    flex-wrap: wrap
+  }
+  &-item{
+    margin-right: 30px;
+    @include transition();
+    padding: 13px 48px 13px 20px;
+    background-color: var(--tp-theme-secondary);
+    &:hover{
+      border-radius: 50px;
+      & .tp-apartment-item-icon{
+        & span{
+          background-color: var(--tp-theme-primary);
+          & img{
+            filter: brightness(0) invert(1);
+          }
+        }
+      }
+    }
+    &-icon{
+      margin-right: 15px;
+      & span{
+        display: inline-block;
+        text-align: center;
+        height: 80px;
+        width: 80px;
+        line-height: 70px;
+        border-radius: 50%;
+        @include transition();
+        background-color: var(--tp-common-white);
+        & img{
+          @include transition();
+        }
+      }
+    }
+    &-title{
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      letter-spacing: -0.4px;
+      color: var(--tp-heading-primary);
+    }
+    &-content{
+      & p{
+        font-weight: 500;
+        margin: 0;
+      }
+    }
+  }
+  &-wrapper{
+    & .tp-section-title{
+      margin-bottom: 40px;
+    }
+  }
+}
+
+
+.#{$theme-prefix}-apartment{
+  &-ptb{
+    @media #{$md,$xs} {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+  &-wrap-2{
+    flex-wrap: wrap;
+    & .tp-apartment-item{
+      border: 1px solid #CAD3E9;
+      background-color: transparent;
+      &:hover{
+        border-color: var(--tp-common-white);
+        background-color: var(--tp-common-white);
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-newsletter{
+  &-input{
+    & input{
+      padding-right: 150px;
+    }
+    & button{
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      padding: 12px 25px;
+      transform: translateY(-50%);
+    }
+  }
+  &-wrap{
+    & span{
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      line-height: 20px;
+      & a{
+        text-decoration-line: underline;
+        &:hover{
+          color: var(--tp-heading-primary);
+        }
+      }
+    }
+  }
+  &-content{
+    @media #{$md,$xs} {
+      display: none;
+    }
+    & .tp-apartment-item{
+      position: absolute;
+      top: 60px;
+      left: 160px;
+      width: 266px;
+      border-radius: 50px;
+      padding: 10px 38px 10px 10px;
+      &-title{
+        color: var(--tp-theme-primary);
+      }
+      &-content{
+        & p{
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+  &-item{
+    position: absolute;
+    top: 140px;
+    right: -178px;
+    @media #{$xxl,$xl,$lg} {
+      top: 200px;
+      right: 0;
+    }
+    &.two{
+      position: absolute;
+      bottom: -390px;
+      right: 0;
+      top: auto;
+    }
+    & span{
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 7px 16px 9px;
+      color: var(--tp-heading-primary);
+      background-color: var(--tp-common-white);
+      display: inline-block;
+      & svg{
+        transform: translateY(-2px);
+      }
+    }
+  }
+}

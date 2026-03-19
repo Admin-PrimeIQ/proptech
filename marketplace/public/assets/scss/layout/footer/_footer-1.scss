@@ -1,0 +1,209 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  6.1 Footer Style 1
+/*----------------------------------------*/
+
+//footer widget style
+.#{$theme-prefix}-footer{
+    &-bg{
+        &::after{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background-color: #262B35;
+        }
+    }
+    &-widget{
+        &-border{
+            padding-bottom: 45px;
+            border-bottom: 1px solid #383E4B;
+        }
+        &-content{
+            & p{
+                font-size: 16px;
+                color: #80858F;
+                font-weight: 400;
+                line-height: 22px;
+                margin-bottom: 25px;
+                & br{
+                    @media #{$xl,$lg,$md,$sm,$xs} {
+                        display: none;
+                    }
+                }
+            }
+            & ul{
+                & li{
+                    list-style: none;
+                    margin-left: 15px;
+                    &:not(:last-of-type){
+                        margin-bottom: 10px;
+                    }
+                    & a{
+                        position: relative;
+                        font-size: 16px;
+                        font-weight: 500;
+                        color: #80858F;
+                        &::before{
+                            position: absolute;
+                            content: "";
+                            height: 6px;
+                            width: 6px;
+                            left: -15px;
+                            top: 50%;
+                            border-radius: 50%;
+                            transform: translateY(-50%);
+                            background-color: #80858F;
+                            @include transition();
+                        }
+                        &:hover{
+                            color: var(--tp-common-white);
+                            &::before{
+                                background-color: var(--tp-common-white);
+                            }
+                        }
+                    }
+              }
+            }
+            &-input{
+                position: relative;
+                & input{
+                    height: 60px;
+                    line-height: 60px;
+                    padding-right: 60px;
+                    color: var(--tp-text-body);
+                    background: var(--tp-common-white);
+                    border-color: var(--tp-common-white);
+                    &::placeholder{
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: var(--tp-text-body);
+                    }
+                    &:focus{
+                        border-color: var(--tp-theme-primary);
+                    }
+                }
+                & button{
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    height: 50px;
+                    width: 50px;
+                    line-height: 1;
+                    color: var(--tp-common-white);
+                    background: var(--tp-theme-primary);
+                    &:hover{
+                        color: var(--tp-common-white);
+                        background-color: var(--tp-theme-primary);
+                    }
+                }
+            }
+        }
+        &-contact{
+            & span{
+                display: inline-block;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 28px;
+                margin-bottom: 5px;
+                @include transition();
+                color: var(--tp-common-white);
+                & svg{
+                    display: inline-block;
+                    margin-right: 6px;
+                    transform: translateY(-2px);
+                }
+                &:hover{
+                    color: var(--tp-theme-primary);
+                }
+            }
+        }
+        &-social{
+            & a{
+                position: relative;
+                display: inline-block;
+                color: var(--tp-common-white);
+                z-index: 1;
+                &:not(:last-of-type){
+                    margin-right: 18px;
+                }
+                &:hover{
+                   color: var(--tp-theme-primary);
+                }
+            }
+        }
+        &-title{
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 44px;
+            color: var(--tp-common-white);
+        }
+
+        &-item{
+            display: flex;
+            padding: 20px 30px;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.00) 100%);
+            box-shadow: 0px 30px 50px 0px rgba(1, 6, 20, 0.12);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+            &-box{
+                & a{
+                    &:not(:last-child){
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            &-icon{
+                margin-right: 10px;
+            }
+            &-content{
+                & p{
+                    margin: 0;
+                }
+                & span{
+                    font-size: 18px;
+                    &:hover{
+                        color: var(--tp-common-white);
+                    }
+                }
+            }
+        }
+    }
+
+    &-inner{
+        &-ptb{
+            @media #{$xs} {
+                padding-top: 80px;
+            }
+        }
+    }
+}
+
+/* footer col design for home 1 */
+.tp-footer-col{
+    &-1{
+        
+    }
+    &-2{
+        padding-left: 70px;
+        @media #{$md,$sm,$xs} {
+            padding-left: 0;
+        }
+    }
+    &-3{
+        
+    }
+    &-4{
+        margin-left: -30px;
+        @media #{$lg,$md,$sm,$xs} {
+            margin-left: 0;
+        }
+    }
+}
+

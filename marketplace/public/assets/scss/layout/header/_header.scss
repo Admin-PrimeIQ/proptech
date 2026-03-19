@@ -1,0 +1,600 @@
+@use '../../utils' as *;
+/*----------------------------------------*/
+/*  3.1 Header Style 1
+/*----------------------------------------*/
+
+
+.#{$theme-prefix}-header{
+    &-logo{
+        & img{
+            @media #{$xl} {
+                width: 100%;
+            }
+            @media #{$md,$sm,$xs} {
+                max-width: 100%;
+            }
+        }
+        & .black{
+          display: none;
+        }
+        &.scrolled{
+          & .black{
+            display: block;
+          }
+          & .white{
+            display: none;
+          }
+        }
+        /* Logo + redes en columna: logo arriba, redes abajo */
+        &.tp-header-logo-stack{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+        }
+        &-link{
+            display: flex;
+            align-items: center;
+            line-height: 0;
+        }
+    }
+    &-transparent{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 3;
+        &.top{
+            top: 26px;
+        }
+    }
+    &-1{
+        &-ptb{
+            @media #{$lg,$md,$xs} {
+                padding: 10px 0;
+                }
+        }
+        &-menu{
+            margin-left: 100px;
+            @media #{$xl} {
+                margin-left: 55px;
+            }
+            & nav{
+                text-align: center;
+                & > ul{
+                    text-align: start;
+                    padding: 4px;
+                    border-radius: 60px;
+                    display: inline-block;
+                    border: 1px solid var(--tp-common-white);
+                    & > li{
+                        &:not(:last-of-type){
+                            margin-right: 0px;
+                        }
+                        & > a{
+                            padding: 13px 15px;
+                            border-radius: 26px;
+                            color: var(--tp-common-white);
+                            &::after{
+                                color: var(--tp-common-white) !important;
+                            }
+                            &.hover{
+                                color: var(--tp-theme-primary);
+                                background-color: var(--tp-common-white);
+                                &::after{
+                                    color: var(--tp-theme-primary) !important;
+                                }
+                            }
+                        }
+                        & .sub-menu{
+                            top: 114%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &-right{
+        &-user{
+            &-icon{
+                & span{
+                    height: 44px;
+                    width: 44px;
+                    margin-right: 10px;
+                    text-align: center;
+                    line-height: 40px;
+                    border-radius: 50%;
+                    display: inline-block;
+                    @include transition();
+                    color: var(--tp-heading-primary);
+                    background-color: var(--tp-common-white);
+                    &:hover{
+                        color: var(--tp-common-white);
+                        background-color: var(--tp-theme-primary);
+                    }
+                }
+            }
+            &-content{
+                & p{
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 1;
+                    margin-bottom: 5px;
+                    color: var(--tp-common-white);
+                }
+                & span{
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 19px;
+                    display: inline-block;
+                    color: var(--tp-common-white);
+                }
+                /* Links "Inicia sesión" y "Mi cuenta": sin subrayado, mismo color */
+                .tp-header-sign-in-link,
+                .tp-header-user-link {
+                    text-decoration: none;
+                    color: inherit;
+                    &:hover {
+                        color: inherit;
+                        opacity: 0.9;
+                    }
+                    p, span {
+                        color: inherit;
+                    }
+                }
+            }
+        }
+    }
+    &-sticky-cloned {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 98;
+        visibility: hidden;
+        transform: translateY(-100%);
+        background-color: var(--tp-common-white);
+        box-shadow: 0px 4px 10px rgba(3, 4, 28, 0.1);
+        transition: transform 500ms ease, visibility 500ms ease;
+        &.tp-header-pinned {
+            transform: translateY(0%);
+            visibility: visible;
+            @media #{$lg,$md,$xs} {
+                padding: 15px 0;
+            }
+        }
+    }
+    &-onepage {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: var(--tp-common-white);
+        box-shadow: 0px 4px 10px rgba(3, 4, 28, 0.1);
+        animation: .95s ease 0s normal forwards 1 running headerSlideDown;
+        transition: .3s ease;
+        z-index: 10;
+    }
+    &-sticky-onepage{
+        display: none;
+        &.tp-header-onepage{
+            display: inline-block;
+        }
+    }
+    &-hamburger{
+        margin-left: 20px;
+    }
+    & .tp-header-wishlist-spacing{
+        margin-right: 12px;
+        @media #{$lg} {
+            margin-right: 30px;
+        }
+    }
+}
+
+
+/* Bloque usuario en header transparente: cuadro blanco semitransparente + texto llamativo (solo si NO es look-pinned) */
+.tp-header-transparent:not(.tp-header-look-pinned) .tp-header-right-user {
+    background: rgba(255, 255, 255, 0.78);
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    & .tp-header-right-user-content {
+        & p,
+        & span {
+            color: var(--tp-theme-primary) !important;
+            font-weight: 600;
+        }
+        .tp-header-user-label {
+            color: var(--tp-theme-primary);
+            opacity: 0.9;
+        }
+        .tp-header-user-name {
+            color: var(--tp-theme-primary);
+        }
+    }
+    & .tp-header-right-user-icon span {
+        color: var(--tp-common-white) !important;
+        background-color: var(--tp-theme-primary) !important;
+        &:hover {
+            background-color: var(--tp-heading-primary) !important;
+        }
+    }
+    & .tp-header-sign-in-link p,
+    & .tp-header-sign-in-link span {
+        color: var(--tp-theme-primary) !important;
+    }
+}
+
+/* Header principal (home): mismo aspecto que al hacer scroll desde el inicio — fondo blanco, iconos oscuros, sin cuadro blanco */
+.tp-header-transparent.tp-header-look-pinned {
+    background-color: var(--tp-common-white);
+    box-shadow: 0px 4px 10px rgba(3, 4, 28, 0.1);
+}
+.tp-header-look-pinned .tp-header-logo-stack .black {
+    display: block;
+}
+.tp-header-look-pinned .tp-header-logo-stack .white {
+    display: none;
+}
+header.tp-header-transparent.tp-header-look-pinned .tp-header-social {
+    color: var(--tp-heading-primary);
+}
+
+/* Redes sociales debajo del logo (misma columna) */
+.tp-header-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+  margin-left: 0;
+  margin-right: 16px;
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    font-size: 16px;
+    color: inherit;
+    @include transition();
+    &:hover {
+      background-color: var(--tp-theme-primary);
+      border-color: var(--tp-theme-primary);
+      color: var(--tp-common-white);
+    }
+  }
+  @media #{$xs} {
+    display: none;
+  }
+}
+
+/* Header transparente (home): iconos blancos */
+header.tp-header-transparent .tp-header-social {
+  color: var(--tp-common-white);
+}
+
+/* Header sticky clonado: iconos oscuros */
+header.tp-header-sticky-cloned .tp-header-social {
+  color: var(--tp-heading-primary);
+}
+/* Header 5 (CommonHeader): mismo estilo que móvil — iconos y menú blancos sobre morado */
+.tp-header-5-ptb {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  min-height: 30px;
+}
+.tp-header-5-ptb.tp-header-sticky-cloned.tp-header-pinned{
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.tp-header-5-ptb .tp-main-menu nav > ul > li > a {
+  font-size: 16px;
+  padding: 6px 0 6px 0;
+}
+.tp-header-5-ptb .tp-main-menu nav > ul > li.has-dropdown > a::after {
+  font-size: 14px;
+}
+.tp-header-5-ptb .tp-header-logo-link img{
+  max-height: 26px;
+  width: auto;
+}
+.tp-header-5-ptb .tp-header-social {
+  color: var(--tp-common-white);
+}
+/* Solo los enlaces del nivel superior del nav (no el dropdown) en blanco */
+.tp-header-5-ptb .tp-main-menu nav > ul > li > a,
+.tp-header-5-ptb .tp-main-menu nav > ul > li.has-dropdown > a::after {
+  color: var(--tp-common-white) !important;
+}
+.tp-header-5-ptb .tp-main-menu nav > ul > li > a:hover,
+.tp-header-5-ptb .tp-main-menu nav > ul > li.has-dropdown > a:hover::after {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+/* Dropdown (Administrador, etc.): texto oscuro sobre fondo blanco para que se vean los nombres */
+.tp-header-5-ptb .tp-main-menu nav .sub-menu,
+.tp-header-5-ptb .tp-main-menu nav .sub-menu li a,
+.tp-header-5-ptb .tp-main-menu nav .sub-menu li button {
+  color: var(--tp-heading-primary) !important;
+}
+.tp-header-5-ptb .tp-main-menu nav .sub-menu li a:hover,
+.tp-header-5-ptb .tp-main-menu nav .sub-menu li:hover button {
+  color: var(--tp-theme-primary) !important;
+}
+.tp-header-5-ptb .tp-header-right-wishlist svg path {
+  stroke: var(--tp-common-white);
+}
+
+/* Header panel administrador: mismo color que página propiedades (morado, texto blanco) en todas las resoluciones */
+.tp-header-dashboard-ptb,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky {
+  background-color: rgba(87, 88, 214, 0.92) !important;
+  border-bottom: none;
+}
+.tp-header-dashboard-ptb .tp-header-logo a,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-header-logo a {
+  filter: brightness(0) invert(1);
+}
+.tp-header-dashboard-ptb .tp-main-menu nav > ul > li > a,
+.tp-header-dashboard-ptb .tp-main-menu nav > ul > li.has-dropdown > a::after,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav > ul > li > a,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav > ul > li.has-dropdown > a::after {
+  color: var(--tp-common-white) !important;
+}
+.tp-header-dashboard-ptb .tp-main-menu nav > ul > li > a:hover,
+.tp-header-dashboard-ptb .tp-main-menu nav > ul > li.has-dropdown > a:hover::after,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav > ul > li > a:hover,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav > ul > li.has-dropdown > a:hover::after {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.tp-header-dashboard-ptb .tp-header-dashboard-user-box,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-header-dashboard-user-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.tp-header-dashboard-ptb .tp-header-dashboard-user-name,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-header-dashboard-user-name {
+  color: var(--tp-theme-primary) !important;
+  font-weight: 600;
+}
+.tp-header-dashboard-ptb .tp-btn-border,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-btn-border {
+  color: var(--tp-common-white) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+}
+.tp-header-dashboard-ptb .tp-header-hamburger .hamburger-btn,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-header-hamburger .hamburger-btn {
+  background: transparent;
+}
+.tp-header-dashboard-ptb .tp-header-hamburger .hamburger-btn span,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-header-hamburger .hamburger-btn span {
+  background: var(--tp-common-white);
+}
+.tp-header-dashboard-ptb .tp-main-menu nav .sub-menu,
+.tp-header-dashboard-ptb .tp-main-menu nav .sub-menu li a,
+.tp-header-dashboard-ptb .tp-main-menu nav .sub-menu li button,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav .sub-menu,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav .sub-menu li a,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav .sub-menu li button {
+  color: var(--tp-heading-primary) !important;
+}
+.tp-header-dashboard-ptb .tp-main-menu nav .sub-menu li a:hover,
+.tp-header-dashboard-ptb .tp-main-menu nav .sub-menu li:hover button,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav .sub-menu li a:hover,
+.tp-header-2-ptb.tp-header-sticky-cloned.tp-header-dashboard-sticky .tp-main-menu nav .sub-menu li:hover button {
+  color: var(--tp-theme-primary) !important;
+}
+
+/* Estilos "pinned" (al hacer scroll) y "look-pinned" (header principal desde el inicio) */
+.tp-header-pinned,
+.tp-header-look-pinned {
+    & .tp-header{
+        &-1-main{
+            & .tp-main-menu {
+                & nav{
+                    & > ul {
+                        border-color: rgba(3, 4, 28, 0.12);
+                        & > li {
+                            & > a{
+                                padding: 23px 15px;
+                                color: var(--tp-heading-primary);
+                                &:hover{
+                                    color: var(--tp-theme-primary);
+                                }
+                            }
+                            &.has-dropdown {
+                                & > a{
+                                    &::after{
+                                        color: var(--tp-heading-primary) !important;
+                                    }
+                                    &:hover{
+                                        &::after{
+                                            color: var(--tp-theme-primary) !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            & .tp-header-right{
+                &-user{
+                    &-icon{
+                        & span{
+                            color: var(--tp-common-white);
+                            background-color: var(--tp-heading-primary);
+                            &:hover{
+                                background-color: var(--tp-theme-primary);
+                            }
+                        }
+                    }
+                    &-content{
+                        & p{
+                            color: var(--tp-heading-primary);
+                        }
+                        & span{
+                            color: var(--tp-heading-primary);
+                        }
+                    }
+                }
+            }
+            & .hamburger-btn{
+                background: var(--tp-theme-primary);
+                & span{
+                    background: var(--tp-common-white);
+                }
+            }
+        }
+        &-2-main{
+            & .tp-main-menu {
+                & nav{
+                    & > ul {
+                        & > li {
+                            & > a{
+                                padding: 28px 0 28px 0;
+                            }
+                        }
+                    }
+                }
+            }
+            & .tp-header-2-btn{
+                & .tp-btn{
+                    color: var(--tp-common-white);
+                    background-color: var(--tp-heading-primary);
+                }
+            }
+            & .hamburger-btn{
+                background: var(--tp-theme-primary);
+                & span{
+                    background: var(--tp-common-white);
+                }
+            }
+        }
+        &-5-main{
+            & .tp-main-menu {
+                & nav{
+                    & > ul {
+                        & > li {
+                            & > a{
+                                padding: 6px 0 6px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Vista móvil: Logo | Usuario+Favoritos | Hamburger con espacios iguales */
+@media (max-width: 991px) {
+    /* Header con fondo morado transparente en móvil (salvo look-pinned, que mantiene blanco) */
+    .tp-header-1-ptb:not(.tp-header-look-pinned),
+    .tp-header-5-ptb:not(.tp-header-look-pinned) {
+        background-color: rgba(87, 88, 214, 0.92) !important;
+        border-bottom: none;
+    }
+    /* look-pinned: en móvil también fondo blanco como al hacer scroll */
+    .tp-header-1-ptb.tp-header-look-pinned {
+        background-color: var(--tp-common-white) !important;
+        border-bottom: 1px solid rgba(3, 4, 28, 0.08);
+    }
+    .tp-header-mobile-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .tp-header-mobile-row > .tp-header-mobile-contents {
+        display: contents;
+    }
+    .tp-header-mobile-row > .tp-header-mobile-contents > .tp-header-main-right,
+    .tp-header-mobile-row > .tp-header-mobile-contents > .tp-header-5-main-right {
+        display: contents;
+    }
+    .tp-header-mobile-row > .tp-header-mobile-logo {
+        flex: 0 0 auto;
+    }
+    .tp-header-mobile-user-group {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+    /* Separación del menú hamburguesa respecto al borde de la página */
+    .tp-header-hamburger {
+        margin-right: 8px;
+    }
+    /* Favoritos y usuario en blanco para combinar con el fondo morado (salvo look-pinned) */
+    .tp-header-1-ptb:not(.tp-header-look-pinned) .tp-header-right-wishlist a,
+    .tp-header-1-ptb:not(.tp-header-look-pinned) .tp-header-right-wishlist em,
+    .tp-header-1-ptb:not(.tp-header-look-pinned) .tp-header-right-user-icon a span,
+    .tp-header-5-ptb .tp-header-right-wishlist a,
+    .tp-header-5-ptb .tp-header-right-wishlist em,
+    .tp-header-5-ptb .tp-header-right-user-common a span {
+        color: var(--tp-common-white) !important;
+    }
+    .tp-header-1-ptb.tp-header-look-pinned .tp-header-right-wishlist a,
+    .tp-header-1-ptb.tp-header-look-pinned .tp-header-right-wishlist em {
+        color: var(--tp-heading-primary) !important;
+    }
+    .tp-header-1-ptb:not(.tp-header-look-pinned) .tp-header-right-wishlist svg path,
+    .tp-header-5-ptb .tp-header-right-wishlist svg path {
+        stroke: var(--tp-common-white);
+    }
+    .tp-header-1-ptb.tp-header-look-pinned .tp-header-right-wishlist svg path {
+        stroke: var(--tp-heading-primary);
+    }
+    .tp-header-5-ptb .tp-header-user-icon-only span {
+        color: var(--tp-common-white) !important;
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .tp-header-5-ptb .tp-header-user-icon-only:hover span {
+        background-color: rgba(255, 255, 255, 0.35) !important;
+    }
+    /* Panel administrador: mismo estilo que el resto de headers en móvil (fondo morado, texto blanco) */
+    .tp-header-dashboard-ptb,
+    .tp-header-2-ptb.tp-header-sticky-cloned {
+        background-color: rgba(87, 88, 214, 0.92) !important;
+        border-bottom: none;
+    }
+    .tp-header-dashboard-ptb .tp-header-logo a,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-header-logo a {
+        filter: brightness(0) invert(1);
+    }
+    /* Cuadro del nombre de usuario: fondo blanco semitransparente y texto oscuro para que se lea */
+    .tp-header-dashboard-ptb .tp-header-dashboard-user-box,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-header-dashboard-user-box {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 6px 12px;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+    .tp-header-dashboard-ptb .tp-header-dashboard-user-name,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-header-dashboard-user-name {
+        color: var(--tp-theme-primary) !important;
+        font-weight: 600;
+    }
+    .tp-header-dashboard-ptb .tp-btn-border,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-btn-border {
+        color: var(--tp-common-white) !important;
+        border-color: rgba(255, 255, 255, 0.6) !important;
+    }
+    .tp-header-dashboard-ptb .tp-header-hamburger .hamburger-btn,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-header-hamburger .hamburger-btn {
+        background: transparent;
+    }
+    .tp-header-dashboard-ptb .tp-header-hamburger .hamburger-btn span,
+    .tp-header-2-ptb.tp-header-sticky-cloned .tp-header-hamburger .hamburger-btn span {
+        background: var(--tp-common-white);
+    }
+}

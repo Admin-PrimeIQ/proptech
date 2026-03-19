@@ -1,0 +1,298 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  9.3 Testimonial Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-testimonial{
+  &-heading{
+    margin-bottom: 55px;
+    & .tp-section-title{
+      color: var(--tp-common-white);
+    }
+  }
+  &-item{
+    padding: 60px 40px;
+    @include transition();
+    backdrop-filter: blur(20px);
+    background: linear-gradient(239deg, rgba(255, 255, 255, 0.16) 17.93%, rgba(255, 255, 255, 0.04) 81.51%);
+    @media #{$md} {
+      padding: 50px 30px;
+    }
+    & span{
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      margin-bottom: 45px;
+      display: inline-block;
+      color: var(--tp-common-white);
+    }
+    &:hover{
+      backdrop-filter: blur(20px);
+      box-shadow: 0px 12px 40px 0px #4546B4;
+    }
+  }
+  &-icon{
+    margin-bottom: 15px;
+  }
+  &-thumb{
+    margin-right: 12px;
+    & img{
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+  &-title{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--tp-common-white);
+  }
+  &-des{
+    & p{
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.70);
+    }
+  }
+  &-slider{
+    &-dot{
+      position: absolute;
+      left: 50% !important;
+      bottom: 0px !important;
+      width: auto !important;
+      transform: translateX(-50%);
+      & .swiper-pagination-bullet{
+          width: 12px;
+          height: 12px;
+          position: relative;
+          display: inline-block;
+          @include transition();
+          background: transparent;
+          border: 1px solid rgba(255, 255, 255, 0.40);
+          opacity: 1 !important;
+          margin: 0 3px !important;
+          &-active{
+            opacity: 1;
+            border-color: var(--tp-common-white);
+            background: var(--tp-common-white);
+          }
+      }
+    }
+  }
+
+  &-review{
+    &-box{
+      & span{
+        font-size: 90px;
+        font-weight: 700;
+        margin-right: 15px;
+        line-height: 1;
+        letter-spacing: -3.6px;
+        color: var(--tp-common-white);
+      }
+    }
+    &-star{
+      & img{
+        margin-bottom: 10px;
+      }
+      & p{
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        color: var(--tp-common-white);
+      }
+    }
+  }
+
+  &-about{
+    &-btn{
+      & span{
+        font-size: 18px;
+        font-weight: 400;
+        & a{
+          font-weight: 600;
+          text-decoration: underline;
+          color: var(--tp-heading-primary);
+          &:hover{
+            color: var(--tp-theme-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-testimonial-2{
+  &-item{
+    padding-left: 80px;
+    @media #{$xs} {
+      padding-left: 65px;
+    }
+    & p{
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 36px;
+      padding-bottom: 20px;
+      color: var(--tp-common-white);
+      & br{
+        @media #{$xl,$lg,$xs} {
+          display: none;
+        }
+      }
+    }
+    & span{
+      position: relative;
+      color: #80858F;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-left: 30px;
+      &::after{
+        position: absolute;
+        content: '';
+        height: 2px;
+        width: 20px;
+        left: -30px;
+        top: 55%;
+        transform: translateY(-50%);
+        background-color: var(--tp-common-white);
+      }
+    }
+  }
+  &-arrow-box{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    z-index: 1;
+    & button{
+      display: block;
+      height: 80px;
+      width: 40px;
+      text-align: center;
+      line-height: 80px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      &:not(:last-child){
+        margin-bottom: 10px;
+      }
+      &:hover{
+        border-color: #2F333D;
+        background: #2F333D;
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-testimonial-3{
+  &-ptb{
+    padding-bottom: 230px;
+    @media #{$md,$xs} {
+      padding-top: 80px;
+      padding-bottom: 100px;
+    }
+  }
+  &-heading{
+    & .tp-section-title{
+      color: var(--tp-common-white);
+    }
+  }
+  &-wrapper{
+    @media #{$xs} {
+      padding-bottom: 10px;
+      margin-bottom: 50px;
+    }
+  }
+  &-item{
+    @include transition();
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    &:hover{
+      backdrop-filter: blur(10px);
+      box-shadow: 0px 30px 50px 0px rgba(1, 6, 20, 0.12);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.00) 100%);
+    }
+
+    &.about{
+      border: 1px solid #E6E6E6;
+      background: var(--tp-common-white);
+      box-shadow: 0px 0px 60px 0px rgba(41, 51, 71, 0.08);
+      & .tp-testimonial-3{
+        &-text {
+          & p{
+            color: var(--tp-text-body);
+          }
+        }
+        &-content{
+          border-bottom: 1px solid #E6E6E6;
+        }
+        &-title{
+          color: var(--tp-heading-primary);
+        }
+      }
+    }
+  }
+  &-content{
+    padding: 40px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    @media #{$xs} {
+      padding: 35px 20px;
+    }
+  }
+  &-title{
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--tp-common-white);
+  }
+  &-user{
+    margin-right: 30px;
+    @media #{$xs} {
+      margin-right: 20px;
+    }
+    & img{
+      border-radius: 50%;
+    }
+  }
+  &-text{
+    & p{
+      color: #AEB2BA;
+      & br{
+        @media #{$xl,$lg,$xs} {
+          display: none;
+        }
+      }
+    }
+  }
+  &-bottom{
+    padding: 14px 30px 12px;
+  }
+  &-btn{
+    & span{
+      display: inline-block;
+      color: #AEB2BA;
+      font-size: 18px;
+      font-weight: 400;
+      & a{
+        text-decoration: underline;
+        color: var(--tp-common-white);
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-testimonial-5{
+  &-ptb{
+    @media #{$xs} {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+}

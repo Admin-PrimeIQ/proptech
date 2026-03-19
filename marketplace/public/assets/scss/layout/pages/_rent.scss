@@ -1,0 +1,516 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  8.9 Rent Css
+/*----------------------------------------*/
+
+/* Section Propiedades Destacadas — fondo y acentos con paleta (primary #5758D6, secondary #F0F4FD) */
+.#{$theme-prefix}-rent-area {
+  background-color: var(--tp-theme-secondary);
+
+  .#{$theme-prefix}-rent-heading {
+    position: relative;
+    padding-bottom: 20px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--tp-theme-primary);
+      border-radius: 2px;
+    }
+
+    .#{$theme-prefix}-section-title-pre {
+      color: var(--tp-theme-primary);
+    }
+
+    .#{$theme-prefix}-section-title {
+      color: var(--tp-heading-primary);
+    }
+  }
+}
+
+.#{$theme-prefix}-rent {
+  &-item {
+    background: var(--tp-common-white);
+    box-shadow: 0px 6px 40px 0px rgba(45, 42, 67, 0.06);
+
+    &:hover {
+      & .tp-rent {
+        &-thumb {
+          & a {
+            & img {
+              transform: scale(1.1) rotate(4deg);
+              transition: all 0.4s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-thumb {
+    overflow: hidden;
+
+    & img {
+      width: 100%;
+      object-fit: cover;
+      transform: scale(1) translateZ(0);
+      transition: transform 0.6s cubic-bezier(0.5, 1, 0.89, 1);
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      left: 0;
+      bottom: 0;
+      height: 70%;
+      width: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(0deg, #06132C 0.04%, rgba(111, 126, 155, 0.00) 62.49%);
+    }
+  }
+
+  &-user {
+    &-wrap {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      margin: 0 auto;
+      z-index: 2;
+    }
+
+    &-thumb {
+      margin-right: 10px;
+
+      & img {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+      }
+    }
+
+    &-content {
+      &-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: -2px;
+        line-height: 1;
+        letter-spacing: -0.32px;
+        color: var(--tp-common-white);
+      }
+
+      & span {
+        color: #BABABA;
+        font-size: 12px;
+        line-height: 1;
+        font-weight: 400;
+        display: inline-block;
+      }
+    }
+  }
+
+  &-tags {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    & a {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      padding: 5px 10px;
+      display: inline-block;
+      color: var(--tp-common-white);
+      background-color: var(--tp-theme-primary);
+      margin-right: 4px;
+
+      &.two {
+        color: var(--tp-heading-primary);
+        background-color: var(--tp-theme-secondary);
+      }
+    }
+  }
+
+  &-option {
+    & button {
+      &:not(:last-of-type) {
+        margin-right: 10px;
+      }
+    }
+
+    & span {
+      display: inline-block;
+      border-radius: 19px;
+      line-height: 35px;
+      text-align: center;
+      height: 38px;
+      width: 38px;
+      @include transition();
+      color: var(--tp-common-white);
+      background: rgba(255, 255, 255, 0.30);
+      box-shadow: 0px 1px 3px 0px rgba(3, 4, 28, 0.12);
+
+      &:hover {
+        color: #010F1C;
+        background-color: var(--tp-common-white);
+      }
+    }
+  }
+
+  &-content {
+    padding: 25px 30px 30px;
+
+    @media #{$lg,$md,$xs} {
+      padding: 25px 20px 30px;
+    }
+
+    & p {
+      line-height: 1;
+    }
+  }
+
+  &-meta {
+    &-list {
+      margin-top: 38px;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #E6E6E6;
+
+      /* Propiedades destacadas (home): lista vertical habitaciones / baños / m² */
+      &--compact {
+        margin-top: 16px;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        gap: 8px;
+
+        .#{$theme-prefix}-rent-meta-item--row {
+          width: 100%;
+          gap: 8px;
+
+          .#{$theme-prefix}-rent-meta-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+
+            svg {
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          .#{$theme-prefix}-rent-meta-label {
+            font-size: 13px;
+            color: #6b7280;
+            flex-shrink: 0;
+          }
+
+          .#{$theme-prefix}-rent-meta-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--tp-heading-primary);
+            margin-left: auto;
+          }
+        }
+      }
+
+      &.team-details {
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+
+        & .tp-rent-meta {
+          &-content {
+            margin-bottom: 0;
+
+            & span {
+              display: inline-block;
+              height: 40px;
+              width: 40px;
+              line-height: 40px;
+              text-align: center;
+              background-color: #F0F4FD;
+            }
+          }
+
+          &-item {
+            & p {
+              font-size: 16px;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    &-item {
+      & p {
+        font-size: 14px;
+      }
+    }
+
+    &-content {
+      margin-bottom: 5px;
+
+      & span {
+        display: inline-block;
+        margin-right: 5px;
+        transform: translateY(-4px);
+      }
+
+      & p {
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: -0.4px;
+        color: var(--tp-heading-primary);
+      }
+    }
+  }
+
+  &-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--tp-common-black);
+  }
+
+  &-btn {
+    & .tp-btn {
+      padding: 13px 24px;
+      color: var(--tp-heading-primary);
+      background-color: var(--tp-theme-secondary);
+
+      &:hover {
+        color: var(--tp-common-white);
+        background-color: var(--tp-theme-primary);
+      }
+    }
+  }
+
+  &-price {
+    & span {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 14px;
+      color: var(--tp-heading-primary);
+    }
+  }
+
+  &-slider {
+    &-active{
+      &.pb-rent-slider{
+        & .swiper-wrapper {
+          padding-bottom: 30px;
+        }
+      }
+    }
+    &-dot {
+      position: absolute;
+      left: 50% !important;
+      bottom: 30px !important;
+      width: auto !important;
+      transform: translateX(-50%);
+
+      & .swiper-pagination-bullet {
+        width: 5px;
+        height: 5px;
+        position: relative;
+        display: inline-block;
+        @include transition();
+        background: #262B35;
+        opacity: 1 !important;
+        margin: 0 14px !important;
+
+        &::after {
+          position: absolute;
+          content: "";
+          height: 21px;
+          width: 21px;
+          top: -8px;
+          left: -8px;
+          opacity: 0;
+          border-radius: 50%;
+          border: 1px solid var(--tp-theme-primary);
+          @include transition();
+        }
+
+        &-active {
+          opacity: 1;
+          transform: scale(1);
+          background: var(--tp-theme-primary);
+
+          &::after {
+            opacity: 1;
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-rent-4 {
+  &-ptb {
+    @media #{$md,$xs} {
+      padding: 80px 0;
+    }
+  }
+
+  &-country {
+    &-item {
+      width: 100px;
+      margin-bottom: 25px;
+
+      @media #{$lg,$md,$sm} {
+        &:not(:first-child) {
+          margin-left: 20px;
+        }
+      }
+
+      &:nth-child(odd) {
+        margin-right: 80px;
+
+        @media #{$lg,$md,$sm} {
+          margin-right: 0;
+        }
+      }
+
+      & span {
+        font-size: 18px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+
+      & p {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &-meta {
+    &-box {
+      border: 1px solid #E6E6E6;
+    }
+
+    &-item {
+      width: 50%;
+
+      &:not(:last-child) {
+        border-right: 1px solid #E6E6E6;
+      }
+
+      & span {
+        display: inline-block;
+        padding: 12px 40px;
+        font-size: 20px;
+        font-weight: 500;
+        width: 100%;
+        letter-spacing: -0.4px;
+        color: var(--tp-heading-primary);
+
+        & svg {
+          margin-right: 5px;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  &-btn {
+    & .tp-btn {
+      margin-top: -1px;
+      color: var(--tp-heading-primary);
+      border: 1px solid #E6E6E6;
+      background-color: transparent;
+
+      &:hover {
+        color: var(--tp-common-white);
+        border-color: var(--tp-theme-primary);
+        background-color: var(--tp-theme-primary);
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-rent-5 {
+  &-dot {
+    position: absolute;
+    left: 50% !important;
+    bottom: -30px !important;
+    width: auto !important;
+    transform: translateX(-50%);
+
+    & .swiper-pagination-bullet {
+      width: 15px;
+      height: 15px;
+      position: relative;
+      display: inline-block;
+      opacity: 1 !important;
+      margin: 0 5px !important;
+      border-radius: 0;
+      @include transition();
+      border: 1px solid #DBE6FE;
+      background: var(--tp-common-white);
+
+      &-active {
+        opacity: 1;
+        transform: scale(1);
+        background: var(--tp-theme-primary);
+
+        &::after {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+
+.#{$theme-prefix}-realstate {
+  &-ptb {
+    @media #{$xs} {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  &-thumb {
+    & img {
+      width: 100%;
+    }
+  }
+
+  &-box {
+    width: 370px;
+    right: 60px;
+    bottom: -60px;
+    position: absolute;
+
+    @media #{$lg} {
+      bottom: -80px;
+    }
+
+    @media #{$md,$xs} {
+      position: static;
+      margin-top: 30px;
+    }
+
+    @media #{$xs} {
+      width: 350px;
+    }
+  }
+}

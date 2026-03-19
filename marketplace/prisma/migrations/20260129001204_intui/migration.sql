@@ -1,0 +1,24 @@
+-- DropIndex: comentados porque las FKs dependen de estos índices (PK/unique).
+-- Use DROP ... CASCADE o deje que migraciones posteriores renombren/ajusten.
+-- DROP INDEX "uq_caracteristicas_pagina_principal_id";
+-- DROP INDEX "uq_categorias_propiedad_id";
+-- DROP INDEX "uq_ciudades_id";
+-- DROP INDEX "uq_configuracion_sitio_id";
+-- DROP INDEX "uq_departamentos_id";
+-- DROP INDEX "uq_favoritos_id";
+-- DROP INDEX "uq_footer_id";
+-- DROP INDEX "uq_home_configuracion_id";
+-- DROP INDEX "uq_imagenes_propiedad_id";
+-- DROP INDEX "uq_paises_id";
+-- DROP INDEX "uq_permisos_especificos_usuario_id";
+-- DROP INDEX "uq_precios_propiedad_id";
+-- DROP INDEX "uq_propiedades_id";
+-- DROP INDEX "uq_recursos_id";
+-- DROP INDEX "uq_roles_id";
+-- DROP INDEX "uq_seo_id";
+-- DROP INDEX "uq_solicitudes_contacto_id";
+-- DROP INDEX "uq_tipo_operacion_inmobiliaria_id";
+-- DROP INDEX "uq_usuario_roles_id";
+-- DROP INDEX "uq_usuarios_id";
+-- DROP INDEX "uq_vendedores_id";
+-- DROP INDEX "uq_zonas_id";

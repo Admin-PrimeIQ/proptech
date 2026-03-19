@@ -1,0 +1,417 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  2.7 Offcanvas
+/*----------------------------------------*/
+
+.offcanvas{
+    $self : &;
+    /* Contenedor raíz: sin fondo para que el blur del panel desenfoque la página, no una capa intermedia */
+    &__area{
+        position: fixed;
+        inset: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 9999;
+        background: transparent;
+        pointer-events: none;
+        &.offcanvas-opened{
+            pointer-events: auto;
+        }
+    }
+    &__top{
+        @media #{$md, $sm, $xs}{
+            margin-bottom: 30px;
+        }
+    }
+    /* Panel deslizante: transparente; detrás se ve la página (vía overlay con blur). */
+    &__wrapper{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 400px;
+        height: 100%;
+        min-height: 100%;
+        padding: 40px 50px 40px 50px;
+        background: transparent;
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        @include transform(translateX(calc(100% + 80px)));
+        opacity: 0;
+        visibility: hidden;
+        transition: transform .4s ease-in-out, opacity .4s ease-in-out, visibility .4s;
+        overflow-y: auto;
+        overscroll-behavior-y: contain;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .offcanvas__area.offcanvas-opened & {
+            @include transform(translateX(0));
+            opacity: 1;
+            visibility: visible;
+        }
+        @media #{$xs}{
+            padding: 30px;
+        }
+        @media #{$md, $sm, $xs}{
+            width: 100%;
+            max-width: 100%;
+        }
+        display: flex;
+        flex-direction: column;
+    }
+    /* Panel oscuro con letras blancas para que resalte. */
+    &__content{
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 32px 24px;
+        margin: 0 -10px 0 0;
+        border-radius: 12px;
+        isolation: isolate;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: linear-gradient(239deg, rgba(35, 38, 52, 0.88) 17.93%, rgba(22, 25, 38, 0.92) 81.51%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+        color: var(--tp-common-white);
+        & .tp-offcanvas-menu {
+            width: 100%;
+            ul {
+                text-align: center;
+                li > a {
+                    text-align: center;
+                }
+            }
+        }
+        & .offcanvas__filter-title-btn {
+            justify-content: center;
+        }
+        & .offcanvas__title,
+        & .offcanvas__filter-title {
+            color: var(--tp-common-white);
+            font-weight: 700;
+        }
+        & .offcanvas__text p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        & .offcanvas__contact-content-content a {
+            color: var(--tp-common-white);
+            font-weight: 600;
+            &:hover {
+                color: rgba(255, 255, 255, 0.95);
+            }
+        }
+        & .tp-offcanvas-menu ul li > a,
+        & .tp-offcanvas-menu ul li > .offcanvas-signout-btn,
+        & .tp-offcanvas-menu .offcanvas-submenu-btn {
+            color: var(--tp-common-white);
+            font-weight: 600;
+            &:hover {
+                color: rgba(255, 255, 255, 0.95);
+            }
+        }
+        & .tp-offcanvas-menu ul li .offcanvas-admin-submenu {
+            text-align: center;
+            li > a,
+            li .offcanvas-submenu-btn {
+                text-align: center;
+            }
+        }
+        & .tp-offcanvas-menu ul li .offcanvas-admin-submenu li > a,
+        & .tp-offcanvas-menu ul li .offcanvas-admin-submenu li .offcanvas-submenu-btn {
+            color: var(--tp-common-white) !important;
+            font-weight: 600;
+            &:hover {
+                color: rgba(255, 255, 255, 0.95);
+            }
+        }
+        & .tp-offcanvas-menu ul li:not(:last-child) > a,
+        & .tp-offcanvas-menu ul li > a {
+            border-bottom: none !important;
+        }
+        & .tp-menu-close {
+            color: var(--tp-common-white);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        & .offcanvas__filter-chevron {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        & .offcanvas__filter-title-btn:hover .offcanvas__filter-title,
+        & .offcanvas__filter-title-btn:focus .offcanvas__filter-title {
+            color: rgba(255, 255, 255, 0.95);
+        }
+        & .offcanvas__signout-wrap {
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            .offcanvas-signout-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font: inherit;
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--tp-common-white);
+                padding: 8px 16px;
+                &:hover {
+                    color: rgba(255, 255, 255, 0.95);
+                }
+            }
+        }
+    }
+    &__close{
+        position: relative;
+        z-index: 10;
+        flex-shrink: 0;
+        &-btn{
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            display: inline-block;
+            font-size: 16px;
+            height: 40px;
+            width: 40px;
+            line-height: 40px;
+            color: var(--tp-common-white);
+            background-color: var(--tp-theme-primary);
+            border: none;
+            @media #{$xs}{
+                right: 30px;
+                top: 40px;
+            }
+            & svg{
+                @include transform(translateY(-1px));
+                transition: all .3s ease-in-out;
+            }
+            &:hover{
+                & svg{
+                    transform: rotate(45deg)
+                }
+            }
+        }
+    }
+    &__contact{
+        margin-bottom: 30px;
+        &-content{
+            margin-bottom: 10px;
+            &-icon{
+                & i{
+                    color: var(--tp-theme-primary);
+                    margin-right: 10px;
+                }
+            }
+            &-content{
+                & a{
+                    font-size: 16px;
+                    color: var(--tp-common-white);
+                    &:hover{
+                        color: var(--tp-theme-primary);
+                    }
+                }
+            }
+        }
+    }
+    &__text{
+        & p{
+            color: var(--tp-common-white);
+        }
+    }
+    &__social{
+        margin-bottom: 22px;
+        padding-bottom: 40px;
+        & .icon{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: var(--tp-theme-primary);
+            color: var(--tp-common-white);
+            margin-right: 5px;
+            transition: all .3s ease-in-out;
+            
+            &:hover{
+                transform: translateY(-8px);
+            }
+        }
+    }
+    &__title{
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: var(--tp-common-white);
+    }
+
+    /* Filtro de búsqueda en menú hamburguesa (móvil): título clickeable, campos ocultos hasta hacer clic */
+    &__filter{
+        margin-bottom: 24px;
+        &-title-btn{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 0 12px 0;
+            margin-bottom: 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            color: inherit;
+            font: inherit;
+            &:focus-visible{
+                outline: 2px solid var(--tp-theme-primary);
+                outline-offset: 2px;
+            }
+        }
+        &-title{
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 0;
+            /* color heredado de .offcanvas__content (blanco) */
+        }
+        &-chevron{
+            font-size: 12px;
+            opacity: 0.8;
+            margin-left: 8px;
+        }
+        &-fields{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 14px;
+            &[hidden]{
+                display: none;
+            }
+        }
+        &-field{
+            width: 100%;
+            & input{
+                width: 100%;
+                height: 48px;
+                padding: 0 16px;
+                font-size: 15px;
+                color: var(--tp-heading-primary);
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                border-radius: 0;
+                @include placeholder{
+                    color: var(--tp-text-body);
+                }
+            }
+            &.offcanvas__filter-btn-wrap{
+                margin-top: 4px;
+            }
+        }
+        &-select{
+            width: 100%;
+            & .nice-select{
+                width: 100%;
+                height: 48px;
+                line-height: 46px;
+                padding-left: 16px;
+                padding-right: 44px;
+                font-size: 15px;
+                color: var(--tp-heading-primary);
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                border-radius: 0;
+                &::after{
+                    right: 16px;
+                    color: var(--tp-heading-primary);
+                }
+                & .current{
+                    padding-right: 10px;
+                }
+                & .list{
+                    background: var(--tp-common-white);
+                    border-radius: 0;
+                }
+                & .option{
+                    color: var(--tp-heading-primary);
+                }
+            }
+        }
+        &-btn{
+            width: 100%;
+            height: 48px;
+            padding: 0 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--tp-common-white);
+            background: var(--tp-theme-primary);
+            border: none;
+            border-radius: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            @include transition();
+            &:hover{
+                opacity: 0.9;
+            }
+            & span{
+                display: inline-flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+
+
+/* Primer contenido tras header/offcanvas: sin margen superior para quitar franja en todas las rutas */
+.offcanvas__area + * {
+  margin-top: 0 !important;
+}
+
+/* Quitar franja entre header y contenido: gap ~95px en runtime, margen negativo grande (offcanvas en body) */
+header + main:not(:has(> .tp-hero-ptb.tp-hero-home-one)),
+header + section {
+  margin-top: 0 !important;
+}
+
+/*----------------------------------------
+    Body Overlay 
+-----------------------------------------*/
+
+/* Overlay: mismo tono que sección "mejor empresa" (menos oscuro); blur sobre la página. */
+.body-overlay{
+	position: fixed;
+	inset: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 99;
+	opacity: 0;
+	visibility: hidden;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.22));
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	isolation: isolate;
+	@include transition();
+	&.opened{
+		opacity: 1;
+		visibility: visible;
+	}
+	&:hover{
+		cursor: url("../../img/icon/cross-out.png"), pointer;
+	}
+}

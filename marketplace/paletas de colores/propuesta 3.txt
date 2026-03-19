@@ -1,0 +1,133 @@
+🎨 Paleta Extraída – PrimeIQ LATAM
+1️⃣ Base Neutra (Fondos principales)
+⚪ Blanco dominante
+#FEFEFB
+
+
+También variantes muy cercanas:
+
+#FCFCF9
+#FDFEFB
+
+
+Uso:
+
+Fondo principal
+
+Secciones amplias
+
+Espacios en blanco
+
+Diseño minimal
+
+2️⃣ Dark Neutral (Texto principal fuerte)
+#111414
+
+
+Uso:
+
+Títulos
+
+Navbar
+
+Textos principales
+
+Es casi negro, pero ligeramente azulado (más moderno que #000000).
+
+3️⃣ Gris Corporativo (Texto secundario)
+#74787B
+
+
+Uso:
+
+Párrafos
+
+Texto descriptivo
+
+Metadata
+
+4️⃣ Gris Medio UI
+#464E4F
+
+
+Uso:
+
+Subtítulos
+
+Elementos secundarios
+
+5️⃣ Gris Claro Divisores
+#C8C8CC
+
+
+Uso:
+
+Bordes
+
+Líneas
+
+Separadores
+
+6️⃣ Azul Corporativo (Brand Accent)
+
+Aquí está la identidad fuerte 👇
+
+#253147
+
+
+Y variante más profunda:
+
+#0B242E
+
+
+Uso:
+
+Botones
+
+Fondo footer
+
+Secciones destacadas
+
+Elementos tech
+
+Este azul transmite:
+
+Tecnología
+
+Inteligencia artificial
+
+Datos
+
+Empresa B2B
+
+🧠 Estructura Visual de la Marca
+
+La marca se basa en:
+
+⚪ Mucho blanco
+
+⚫ Negro suave azulado
+
+🔵 Azul oscuro elegante
+
+⚙️ Grises técnicos
+
+Es una paleta:
+
+Minimal + Enterprise + AI + SaaS
+
+📦 Versión Lista Para CSS / SCSS
+:root {
+  --color-background: #FEFEFB;
+
+  --color-primary-dark: #111414;
+  --color-secondary-dark: #253147;
+  --color-secondary-dark-2: #0B242E;
+
+  --color-text-muted: #74787B;
+  --color-text-medium: #464E4F;
+
+  --color-border: #C8C8CC;
+}
+
+🔥 Comparación con las otras páginas

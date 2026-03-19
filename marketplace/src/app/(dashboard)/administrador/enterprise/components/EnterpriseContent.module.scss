@@ -1,0 +1,57 @@
+.enterpriseForm {
+  :global(.tp-dashboard-new-input input),
+  :global(.tp-dashboard-new-input textarea),
+  :global(.tp-dashboard-new-input select) {
+    width: 100%;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 14px;
+    color: var(--tp-text-1);
+    background: var(--tp-common-white);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  :global(.tp-dashboard-new-input input::placeholder),
+  :global(.tp-dashboard-new-input textarea::placeholder),
+  :global(.tp-dashboard-new-input select::placeholder) {
+    color: #8f95a8;
+    opacity: 1;
+  }
+
+  :global(.tp-dashboard-new-input input:focus),
+  :global(.tp-dashboard-new-input textarea:focus),
+  :global(.tp-dashboard-new-input select:focus) {
+    outline: none;
+    border-color: var(--tp-theme-primary);
+    box-shadow: 0 0 0 3px rgba(87, 88, 214, 0.12);
+  }
+
+  :global(.tp-dashboard-new-input textarea) {
+    min-height: 108px;
+    resize: vertical;
+  }
+
+  :global(.tp-dashboard-new-input input:disabled),
+  :global(.tp-dashboard-new-input textarea:disabled),
+  :global(.tp-dashboard-new-input select:disabled) {
+    background: #f6f7fb;
+    color: #8f95a8;
+    cursor: not-allowed;
+  }
+}
+
+.sectionActions {
+  margin-top: 20px;
+}
+
+.dangerButton {
+  background: #dc3545 !important;
+  color: #fff !important;
+  border-color: #dc3545 !important;
+}
+
+.dangerButton:hover {
+  background: #bb2d3b !important;
+  border-color: #bb2d3b !important;
+}

@@ -1,0 +1,783 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =====================================================
+// 1) USUARIOS / ROLES
+// PK = id (BigInt), id_public (UUID) para APIs/URLs.
+// FKs usan id (interno).
+// =====================================================
+
+model Usuario {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  correo             String   @unique
+  nombreUsuario      String?  @unique @map("nombre_usuario")
+  contrasenaHash     String?  @map("contrasena_hash")
+  nombreCompleto     String?  @map("nombre_completo")
+  telefono           String?
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  roles                 UsuarioRol[]
+  permisos              PermisosEspecificosUsuario?
+  recursosCreados       Recurso[]                       @relation("RecursosCreados")
+  propiedadesCreadas    Propiedad[]
+  vendedor              Vendedor?
+  solicitudes           SolicitudContacto[]
+  favoritos             Favorito[]
+  caracteristicas       CaracteristicaPaginaPrincipal[]
+  departamentosDestacados DepartamentoDestacado[]
+  resenasCliente        CustomerReview[]
+  paginasAcercaDeNosotrosActualizadas AcercaDeNosotros[]
+
+  @@map("usuarios")
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String   @map("provider_account_id")
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Rol {
+  id            BigInt   @id @default(autoincrement())
+  idPublic      String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  claveRol      String   @unique @map("clave_rol")
+  nombreRol     String   @map("nombre_rol")
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  usuarios UsuarioRol[]
+
+  @@map("roles")
+}
+
+model UsuarioRol {
+  id              BigInt   @id @default(autoincrement())
+  idPublic        String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idUsuario       BigInt   @map("id_usuario")
+  idRol           BigInt   @map("id_rol")
+  fechaAsignacion DateTime @default(now()) @map("fecha_asignacion")
+
+  usuario Usuario @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+  rol     Rol     @relation(fields: [idRol], references: [id], onDelete: Cascade)
+
+  @@unique([idUsuario, idRol])
+  @@map("usuario_roles")
+}
+
+model PermisosEspecificosUsuario {
+  id                        BigInt   @id @default(autoincrement())
+  idPublic                  String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idUsuario                 BigInt   @unique @map("id_usuario")
+  accesoGeneral             Boolean  @default(false) @map("acceso_general")
+  accesoHome                Boolean  @default(false) @map("acceso_home")
+  accesoPropiedades         Boolean  @default(false) @map("acceso_propiedades")
+  accesoConfiguracionPerfil Boolean  @default(false) @map("acceso_configuracion_perfil")
+  fechaActualizacion        DateTime @updatedAt @map("fecha_actualizacion")
+
+  usuario Usuario @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+
+  @@map("permisos_especificos_usuario")
+}
+
+// =====================================================
+// 2) RECURSOS
+// =====================================================
+
+model Recurso {
+  id               BigInt   @id @default(autoincrement())
+  idPublic         String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  tipoRecurso      String   @map("tipo_recurso")
+  url              String
+  textoAlternativo String?  @map("texto_alternativo")
+  metadatos        Json?
+  creadoPor        BigInt   @map("creado_por")
+  fechaCreacion    DateTime @default(now()) @map("fecha_creacion")
+
+  creador                 Usuario                         @relation("RecursosCreados", fields: [creadoPor], references: [id])
+  configuraciones         ConfiguracionSitio[]            @relation("LogoConfiguracion")
+  homeConfigs             HomeConfiguracion[]             @relation("ImagenHero")
+  imagenesPropiedad       ImagenPropiedad[]
+  vendedores              Vendedor[]                      @relation("FotoVendedor")
+  caracteristicas         CaracteristicaPaginaPrincipal[] @relation("BannerCaracteristica")
+  departamentosDestacados DepartamentoDestacado[]
+  comentariosPersonas     ComentarioPersona[]
+  administradoresPublicos AdministradorPublico[]
+  logosAsociados          LogoAsociado[]
+  informacionPaginaItems  InformacionPaginaItem[]
+  planesPiso              PlanPiso[]
+  imagenesAcercaDeNosotros AcercaDeNosotrosImagen[]
+  solucionesEmpresariales SolucionEmpresarial[]          @relation("RecursoSolucionesEmpresariales")
+  serviciosEmpresariales  ServicioEmpresarial[]          @relation("RecursoServiciosEmpresariales")
+
+  @@map("recursos")
+}
+
+// =====================================================
+// 3) CONFIGURACIÓN GENERAL + HOME
+// =====================================================
+
+model ConfiguracionSitio {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreEmpresa      String   @map("nombre_empresa")
+  idLogoRecurso      BigInt?  @map("id_logo_recurso")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  logo Recurso? @relation("LogoConfiguracion", fields: [idLogoRecurso], references: [id])
+
+  @@map("configuracion_sitio")
+}
+
+model HomeConfiguracion {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  tituloHero         String?  @map("titulo_hero")
+  subtituloHero      String?  @map("subtitulo_hero")
+  idImagenHero       BigInt?  @map("id_imagen_hero")
+  textoBotonHero     String?  @map("texto_boton_hero")
+  linkBotonHero      String?  @map("link_boton_hero")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  imagenHero Recurso? @relation("ImagenHero", fields: [idImagenHero], references: [id])
+
+  @@map("home_configuracion")
+}
+
+// =====================================================
+// 4) FOOTER
+// =====================================================
+
+model Footer {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  esloganEmpresa     String?  @map("eslogan_empresa")
+  informacionEmpresa String?  @map("informacion_empresa") @db.Text
+  correo             String?
+  whatsapp           String?
+  telefono           String?
+  instagram          String?
+  facebook           String?
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  caracteristicas CaracteristicaPaginaPrincipal[]
+
+  @@map("footer")
+}
+
+// =====================================================
+// 5) CARACTERÍSTICAS PÁGINA PRINCIPAL
+// =====================================================
+
+model CaracteristicaPaginaPrincipal {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  tipoCategoria      String   @map("tipo_categoria")
+  referenciaId       String   @map("referencia_id")
+  slug               String   @unique
+  tituloPagina       String   @map("titulo_pagina")
+  descripcionPagina  String?  @map("descripcion_pagina") @db.Text
+  idBanner           BigInt?  @map("id_banner")
+  visibleEnMenu      Boolean  @default(true) @map("visible_en_menu")
+  ordenMenu          Int      @default(0) @map("orden_menu")
+  filtrosPorDefecto  Json?    @map("filtros_por_defecto")
+  idFooter           BigInt?  @map("id_footer")
+  idSeo              BigInt?  @map("id_seo")
+  actualizadoPor     BigInt   @map("actualizado_por")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  banner                  Recurso?                @relation("BannerCaracteristica", fields: [idBanner], references: [id])
+  footer                  Footer?                 @relation(fields: [idFooter], references: [id])
+  seo                     Seo?                    @relation("SeoCaracteristica", fields: [idSeo], references: [id])
+  actualizador            Usuario                 @relation(fields: [actualizadoPor], references: [id])
+  departamentosDestacados DepartamentoDestacado[]
+  comentariosPersonas     ComentarioPersona[]
+  palabrasClave           PalabraClave[]
+  administradoresPublicos AdministradorPublico[]
+  logosAsociados          LogoAsociado[]
+  informacionPaginaItems  InformacionPaginaItem[]
+
+  @@map("caracteristicas_pagina_principal")
+}
+
+// =====================================================
+// 5.x CONTENIDO DINÁMICO (DEPARTAMENTOS / COMENTARIOS / PALABRAS / ADMINS / LOGOS)
+// =====================================================
+
+model DepartamentoDestacado {
+  id                 BigInt    @id @default(autoincrement())
+  idPublic           String    @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreDepartamento String    @map("nombre_departamento")
+  idDepartamento     BigInt?   @map("id_departamento")
+  idRecurso          BigInt    @map("id_recurso")
+  idCaracteristica   BigInt    @map("id_caracteristica")
+  idUsuario          BigInt    @map("id_usuario")
+  orden              Int       @default(0)
+  activo             Boolean   @default(true)
+  fechaModificacion  DateTime  @updatedAt @map("fecha_modificacion")
+
+  departamento  Departamento?                 @relation(fields: [idDepartamento], references: [id], onDelete: SetNull)
+  recurso       Recurso                       @relation(fields: [idRecurso], references: [id])
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+  usuario       Usuario                       @relation(fields: [idUsuario], references: [id])
+
+  @@index([idCaracteristica, orden])
+  @@index([idRecurso])
+  @@index([idDepartamento])
+  @@map("departamentos_destacados")
+}
+
+model ComentarioPersona {
+  id                      BigInt   @id @default(autoincrement())
+  idPublic                String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombrePersonaComentario String   @map("nombre_persona_comentario")
+  puesto                  String
+  comentario              String   @db.Text
+  idRecurso               BigInt   @map("id_recurso")
+  idCaracteristica        BigInt   @map("id_caracteristica")
+  fechaCreacion           DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion      DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso        Recurso                       @relation(fields: [idRecurso], references: [id])
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+
+  @@index([idCaracteristica, idRecurso])
+  @@map("comentarios_personas")
+}
+
+model PalabraClave {
+  id               BigInt   @id @default(autoincrement())
+  idPublic         String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  palabraClave     String   @map("palabra_clave")
+  idCaracteristica BigInt   @map("id_caracteristica")
+  fechaCreacion    DateTime @default(now()) @map("fecha_creacion")
+
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+
+  @@index([idCaracteristica])
+  @@map("palabras_clave")
+}
+
+model AdministradorPublico {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombre             String
+  puesto             String
+  idRecurso          BigInt   @map("id_recurso")
+  idCaracteristica   BigInt   @map("id_caracteristica")
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso        Recurso                       @relation(fields: [idRecurso], references: [id])
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+
+  @@index([idCaracteristica, orden])
+  @@index([idRecurso])
+  @@map("administradores_publicos")
+}
+
+model LogoAsociado {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreAsociado     String   @map("nombre_asociado")
+  idRecurso          BigInt   @map("id_recurso")
+  idCaracteristica   BigInt   @map("id_caracteristica")
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso        Recurso                       @relation(fields: [idRecurso], references: [id])
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+
+  @@index([idCaracteristica, orden])
+  @@index([idRecurso])
+  @@map("logos_asociados")
+}
+
+model InformacionPaginaItem {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idCaracteristica   BigInt   @map("id_caracteristica")
+  titulo             String
+  descripcion        String?  @db.Text
+  idRecurso          BigInt   @map("id_recurso")
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  caracteristica CaracteristicaPaginaPrincipal @relation(fields: [idCaracteristica], references: [id])
+  recurso       Recurso                       @relation(fields: [idRecurso], references: [id])
+
+  @@index([idCaracteristica, orden])
+  @@map("informacion_pagina_items")
+}
+
+// =====================================================
+// 6) SEO
+// =====================================================
+
+model Seo {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  tituloSeo          String?  @map("titulo_seo")
+  descripcionSeo     String?  @map("descripcion_seo") @db.Text
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  caracteristicas CaracteristicaPaginaPrincipal[] @relation("SeoCaracteristica")
+
+  @@map("seo")
+}
+
+// =====================================================
+// 7) CATEGORÍAS / OPERACIÓN INMOBILIARIA
+// =====================================================
+
+model CategoriaPropiedad {
+  id       BigInt  @id @default(autoincrement())
+  idPublic String  @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombre   String
+  slug     String  @unique
+  activa   Boolean @default(true)
+  orden    Int     @default(0)
+
+  propiedades Propiedad[]
+
+  @@map("categorias_propiedad")
+}
+
+model TipoOperacionInmobiliaria {
+  id       BigInt  @id @default(autoincrement())
+  idPublic String  @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombre   String  @unique
+  activo   Boolean @default(true)
+
+  propiedades Propiedad[]
+
+  @@map("tipo_operacion_inmobiliaria")
+}
+
+// =====================================================
+// 7.1) AMENIDADES (catálogo)
+// =====================================================
+
+model Amenidad {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreAmenidad     String   @unique @map("nombre_amenidad")
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  propiedadesAmenidades PropiedadAmenidad[]
+
+  @@map("amenidades")
+}
+
+// =====================================================
+// 8) UBICACIÓN
+// =====================================================
+
+model Pais {
+  id       BigInt @id @default(autoincrement())
+  idPublic String @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombre   String @unique
+
+  departamentos Departamento[]
+
+  @@map("paises")
+}
+
+model Departamento {
+  id       BigInt @id @default(autoincrement())
+  idPublic String @unique @default(uuid()) @map("id_public") @db.Uuid
+  idPais   BigInt @map("id_pais")
+  nombre   String
+
+  pais                 Pais                    @relation(fields: [idPais], references: [id], onDelete: Cascade)
+  ciudades             Ciudad[]
+  departamentosDestacados DepartamentoDestacado[]
+
+  @@map("departamentos")
+}
+
+model Ciudad {
+  id             BigInt @id @default(autoincrement())
+  idPublic       String @unique @default(uuid()) @map("id_public") @db.Uuid
+  idDepartamento BigInt @map("id_departamento")
+  nombre         String
+
+  departamento Departamento @relation(fields: [idDepartamento], references: [id], onDelete: Cascade)
+  zonas        Zona[]
+
+  @@map("ciudades")
+}
+
+model Zona {
+  id       BigInt  @id @default(autoincrement())
+  idPublic String  @unique @default(uuid()) @map("id_public") @db.Uuid
+  idCiudad BigInt  @map("id_ciudad")
+  nombre   String
+  slug     String?
+
+  ciudad      Ciudad      @relation(fields: [idCiudad], references: [id], onDelete: Cascade)
+  propiedades Propiedad[]
+
+  @@map("zonas")
+}
+
+// =====================================================
+// 9) VENDEDORES + PROPIEDADES
+// =====================================================
+
+model Vendedor {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idUsuario          BigInt   @unique @map("id_usuario")
+  nombre             String
+  idFotoRecurso      BigInt?  @map("id_foto_recurso")
+  verificado         Boolean  @default(false)
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  usuario     Usuario     @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+  foto        Recurso?    @relation("FotoVendedor", fields: [idFotoRecurso], references: [id])
+  propiedades Propiedad[]
+
+  @@map("vendedores")
+}
+
+model Propiedad {
+  id                          BigInt    @id @default(autoincrement())
+  idPublic                    String    @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombrePropiedad             String    @map("nombre_propiedad")
+  referenciaCorta             String?   @map("referencia_corta")
+  descripcionGeneral          String?   @map("descripcion_general") @db.Text
+  estadoPublicacion           String    @map("estado_publicacion")
+  idCategoria                 BigInt    @map("id_categoria")
+  idTipoOperacionInmobiliaria BigInt    @map("id_tipo_operacion_inmobiliaria")
+  idZona                      BigInt?   @map("id_zona")
+  direccionPublica            String?   @map("direccion_publica")
+  latitud                     Decimal?  @db.Decimal(10, 8)
+  longitud                    Decimal?  @db.Decimal(11, 8)
+  habitaciones                Int?
+  banos                       Int?
+  parqueos                    Int?
+  metrosConstruccion          Int?      @map("metros_construccion")
+  metrosTerreno               Int?      @map("metros_terreno")
+  anoConstruccion             Int?      @map("ano_construccion")
+  idVendedor                  BigInt?   @map("id_vendedor")
+  creadoPor                   BigInt    @map("creado_por")
+  fechaPublicacion            DateTime? @map("fecha_publicacion")
+  fechaCreacion               DateTime  @default(now()) @map("fecha_creacion")
+  fechaActualizacion          DateTime  @updatedAt @map("fecha_actualizacion")
+
+  categoria     CategoriaPropiedad        @relation(fields: [idCategoria], references: [id])
+  tipoOperacion TipoOperacionInmobiliaria @relation(fields: [idTipoOperacionInmobiliaria], references: [id])
+  zona          Zona?                     @relation(fields: [idZona], references: [id])
+  vendedor      Vendedor?                 @relation(fields: [idVendedor], references: [id])
+  creador       Usuario                   @relation(fields: [creadoPor], references: [id])
+  precio        PrecioPropiedad?
+  imagenes      ImagenPropiedad[]
+  solicitudes   SolicitudContacto[]
+  favoritos     Favorito[]
+  propiedadesAmenidades PropiedadAmenidad[]
+  planesPiso    PlanPiso[]
+  resenas      CustomerReview[]
+
+  @@map("propiedades")
+}
+
+// =====================================================
+// 10) PRECIO + IMÁGENES
+// =====================================================
+
+model PrecioPropiedad {
+  id                      BigInt   @id @default(autoincrement())
+  idPublic                String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idPropiedad             BigInt   @unique @map("id_propiedad")
+  moneda                  String
+  precio                  Decimal  @db.Decimal(15, 2)
+  precioPorM2Construccion Decimal? @map("precio_por_m2_construccion") @db.Decimal(15, 2)
+  mantenimiento           Decimal? @db.Decimal(15, 2)
+  fechaActualizacion      DateTime @updatedAt @map("fecha_actualizacion")
+
+  propiedad Propiedad @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+
+  @@map("precios_propiedad")
+}
+
+model ImagenPropiedad {
+  id            BigInt   @id @default(autoincrement())
+  idPublic      String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idPropiedad   BigInt   @map("id_propiedad")
+  idRecurso     BigInt   @map("id_recurso")
+  orden         Int      @default(0)
+  esPortada     Boolean  @default(false) @map("es_portada")
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  propiedad Propiedad @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+  recurso   Recurso   @relation(fields: [idRecurso], references: [id], onDelete: Cascade)
+
+  @@map("imagenes_propiedad")
+}
+
+// =====================================================
+// 10.1) PROPIEDAD-AMENIDAD (tabla puente N:M)
+// =====================================================
+
+model PropiedadAmenidad {
+  idPropiedad   BigInt   @map("id_propiedad")
+  idAmenidad    BigInt   @map("id_amenidad")
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  propiedad Propiedad @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+  amenidad  Amenidad  @relation(fields: [idAmenidad], references: [id], onDelete: Cascade)
+
+  @@id([idPropiedad, idAmenidad])
+  @@index([idAmenidad])
+  @@map("propiedad_amenidad")
+}
+
+// =====================================================
+// 10.2) PLANES DE PISO
+// =====================================================
+
+model PlanPiso {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreDelPlano     String   @map("nombre_del_plano")
+  idRecurso          BigInt   @map("id_recurso")
+  idPropiedad        BigInt   @map("id_propiedad")
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso    Recurso    @relation(fields: [idRecurso], references: [id], onDelete: Cascade)
+  propiedad  Propiedad  @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+
+  @@index([idPropiedad, orden])
+  @@index([idRecurso])
+  @@map("planes_piso")
+}
+
+// =====================================================
+// 11) CONTACTO
+// =====================================================
+
+model SolicitudContacto {
+  id            BigInt   @id @default(autoincrement())
+  idPublic      String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idPropiedad   BigInt   @map("id_propiedad")
+  idUsuario     BigInt?  @map("id_usuario")
+  nombre        String
+  correo        String
+  telefono      String?
+  mensaje       String?  @db.Text
+  contactado    Boolean?
+  estado        String
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  propiedad Propiedad @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+  usuario   Usuario?  @relation(fields: [idUsuario], references: [id], onDelete: SetNull)
+
+  @@map("solicitudes_contacto")
+}
+
+// =====================================================
+// 12) FAVORITOS
+// =====================================================
+
+model Favorito {
+  id            BigInt   @id @default(autoincrement())
+  idPublic      String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idUsuario     BigInt   @map("id_usuario")
+  idPropiedad   BigInt   @map("id_propiedad")
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  usuario   Usuario   @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+  propiedad Propiedad @relation(fields: [idPropiedad], references: [id], onDelete: Cascade)
+
+  @@unique([idUsuario, idPropiedad])
+  @@map("favoritos")
+}
+
+// =====================================================
+// 13) RESEÑAS DE CLIENTES (customer reviews)
+// =====================================================
+
+model CustomerReview {
+  id                 BigInt   @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  nombreCompleto     String   @map("nombre_completo")
+  numeroTelefono     String   @map("numero_telefono")
+  email              String
+  mensaje            String   @db.Text
+  idUsuario          BigInt   @map("id_usuario")
+  idPropiedad        BigInt?  @map("id_propiedad")
+  deseaPublicar      Boolean  @default(false) @map("desea_publicar")
+  visiblePublico     Boolean  @default(false) @map("visible_publico")
+  estado             String   @default("NUEVA")
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  usuario   Usuario   @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+  propiedad Propiedad? @relation(fields: [idPropiedad], references: [id], onDelete: SetNull)
+
+  @@index([idUsuario])
+  @@index([idPropiedad])
+  @@index([estado])
+  @@map("customer_reviews")
+}
+
+// =====================================================
+// ACERCA DE NOSOTROS (página institucional)
+// PK = id (Int), id_public (UUID) para APIs/URLs.
+// Imágenes asociadas vía tabla puente con recursos.
+// =====================================================
+
+model AcercaDeNosotros {
+  id                        Int       @id @default(autoincrement())
+  idPublic                  String    @unique @default(uuid()) @map("id_public") @db.Uuid
+  titulo                    String
+  tituloSeccionRazones      String?   @map("titulo_seccion_razones")
+  textoSeccionRazones       String?   @map("texto_seccion_razones") @db.Text
+  informacionExcelencia     String?   @map("informacion_excelencia") @db.Text
+  informacionLogros         String?   @map("informacion_logros") @db.Text
+  informacionCalidad        String?   @map("informacion_calidad") @db.Text
+  informacionTransparencia  String?   @map("informacion_transparencia") @db.Text
+  actualizadoPor            BigInt?   @map("actualizado_por")
+  fechaCreacion             DateTime  @default(now()) @map("fecha_creacion")
+  fechaActualizacion        DateTime  @updatedAt @map("fecha_actualizacion")
+
+  actualizador Usuario? @relation(fields: [actualizadoPor], references: [id], onDelete: SetNull)
+  imagenes      AcercaDeNosotrosImagen[]
+
+  @@map("acerca_de_nosotros")
+}
+
+model AcercaDeNosotrosImagen {
+  id                 Int      @id @default(autoincrement())
+  acercaDeNosotrosId  Int      @map("acerca_de_nosotros_id")
+  idRecurso           BigInt   @map("id_recurso")
+  tipo                String?
+  orden               Int      @default(0)
+  altText             String?  @map("alt_text")
+  activo              Boolean  @default(true)
+  fechaCreacion       DateTime @default(now()) @map("fecha_creacion")
+
+  acercaDeNosotros AcercaDeNosotros @relation(fields: [acercaDeNosotrosId], references: [id], onDelete: Cascade)
+  recurso         Recurso            @relation(fields: [idRecurso], references: [id], onDelete: Cascade)
+
+  @@unique([acercaDeNosotrosId, idRecurso])
+  @@index([acercaDeNosotrosId, orden])
+  @@index([idRecurso])
+  @@map("acerca_de_nosotros_imagen")
+}
+
+// =====================================================
+// SOLUCIONES EMPRESARIALES
+// =====================================================
+
+model SolucionEmpresarial {
+  id                        Int      @id @default(autoincrement())
+  idPublic                  String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idRecursos                BigInt   @map("id_recursos")
+  tituloHero                String   @map("titulo_hero")
+  tituloSeccionInformacion  String?  @map("titulo_seccion_informacion")
+  contextoSeccionInformacion String? @map("contexto_seccion_informacion")
+  fechaCreacion             DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion        DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso Recurso @relation("RecursoSolucionesEmpresariales", fields: [idRecursos], references: [id], onDelete: Restrict)
+
+  @@index([idRecursos])
+  @@map("soluciones_empresariales")
+}
+
+model Plan {
+  id                 Int      @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  titulo             String
+  montoQuetzales     Decimal  @map("monto_quetzales") @db.Decimal(15, 2)
+  montoDolares       Decimal  @map("monto_dolares") @db.Decimal(15, 2)
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  beneficiosPlan BeneficioPlan[]
+  planesServicios PlanServicio[]
+
+  @@index([orden])
+  @@map("planes")
+}
+
+model BeneficioPlan {
+  id            Int      @id @default(autoincrement())
+  idPublic      String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  idPlan        Int      @map("id_plan")
+  tituloVentaja String   @map("titulo_ventaja")
+  orden         Int      @default(0)
+  activo        Boolean  @default(true)
+  fechaCreacion DateTime @default(now()) @map("fecha_creacion")
+
+  plan Plan @relation(fields: [idPlan], references: [id], onDelete: Cascade)
+
+  @@index([idPlan, orden])
+  @@map("beneficios_plan")
+}
+
+model ServicioEmpresarial {
+  id                 Int      @id @default(autoincrement())
+  idPublic           String   @unique @default(uuid()) @map("id_public") @db.Uuid
+  tituloServicio     String   @map("titulo_servicio")
+  descripcion        String
+  idRecursos         BigInt   @map("id_recursos")
+  orden              Int      @default(0)
+  activo             Boolean  @default(true)
+  fechaCreacion      DateTime @default(now()) @map("fecha_creacion")
+  fechaActualizacion DateTime @updatedAt @map("fecha_actualizacion")
+
+  recurso        Recurso       @relation("RecursoServiciosEmpresariales", fields: [idRecursos], references: [id], onDelete: Restrict)
+  planesServicios PlanServicio[]
+
+  @@index([idRecursos, orden])
+  @@map("servicios_empresariales")
+}
+
+model PlanServicio {
+  idPlan     Int @map("id_plan")
+  idServicio Int @map("id_servicio")
+  orden      Int @default(0)
+
+  plan     Plan               @relation(fields: [idPlan], references: [id], onDelete: Cascade)
+  servicio ServicioEmpresarial @relation(fields: [idServicio], references: [id], onDelete: Cascade)
+
+  @@id([idPlan, idServicio])
+  @@index([idPlan, orden])
+  @@index([idServicio])
+  @@map("planes_servicios")
+}

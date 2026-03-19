@@ -1,0 +1,209 @@
+@use '../../utils' as *;
+
+/*----------------------------------------*/
+/*  7.4 Counter Css
+/*----------------------------------------*/
+
+.#{$theme-prefix}-counter{
+  &-list{
+    margin-bottom: 55px;
+    @media #{$md,$xs} {
+      margin-bottom: 30px;
+    }
+    & ul{
+      display: inline-block;
+      & li{
+        list-style: none;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--tp-text-body);
+        &:not(:last-child){
+          margin-bottom: 18px;
+        }
+        & span{
+          margin-right: 12px;
+          display: inline-block;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+  &-item{
+    padding: 0 110px 40px 50px;
+    @media #{$xl} {
+      padding: 0 80px 40px 50px;
+    }
+    @media #{$lg} {
+      padding: 0 55px 40px 35px;
+    }
+    @media #{$md} {
+      padding: 0 80px 40px 50px;
+    }
+    @media #{$xs} {
+      border: none !important;
+      padding: 0 50px 40px 0px;
+    }
+    &.border{
+      &-1{
+        border-left: 1px solid #E6E6E6;
+        border-right: 1px solid #E6E6E6;
+        border-bottom: 1px solid #E6E6E6;
+      }
+      &-2{
+        border-bottom: 1px solid #E6E6E6;
+        border-right: 1px solid #E6E6E6;
+      }
+      &-3{
+        padding: 55px 112px 40px 52px;
+        border-left: 1px solid #E6E6E6;
+        border-right: 1px solid #E6E6E6;
+        @media #{$xl,$md} {
+          padding: 55px 82px 40px 52px;
+        }
+        @media #{$lg} {
+          padding: 55px 54px 40px 40px;
+        }
+        @media #{$xs} {
+          padding: 55px 30px 40px 0px;
+        }
+      }
+      &-4{
+        padding: 55px 57px 40px;
+        border-right: 1px solid #E6E6E6;
+        @media #{$xl,$md} {
+          padding: 55px 43px 40px;
+        }
+        @media #{$lg} {
+          padding: 55px 23px 40px;
+        }
+        @media #{$xs} {
+          padding: 55px 12px 40px;
+        }
+      }
+    }
+    & p{
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 26px;
+      margin-bottom: 114px;
+      color: var(--tp-heading-primary);
+      @media #{$xs} {
+        margin-bottom: 65px;
+      }
+    }
+  }
+  &-content{
+    margin-left: 38px;
+    @media #{$xl,$lg,$md,$xs} {
+      margin-left: 0;
+    }
+  }
+  &-wrap{
+    @media #{$md,$xs} {
+      margin-bottom: 30px;
+    }
+  }
+  &-title{
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: -1.2px;
+    color: var(--tp-heading-primary);
+  }
+}
+
+
+.#{$theme-prefix}-counter-4{
+  &-ptb{
+    @media #{$xs} {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    &::before{
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      background: linear-gradient(180deg, #F0F4FD 0%, #FFF 92.04%);
+    }
+  }
+  &-heading{
+    & p{
+      & br{
+        @media #{$md,$xs} {
+          display: none;
+        }
+      }
+    }
+  }
+  &-item{
+    padding: 50px;
+    width: 380px;
+    height: 250px;
+    border-top: 1px solid #E6E6E6;
+    &:not(:last-child){
+      border-right: 1px solid #E6E6E6;
+    }
+    &:nth-child(3){
+      @media #{$md,$xs} {
+        border-top: none;
+      }
+    }
+    &:nth-child(1){
+      @media #{$md} {
+        border-right: none;
+      }
+      @media #{$xs} {
+        border-bottom: none;
+      }
+    }
+    @media #{$md,$xs} {
+      width: 330px;
+      border: 1px solid #E6E6E6;
+    }
+    & p{
+      line-height: 26px;
+      color: var(--tp-common-black);
+      margin-bottom: 18px;
+      & br{
+        @media #{$lg,$xs} {
+          display: none;
+        }
+      }
+    }
+
+    &-title{
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      color: var(--tp-theme-primary);
+    }
+
+    &-image{
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+
+      & img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+
+    &-box{
+      @media #{$md,$xs} {
+        flex-wrap: wrap;
+      }
+    }
+  }
+  &-title{
+    font-size: 80px;
+    font-weight: 700;
+    letter-spacing: -1.6px;
+    color: var(--tp-theme-primary);
+  }
+}

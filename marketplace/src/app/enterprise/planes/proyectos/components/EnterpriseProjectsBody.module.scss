@@ -1,0 +1,319 @@
+.pageWrap {
+  padding: 56px 0 90px;
+  background: #f4f6fa;
+  min-height: 100vh;
+}
+
+.fullViewport {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.shell {
+  border: 1px solid #e7ebf2;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: none;
+  padding: 18px 24px;
+  min-height: 100vh;
+
+  h1 {
+    margin: 2rem 0 0;
+    color: #1a253e;
+    font-size: 48px;
+    line-height: 1.1;
+  }
+
+  > p {
+    margin: 6px 0 0;
+    color: #6b7a94;
+    font-size: 16px;
+  }
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.backBtn {
+  margin-top: 2rem;
+  height: 40px;
+  min-width: 108px;
+  border-radius: 10px;
+  border: 1px solid #dce3ef;
+  background: #ffffff;
+  color: #27405f;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+}
+
+.topTabs {
+  margin-top: 14px;
+  border-bottom: 1px solid #ebeff6;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+
+  button {
+    border: 0;
+    background: transparent;
+    color: #77859d;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 0;
+  }
+}
+
+.activeTab {
+  color: #1170de !important;
+  position: relative;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 2px;
+  border-radius: 999px;
+  background: #1170de;
+}
+
+.sectionHead {
+  margin: 14px 0 8px;
+  color: #6f7e97;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.folderGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.folderCard {
+  border: 1px solid #e8edf4;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  h4 {
+    margin: 0;
+    color: #27334c;
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+  small {
+    color: #8290a6;
+    font-size: 12px;
+  }
+}
+
+.folderCardActive {
+  border-color: #2e88de;
+  box-shadow: 0 0 0 1px rgba(46, 136, 222, 0.15);
+}
+
+.folderIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eff4fc;
+  color: #1773de;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.tableWrap {
+  margin-top: 8px;
+  border: 1px solid #e8edf4;
+  border-radius: 12px;
+  overflow: hidden;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    background: #f7f9fc;
+    color: #8090a8;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 800;
+  }
+
+  td {
+    border-top: 1px solid #edf1f7;
+    padding: 12px;
+    color: #3c4963;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+}
+
+.fileNameCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #2b3854;
+
+  i {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: #eef3fb;
+    color: #247adb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-style: normal;
+  }
+}
+
+.ownerCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  b {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #eaf0fb;
+    color: #2b4f91;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+  }
+}
+
+.feedbackText {
+  margin: 0;
+  color: #5f6e88;
+  font-size: 15px;
+}
+
+.mobileBottomSpacer {
+  display: none;
+}
+
+.mobileBottomNav {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .shell h1 {
+    font-size: 40px;
+  }
+
+  .folderGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .pageWrap {
+    padding: 32px 0 96px;
+  }
+
+  .shell {
+    border-radius: 0;
+    border-left: 1px solid #e7ebf2;
+    border-right: 1px solid #e7ebf2;
+    padding: 14px;
+  }
+
+  .shell h1 {
+    font-size: 28px;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .backBtn {
+    display: none;
+  }
+
+  .folderGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tableWrap {
+    overflow-x: auto;
+
+    table {
+      min-width: 620px;
+    }
+  }
+
+  .mobileBottomSpacer {
+    display: block;
+    height: 8px;
+  }
+
+  .mobileBottomNav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    height: 68px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    background: #ffffff;
+    border-top: 1px solid #e7ebf3;
+    padding: 0 8px;
+
+    a {
+      text-decoration: none;
+      color: #9aa4b7;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      gap: 2px;
+    }
+  }
+
+  .navIcon {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .mobileNavActive {
+    color: #1170de !important;
+  }
+}

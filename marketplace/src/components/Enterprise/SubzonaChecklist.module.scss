@@ -1,0 +1,75 @@
+.root {
+  display: grid;
+  gap: 8px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.count {
+  margin: 0;
+  font-size: 11px;
+  color: #5d6d89;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.actionBtn {
+  border: 1px solid #d6e0f2;
+  background: #f7f9ff;
+  color: #4f5f7d;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+}
+
+.feedback {
+  margin: 0;
+  font-size: 11px;
+  color: #607089;
+}
+
+.feedbackError {
+  margin: 0;
+  font-size: 11px;
+  color: #b42318;
+}
+
+.list {
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border: 1px solid #d6e0f2;
+  border-radius: 10px;
+  background: #ffffff;
+  max-height: 210px;
+  overflow: auto;
+}
+
+.item + .item {
+  margin-top: 6px;
+}
+
+.label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px;
+  align-items: start;
+  color: #5d6d89;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.subLabel {
+  display: block;
+  font-size: 10px;
+  color: #8a96ab;
+}
