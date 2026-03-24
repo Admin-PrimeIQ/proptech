@@ -65,6 +65,7 @@ migration.sql*
 
 
 
+
 # backup de datos antes de migrar (opcional: quitar para versionar)
 prisma/backup-datos.json
 
@@ -75,7 +76,13 @@ README-AGENTE-FRONTEND.md
 README-ISOCHRONES-LIFESTYLE.md
 README-MIGRACION.md
 README-PRUEBAS-ISOCHRONES.md
+README-places-suggestions-api.md
 
+
+#QA
+README-AGENTE-QA.md
+plan-pruebas-marketplace-actualizado.xlsx
+plan-pruebas-marketplace.xlsx
 
 
 

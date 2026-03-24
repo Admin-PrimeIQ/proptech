@@ -1,3 +1,5 @@
+import { loadCachedPriorities, toSelectedPoints } from "../../services/lifestyleMatcherCache.service";
+
 export type SelectedPoint = {
   id: string;
   title: string;
@@ -29,5 +31,12 @@ export async function getLifestyleMatcherPointsData(): Promise<LifestyleMatcherP
   // const response = await fetch("/api/enterprise/lifestyle-matcher/puntos");
   // if (!response.ok) throw new Error("No se pudo cargar el paso 2 de lifestyle matcher");
   // return response.json();
+  const cachedPriorities = loadCachedPriorities();
+  if (cachedPriorities && cachedPriorities.length > 0) {
+    return Promise.resolve({
+      ...STEP_TWO_MOCK,
+      selectedPoints: toSelectedPoints(cachedPriorities),
+    });
+  }
   return Promise.resolve(STEP_TWO_MOCK);
 }

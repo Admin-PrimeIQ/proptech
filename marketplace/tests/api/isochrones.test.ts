@@ -252,6 +252,9 @@ describe("API isócronos múltiples", () => {
     expect(hasMinutesCall).toBe(true);
     expect(Array.isArray(data?.meta?.layers)).toBe(true);
     expect(data.meta.layers.length).toBe(2);
+    expect(data.features.length).toBe(2);
+    const layerIds = data.features.map((f: { properties?: { layerId?: string } }) => f.properties?.layerId).sort();
+    expect(layerIds).toEqual(["distance", "time"]);
   });
 
   it("sin solapamiento conserva retención 1.0 en todos los puntos", async () => {

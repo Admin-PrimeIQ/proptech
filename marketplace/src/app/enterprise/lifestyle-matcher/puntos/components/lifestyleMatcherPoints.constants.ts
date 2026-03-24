@@ -30,3 +30,8 @@ export const DEFAULT_ADDITIONAL_MARKER_VISIBILITY_STATE: AdditionalMarkerVisibil
   subzonas: true,
   comercios: true,
 };
+
+/** Centro de referencia (Ciudad de Guatemala, Zona 1) para sugerencias cuando aún no hay puntos fijados. */
+export const ZONA_1_REFERENCE_CENTER = { lat: 14.6349, lng: -90.5069 } as const;
+
+export const PRIORITY_PLACE_SUGGESTION_RADIUS_METERS = 2500;

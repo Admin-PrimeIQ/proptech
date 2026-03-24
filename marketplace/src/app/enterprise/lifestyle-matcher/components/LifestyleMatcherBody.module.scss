@@ -160,10 +160,106 @@
   box-shadow: 0 0 0 2px rgba(31, 128, 221, 0.12);
 }
 
-.priorityList {
+.searchSuggestions {
+  margin-top: 6px;
+  border: 1px solid #dfe7f4;
+  border-radius: 9px;
+  background: #ffffff;
+  padding: 4px;
+  display: grid;
+  gap: 4px;
+}
+
+.searchSuggestionItem {
+  width: 100%;
+  border: 0;
+  border-radius: 7px;
+  background: #f4f7fc;
+  padding: 8px 10px;
+  text-align: left;
+  display: grid;
+  gap: 2px;
+}
+
+.searchSuggestionItem strong {
+  color: #1e2a42;
+  font-size: 12px;
+}
+
+.searchSuggestionItem small {
+  color: #7e8ea9;
+  font-size: 11px;
+}
+
+.searchSuggestionItem:hover {
+  background: #eaf3ff;
+}
+
+.priorityCapacityHint {
+  margin: 8px 0 0;
+  color: #c2410c;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.priorityListViewport {
   margin-top: 10px;
+  min-height: calc(5 * (58px + 8px) - 8px);
+  display: flex;
+  flex-direction: column;
+}
+
+.priorityList {
   display: grid;
   gap: 8px;
+  align-content: start;
+  flex: 1 1 auto;
+}
+
+.prioritySlotEmpty {
+  border: 1px dashed #d9e0ed;
+  border-radius: 9px;
+  background: #f8fafc;
+  min-height: 58px;
+  box-sizing: border-box;
+}
+
+.priorityListPagination {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.priorityPaginationBtn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d6ddea;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f80dd;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priorityPaginationBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: #9da9bc;
+}
+
+.priorityPaginationMeta {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5f6f89;
+  min-width: 48px;
+  text-align: center;
 }
 
 .priorityItem {
@@ -598,8 +694,15 @@
     font-size: 11px;
   }
 
+  .priorityListViewport {
+    min-height: calc(5 * (54px + 6px) - 6px);
+  }
+
+  .prioritySlotEmpty {
+    min-height: 54px;
+  }
+
   .priorityList {
-    margin-top: 8px;
     gap: 6px;
   }
 
@@ -782,8 +885,15 @@
     padding: 0 8px;
   }
 
+  .priorityListViewport {
+    min-height: calc(5 * (40px + 4px) - 4px);
+  }
+
+  .prioritySlotEmpty {
+    min-height: 40px;
+  }
+
   .priorityList {
-    margin-top: 6px;
     gap: 4px;
   }
 

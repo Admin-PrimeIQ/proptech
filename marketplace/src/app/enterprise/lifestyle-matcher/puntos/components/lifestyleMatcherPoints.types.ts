@@ -41,6 +41,7 @@ export type GoogleMarkerConstructor = new (options: {
   position: { lat: number; lng: number };
   title?: string;
   icon?: unknown;
+  zIndex?: number;
 }) => GoogleMarkerLike;
 
 export type GoogleInfoWindowLike = {
@@ -57,6 +58,7 @@ export type GoogleMapsGlobal = {
     InfoWindow?: GoogleInfoWindowConstructor;
     TrafficLayer?: new () => { setMap: (map: unknown | null) => void };
     Size?: new (width: number, height: number) => unknown;
+    SymbolPath?: { CIRCLE: number };
     event?: {
       trigger?: (map: unknown, eventName: string) => void;
     };
@@ -103,3 +105,11 @@ export type HousingPeriodsCatalog = {
 export type AdditionalMarkerKey = "points" | "isochrones" | "subzonas" | "comercios";
 export type AdditionalMarkerVisibilityState = Record<AdditionalMarkerKey, boolean>;
 export type MarkersPanelView = "google" | "housing" | "additional";
+
+export type PriorityPlaceSuggestion = {
+  placeId: string;
+  name: string;
+  lat: number;
+  lng: number;
+  vicinity: string | null;
+};

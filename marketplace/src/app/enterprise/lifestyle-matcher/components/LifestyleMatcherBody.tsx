@@ -1,12 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import styles from "./LifestyleMatcherBody.module.scss";
 import { getLifestyleMatcherData } from "../services/lifestyleMatcher.service";
 import { LifestyleMatcherData } from "../types";
 import EnterpriseMobileBottomNav from "@/components/Enterprise/EnterpriseMobileBottomNav";
 import CategoryList from "./CategoryList";
+import type { Category } from "./CategoryItem";
+import { loadCachedPriorities, saveCachedPriorities } from "../services/lifestyleMatcherCache.service";
+import { PRIORITY_SUGGESTIONS_CATALOG } from "../services/prioritySuggestionsCatalog";
+import { PRIORITY_LIST_MAX_ITEMS, serializePriorities } from "./lifestyleMatcherPriorities.constants";
 
 export default function LifestyleMatcherBody() {
   const [loading, setLoading] = useState(true);
@@ -16,6 +20,8 @@ export default function LifestyleMatcherBody() {
   const [selectedEta, setSelectedEta] = useState<string>("");
   const [averageSpeed, setAverageSpeed] = useState<number>(40);
   const [trafficEnabled, setTrafficEnabled] = useState<boolean>(true);
+  const [priorities, setPriorities] = useState<Category[]>([]);
+  const [priorityCapacityMessage, setPriorityCapacityMessage] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -29,6 +35,15 @@ export default function LifestyleMatcherBody() {
         setSelectedEta(response.selectedEta);
         setAverageSpeed(response.averageSpeed);
         setTrafficEnabled(response.trafficEnabled);
+        const fallbackPriorities = response.priorities.map((priority) => ({
+          id: priority.id,
+          title: priority.name,
+          subtitle: priority.subtitle,
+        }));
+        const cachedPriorities = loadCachedPriorities();
+        const rawPriorities = cachedPriorities && cachedPriorities.length > 0 ? cachedPriorities : fallbackPriorities;
+        const nextPriorities = rawPriorities.slice(0, PRIORITY_LIST_MAX_ITEMS);
+        setPriorities(nextPriorities);
       } catch {
         if (cancelled) return;
         setError("No se pudo cargar Lifestyle Matcher.");
@@ -45,6 +60,41 @@ export default function LifestyleMatcherBody() {
       cancelled = true;
       document.body.classList.remove("lifestyle-matcher-page");
     };
+  }, []);
+
+  const prioritiesForList = useMemo(() => {
+    if (priorities.length > 0) return priorities;
+    if (!data) return [];
+    return data.priorities.map((priority) => ({
+      id: priority.id,
+      title: priority.name,
+      subtitle: priority.subtitle,
+    }));
+  }, [priorities, data]);
+
+  const suggestedPriorities = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return [];
+    const alreadySelected = new Set(prioritiesForList.map((item) => item.title.trim().toLowerCase()));
+    return PRIORITY_SUGGESTIONS_CATALOG.filter((option) => {
+      if (alreadySelected.has(option.title.trim().toLowerCase())) return false;
+      return (
+        option.title.toLowerCase().includes(query) ||
+        option.subtitle.toLowerCase().includes(query)
+      );
+    }).slice(0, 6);
+  }, [searchTerm, prioritiesForList]);
+
+  const handlePrioritiesChange = useCallback((items: Category[]) => {
+    const trimmed = items.slice(0, PRIORITY_LIST_MAX_ITEMS);
+    setPriorities((prev) => {
+      if (serializePriorities(prev) === serializePriorities(trimmed)) return prev;
+      saveCachedPriorities(trimmed);
+      return trimmed;
+    });
+    if (trimmed.length < PRIORITY_LIST_MAX_ITEMS) {
+      setPriorityCapacityMessage(null);
+    }
   }, []);
 
   if (loading) {
@@ -106,17 +156,48 @@ export default function LifestyleMatcherBody() {
               onChange={(event) => setSearchTerm(event.target.value)}
               aria-label="Buscar prioridades"
             />
+            {suggestedPriorities.length > 0 ? (
+              <div className={styles.searchSuggestions} role="listbox" aria-label="Sugerencias de prioridades">
+                {suggestedPriorities.map((option) => (
+                  <button
+                    key={option.key}
+                    type="button"
+                    className={styles.searchSuggestionItem}
+                    onClick={() => {
+                      if (prioritiesForList.length >= PRIORITY_LIST_MAX_ITEMS) {
+                        setPriorityCapacityMessage(`Puedes tener como máximo ${PRIORITY_LIST_MAX_ITEMS} prioridades.`);
+                        return;
+                      }
+                      setPriorityCapacityMessage(null);
+                      const newId =
+                        typeof globalThis.crypto !== "undefined" && "randomUUID" in globalThis.crypto
+                          ? globalThis.crypto.randomUUID()
+                          : `custom-${option.key}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+                      const nextCategory: Category = {
+                        id: newId,
+                        title: option.title,
+                        subtitle: option.subtitle,
+                      };
+                      const next = [...prioritiesForList, nextCategory];
+                      setPriorities(next);
+                      saveCachedPriorities(next);
+                      setSearchTerm("");
+                    }}
+                  >
+                    <strong>{option.title}</strong>
+                    <small>{option.subtitle}</small>
+                  </button>
+                ))}
+              </div>
+            ) : null}
 
-            <CategoryList
-              initialItems={data.priorities.map((priority) => ({
-                id: priority.id,
-                title: priority.name,
-                subtitle: priority.subtitle,
-              }))}
-              searchTerm={searchTerm}
-            />
+            {priorityCapacityMessage ? (
+              <p className={styles.priorityCapacityHint} role="status">
+                {priorityCapacityMessage}
+              </p>
+            ) : null}
 
-            <div className={styles.paginationMock}>‹ 1 2 3 ›</div>
+            <CategoryList initialItems={prioritiesForList} onChange={handlePrioritiesChange} />
           </div>
 
           <div className={styles.rightPane}>

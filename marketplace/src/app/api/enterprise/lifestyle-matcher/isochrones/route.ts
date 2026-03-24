@@ -650,29 +650,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const mode =
-      contourUnit === "hibrido"
-        ? "hibrido"
-        : contourUnit === "calculada"
-          ? "calculada"
-          : layers[0]?.contourParam === "contours_minutes"
-            ? "minutes"
-            : "meters";
-    const contourParam =
-      layers.length > 1
-        ? "mixed"
-        : (layers[0]?.contourParam ?? "contours_minutes");
-    const contourValue =
-      layers.length > 1 ? layers.map((layer) => layer.contourValue) : (layers[0]?.contourValue ?? 0);
-
-    const finalMergedGeometry = safeUnion(mergedLayers);
-    if (!finalMergedGeometry) {
-      return jsonWithCors(
-        { error: "No se pudo consolidar la geometria final de isocronas." },
-        { status: 422 }
-      );
-    }
-
     const layerSummaries = layers.map((layer) => {
       const byLayer = flattenedProcessedLayers.filter(
         (entry) =>
@@ -695,6 +672,91 @@ export async function POST(request: NextRequest) {
         totalCoverageKm2: featureAreaKm2(mergedByLayer ?? null),
       };
     });
+
+    const mode =
+      contourUnit === "hibrido"
+        ? "hibrido"
+        : contourUnit === "calculada"
+          ? "calculada"
+          : layers[0]?.contourParam === "contours_minutes"
+            ? "minutes"
+            : "meters";
+    const contourParam =
+      layers.length > 1
+        ? "mixed"
+        : (layers[0]?.contourParam ?? "contours_minutes");
+    const contourValue =
+      layers.length > 1 ? layers.map((layer) => layer.contourValue) : (layers[0]?.contourValue ?? 0);
+
+    if (contourUnit === "hibrido") {
+      const responseFeatures: Array<Feature<Polygon | MultiPolygon, GravitationalIsochroneProperties>> =
+        mergedLayers.map((merged) => {
+          const lp = merged.properties?.layerId as "time" | "distance" | undefined;
+          const cp = merged.properties?.contourParam as "contours_minutes" | "contours_meters" | undefined;
+          const cv = merged.properties?.contourValue;
+          const contourValueNum = typeof cv === "number" ? cv : Number(cv ?? 0);
+          const byLayer = flattenedProcessedLayers.filter(
+            (entry) =>
+              entry.layerId === lp &&
+              entry.contourParam === cp &&
+              entry.contourValue === contourValueNum
+          );
+          const summary = layerSummaries.find(
+            (item) =>
+              item.layerId === lp &&
+              item.contourParam === cp &&
+              item.contourValue === contourValueNum
+          );
+          return {
+            ...merged,
+            properties: {
+              priorityOrder: pointsByPriority.map((point) => point.id),
+              processedLayers: byLayer,
+              layerSummaries: summary ? [summary] : [],
+              totalCoverageKm2: featureAreaKm2(merged),
+              algorithm: "gravitational_union_hierarchical" as const,
+              version: "1.0" as const,
+              contourParam: cp ?? "contours_minutes",
+              contourValue: contourValueNum,
+              trafficProfile,
+              contourUnit,
+              mode: "hibrido" as const,
+              layerId: lp,
+            },
+          };
+        });
+
+      const response: MultiIsochroneResponse = {
+        type: "FeatureCollection",
+        features: responseFeatures,
+        meta: {
+          mode: "hibrido",
+          contourParam: "mixed",
+          contourValue: layers.map((layer) => layer.contourValue),
+          trafficProfile,
+          contourUnit,
+          requestedPoints: points.length,
+          processedPoints: pointsByPriority.length,
+          priorityOrder: pointsByPriority.map((point) => point.id),
+          layers: layers.map((layer) => ({
+            layerId: layer.layerId,
+            contourParam: layer.contourParam,
+            contourValue: layer.contourValue,
+            profile: layer.profile,
+          })),
+        },
+      };
+
+      return jsonWithCors(response, { status: 200 });
+    }
+
+    const finalMergedGeometry = safeUnion(mergedLayers);
+    if (!finalMergedGeometry) {
+      return jsonWithCors(
+        { error: "No se pudo consolidar la geometria final de isocronas." },
+        { status: 422 }
+      );
+    }
 
     const responseFeature: Feature<Polygon | MultiPolygon, GravitationalIsochroneProperties> = {
       ...finalMergedGeometry,

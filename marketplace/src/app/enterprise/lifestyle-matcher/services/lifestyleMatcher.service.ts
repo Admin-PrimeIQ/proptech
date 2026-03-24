@@ -5,8 +5,8 @@ const LIFESTYLE_MATCHER_MOCK: LifestyleMatcherData = {
   subtitle: "Personaliza tus criterios para encontrar la ubicación perfecta.",
   stepLabel: "PASO 1 DE 2: LIFESTYLE MATCHER",
   progressPercent: 50,
-  etaOptions: ["5 min", "10 min", "15 min", "20 min"],
-  selectedEta: "10 min",
+  etaOptions: ["15 min", "30 min", "45 min", "60 min"],
+  selectedEta: "30 min",
   averageSpeed: 40,
   trafficEnabled: true,
   priorities: [

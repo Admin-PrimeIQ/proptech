@@ -1,3 +1,4 @@
+import bbox from "@turf/bbox";
 import { HOUSING_CATEGORY_ICON_MAP } from "./lifestyleMatcherPoints.constants";
 import type { FeatureCollection, HousingMarkerGroup } from "./lifestyleMatcherPoints.types";
 
@@ -161,4 +162,23 @@ export function extractFeatureCollection(payload: unknown): FeatureCollection | 
     return wrapped;
   }
   return null;
+}
+
+/** Centro del bbox de todas las features (útil como punto de búsqueda Places para una zona). */
+export function centroidFromFeatureCollectionBbox(collection: FeatureCollection | null): { lat: number; lng: number } | null {
+  if (!collection || !Array.isArray(collection.features) || collection.features.length === 0) {
+    return null;
+  }
+  try {
+    const [minLng, minLat, maxLng, maxLat] = bbox(collection as Parameters<typeof bbox>[0]);
+    if (!Number.isFinite(minLng) || !Number.isFinite(minLat) || !Number.isFinite(maxLng) || !Number.isFinite(maxLat)) {
+      return null;
+    }
+    return {
+      lat: (minLat + maxLat) / 2,
+      lng: (minLng + maxLng) / 2,
+    };
+  } catch {
+    return null;
+  }
 }

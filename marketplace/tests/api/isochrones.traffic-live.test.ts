@@ -17,20 +17,15 @@ type IsoResponse = {
 };
 
 function extractTimeLayerAreaKm2(payload: IsoResponse): number {
-  const rootFeature = payload.features?.[0];
-  const rawLayerSummaries = (rootFeature?.properties as Record<string, unknown> | undefined)?.layerSummaries;
-  const layerSummaries = Array.isArray(rawLayerSummaries)
-    ? rawLayerSummaries as Array<Record<string, unknown>>
-    : [];
-  const timeLayer = layerSummaries.find((entry) => {
-    const layerId = String(entry?.layerId ?? "");
-    const contourParam = String(entry?.contourParam ?? "");
-    return layerId === "time" && contourParam === "contours_minutes";
+  const timeFeature = payload.features?.find((f) => {
+    const props = f.properties as Record<string, unknown> | undefined;
+    return String(props?.layerId ?? "") === "time";
   });
-  if (!timeLayer) {
-    throw new Error("No se encontro el resumen de la capa de tiempo (contours_minutes).");
+  if (!timeFeature) {
+    throw new Error("No se encontro la feature de capa time en hibrido.");
   }
-  return Number(timeLayer.totalCoverageKm2 ?? 0);
+  const props = timeFeature.properties as Record<string, unknown>;
+  return Number(props.totalCoverageKm2 ?? 0);
 }
 
 async function callIsochrone(params: {

@@ -16,6 +16,7 @@ import SubzonaChecklist, { type SubzonaChecklistItem } from "@/components/Enterp
 import LifestyleMatcherProjectsSidebar from "./LifestyleMatcherProjectsSidebar";
 import HousingPeriodFilter from "./HousingPeriodFilter";
 import { createMultiIsochrone } from "../services/multiIsochrone.service";
+import { correctIsochronesWithTrafficMatrix } from "../services/isochroneCorrection.service";
 import {
   fetchHousingMarkersByGeoJson,
   fetchHousingMarkersByZona,
@@ -25,7 +26,7 @@ import {
   fetchCommercialMarkersByZona,
 } from "../services/markers/commercialMarkers.service";
 import type { IsoContourUnit, IsoStyleOption, IsoTrafficProfile, MultiIsochroneResponse } from "@/types/isochrones";
-import { getIsoPolygonStyle } from "@/lib/isoStyles";
+import { getIsoPolygonStyle, ISO_HYBRID_MAP_COLORS } from "@/lib/isoStyles";
 import {
   applyMapBaseVisuals,
   DEFAULT_MARKER_CATEGORIES,
@@ -42,6 +43,7 @@ import {
   SIDEBAR_PAGE_SIZE,
 } from "./lifestyleMatcherPoints.constants";
 import {
+  centroidFromFeatureCollectionBbox,
   deriveIncidentsFromProperties,
   extractFeatureCollection,
   formatInteger,
@@ -74,6 +76,8 @@ import type {
   MarkerCardItem,
   MarkersPanelView,
 } from "./lifestyleMatcherPoints.types";
+import PriorityPlaceSuggestionsPanel from "./PriorityPlaceSuggestionsPanel";
+import { usePriorityPlaceSuggestions } from "./usePriorityPlaceSuggestions";
 
 export default function LifestyleMatcherPointsBody() {
   const [loading, setLoading] = useState(true);
@@ -136,6 +140,7 @@ export default function LifestyleMatcherPointsBody() {
   const mapInstanceRef = useRef<unknown | null>(null);
   const pointToPinIdRef = useRef<string | null>(null);
   const selectedPointsRef = useRef<SelectedPoint[]>([]);
+  const applyPinnedLocationRef = useRef<(lat: number, lng: number) => void>(() => {});
   const markersByPointRef = useRef<Record<string, GoogleMarkerLike>>({});
   const renderedProjectMarkersRef = useRef<Map<string, GoogleMarkerLike>>(new Map());
   const renderedProjectMarkerListenersRef = useRef<Map<string, GoogleMapsEventListener>>(new Map());
@@ -223,8 +228,64 @@ export default function LifestyleMatcherPointsBody() {
   }, [selectedPoints]);
 
   useEffect(() => {
+    applyPinnedLocationRef.current = (lat: number, lng: number) => {
+      const activePointId = pointToPinIdRef.current;
+      if (!activePointId) return;
+      const map = mapInstanceRef.current;
+      const maybeGoogle = (window as unknown as { google?: GoogleMapsGlobal }).google;
+      const markerCtor = maybeGoogle?.maps?.Marker;
+      if (!map || !markerCtor) return;
+
+      const activePoint = selectedPointsRef.current.find((point) => point.id === activePointId);
+      const activePointTitle = activePoint?.title ?? activePointId;
+
+      const prevMarker = markersByPointRef.current[activePointId];
+      if (prevMarker) prevMarker.setMap(null);
+
+      const marker = new markerCtor({
+        map,
+        position: { lat, lng },
+        title: activePointTitle,
+      });
+      markersByPointRef.current[activePointId] = marker;
+      setPointLocations((prev) => ({ ...prev, [activePointId]: { lat, lng } }));
+
+      setSelectedPoints((prev) =>
+        prev.map((point) =>
+          point.id === activePointId
+            ? { ...point, subtitle: `Ubicación fijada (${lat.toFixed(5)}, ${lng.toFixed(5)})`, active: true }
+            : { ...point, active: false },
+        ),
+      );
+      setPointToPinId(null);
+    };
+  }, []);
+
+  const prioritySuggestionsZonaCentroid = useMemo(
+    () => centroidFromFeatureCollectionBbox(geoJsonSubzonas),
+    [geoJsonSubzonas]
+  );
+
+  const {
+    suggestions: prioritySuggestions,
+    loading: prioritySuggestionsLoading,
+    error: prioritySuggestionsError,
+    centerLabel: prioritySuggestionsCenterLabel,
+    suggestionsSuppressed: prioritySuggestionsSuppressed,
+  } = usePriorityPlaceSuggestions({
+    mapReady,
+    pointToPinId,
+    selectedPoints,
+    pointLocations,
+    zonaCentroid: prioritySuggestionsZonaCentroid,
+    mapInstanceRef,
+  });
+
+  useEffect(() => {
     isMapExpandedRef.current = isMapExpanded;
     if (!isMapExpanded) {
+      setIsMapTypeModalOpen(false);
+      setIsToolsModalOpen(false);
       projectViewportListenerRef.current?.remove();
       projectViewportListenerRef.current = null;
       renderedProjectMarkerListenersRef.current.forEach((listener) => listener.remove());
@@ -449,37 +510,11 @@ export default function LifestyleMatcherPointsBody() {
         });
         mapInstanceRef.current = mapInstance;
 
-        const maybeGoogle = (window as unknown as { google?: GoogleMapsGlobal }).google;
-        const markerCtor = maybeGoogle?.maps?.Marker;
-
         const clickListener = (mapInstance as GoogleMapLike).addListener("click", (event: GoogleMapMouseEvent) => {
-          const activePointId = pointToPinIdRef.current;
-          if (!activePointId || !markerCtor || !event.latLng) return;
-
+          if (!pointToPinIdRef.current || !event.latLng) return;
           const lat = event.latLng.lat();
           const lng = event.latLng.lng();
-          const activePoint = selectedPointsRef.current.find((point) => point.id === activePointId);
-          const activePointTitle = activePoint?.title ?? activePointId;
-
-          const prevMarker = markersByPointRef.current[activePointId];
-          if (prevMarker) prevMarker.setMap(null);
-
-          const marker = new markerCtor({
-            map: mapInstance,
-            position: { lat, lng },
-            title: activePointTitle,
-          });
-          markersByPointRef.current[activePointId] = marker;
-          setPointLocations((prev) => ({ ...prev, [activePointId]: { lat, lng } }));
-
-          setSelectedPoints((prev) =>
-            prev.map((point) =>
-              point.id === activePointId
-                ? { ...point, subtitle: `Ubicación fijada (${lat.toFixed(5)}, ${lng.toFixed(5)})`, active: true }
-                : { ...point, active: false },
-            ),
-          );
-          setPointToPinId(null);
+          applyPinnedLocationRef.current(lat, lng);
         });
         mapListeners.push(clickListener);
 
@@ -637,10 +672,16 @@ export default function LifestyleMatcherPointsBody() {
         {
           properties: {
             contourValue: Number.isFinite(contourValue) ? contourValue : 0,
+            layerId: feature.getProperty?.("layerId"),
+            contourUnit: feature.getProperty?.("contourUnit"),
           },
         },
         index
       );
+      const layerId = feature.getProperty?.("layerId");
+      const contourUnitProp = feature.getProperty?.("contourUnit");
+      const zIndexIso =
+        contourUnitProp === "hibrido" && layerId === "distance" ? 19 : 18;
       return {
         strokeColor: polygonStyle.strokeColor,
         strokeOpacity: polygonStyle.strokeOpacity,
@@ -648,7 +689,7 @@ export default function LifestyleMatcherPointsBody() {
         fillColor: polygonStyle.fillColor,
         fillOpacity: polygonStyle.fillOpacity,
         clickable: false,
-        zIndex: 18,
+        zIndex: zIndexIso,
       };
     });
   }, [isoStyleOption, additionalMarkerVisibility]);
@@ -1201,18 +1242,35 @@ export default function LifestyleMatcherPointsBody() {
         calculatedTrafficMinutes: [isoTrafficMinutes],
         departAt: isoDepartAt || null,
       });
+      const centerFromPoints = prioritizedPoints.reduce(
+        (acc, point) => ({
+          lat: acc.lat + point.lat,
+          lng: acc.lng + point.lng,
+        }),
+        { lat: 0, lng: 0 }
+      );
+      const center = {
+        lat: centerFromPoints.lat / prioritizedPoints.length,
+        lng: centerFromPoints.lng / prioritizedPoints.length,
+      };
+      const correctedResult = await correctIsochronesWithTrafficMatrix({
+        response: result,
+        contourUnit: isoContourUnit,
+        trafficProfile: isoTrafficProfile,
+        center,
+      });
 
-      renderIsoOverlay(result);
-      setIsoGeoJson(result);
+      renderIsoOverlay(correctedResult);
+      setIsoGeoJson(correctedResult);
       setMarkerCategoryVisibility({ ...DEFAULT_MARKER_CATEGORY_STATE });
       setAdditionalMarkerVisibility({ ...DEFAULT_ADDITIONAL_MARKER_VISIBILITY_STATE });
       if (availableHousingCategories.length > 0) {
         setSelectedHousingCategories(new Set(availableHousingCategories));
       }
-      const responseMode = String(result.meta?.mode ?? result.features?.[0]?.properties?.mode ?? "desconocido");
-      const responseContour = result.meta?.contourValue ?? result.features?.[0]?.properties?.contourValue ?? "N/D";
+      const responseMode = String(correctedResult.meta?.mode ?? correctedResult.features?.[0]?.properties?.mode ?? "desconocido");
+      const responseContour = correctedResult.meta?.contourValue ?? correctedResult.features?.[0]?.properties?.contourValue ?? "N/D";
       const responseProcessedPoints = Number(
-        result.meta?.processedPoints ?? result.features?.[0]?.properties?.priorityOrder?.length ?? prioritizedPoints.length
+        correctedResult.meta?.processedPoints ?? correctedResult.features?.[0]?.properties?.priorityOrder?.length ?? prioritizedPoints.length
       );
       setIsoRequestMeta(
         `Cobertura generada (${responseMode}=${responseContour}) con ${responseProcessedPoints} puntos.`
@@ -1417,12 +1475,24 @@ export default function LifestyleMatcherPointsBody() {
             <div className={styles.mapHint}>
               {pointToPin ? `Haz clic para fijar "${pointToPin.title}"` : 'Selecciona "Fijar en mapa" para colocar marcador'}
             </div>
+            <PriorityPlaceSuggestionsPanel
+              visible={Boolean(pointToPinId) && !prioritySuggestionsSuppressed}
+              centerLabel={prioritySuggestionsCenterLabel}
+              loading={prioritySuggestionsLoading}
+              error={prioritySuggestionsError}
+              suggestions={prioritySuggestions}
+              onSelect={(suggestion) => applyPinnedLocationRef.current(suggestion.lat, suggestion.lng)}
+            />
             <div className={styles.mapControlsLeft} aria-label="Controles laterales">
               <button
                 type="button"
-                className={`${styles.mapIconButton} ${isMapTypeModalOpen ? styles.mapIconButtonActive : ""}`}
+                className={`${styles.mapIconButton} ${isMapTypeModalOpen ? styles.mapIconButtonActive : ""} ${!isMapExpanded ? styles.mapIconButtonDisabled : ""}`}
                 aria-label="Tipo de mapa"
-                onClick={() => setIsMapTypeModalOpen(true)}
+                disabled={!isMapExpanded}
+                onClick={() => {
+                  if (!isMapExpanded) return;
+                  setIsMapTypeModalOpen(true);
+                }}
               >
                 <img
                   src="/assets/img/svg/iso-stack-svgrepo-com.svg"
@@ -1433,9 +1503,13 @@ export default function LifestyleMatcherPointsBody() {
               </button>
               <button
                 type="button"
-                className={`${styles.mapIconButton} ${isToolsModalOpen ? styles.mapIconButtonActive : ""}`}
+                className={`${styles.mapIconButton} ${isToolsModalOpen ? styles.mapIconButtonActive : ""} ${!isMapExpanded ? styles.mapIconButtonDisabled : ""}`}
                 aria-label="Herramientas"
-                onClick={() => setIsToolsModalOpen((prev) => !prev)}
+                disabled={!isMapExpanded}
+                onClick={() => {
+                  if (!isMapExpanded) return;
+                  setIsToolsModalOpen((prev) => !prev);
+                }}
               >
                 <img
                   src="/assets/img/svg/iso-svgrepo-com.svg"
@@ -1965,6 +2039,48 @@ export default function LifestyleMatcherPointsBody() {
               <option value="tercera-opcion">tercera opcion</option>
             </select>
           </section>
+
+          {isoContourUnit === "hibrido" ? (
+            <section className={styles.isoSection} aria-label="Leyenda de colores isócrona híbrida">
+              <span className={styles.isoSectionLabel}>Colores en el mapa (híbrido)</span>
+              <table className={styles.isoHybridLegendTable}>
+                <tbody>
+                  <tr>
+                    <td className={styles.isoHybridLegendSwatchCell}>
+                      <span
+                        className={styles.isoHybridLegendSwatch}
+                        style={{
+                          backgroundColor: ISO_HYBRID_MAP_COLORS.time.fill,
+                          borderColor: ISO_HYBRID_MAP_COLORS.time.stroke,
+                        }}
+                        aria-hidden
+                      />
+                    </td>
+                    <td className={styles.isoHybridLegendTextCell}>
+                      <strong>Azul</strong>
+                      <span className={styles.isoHybridLegendDesc}> isócrona por tiempo (minutos)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className={styles.isoHybridLegendSwatchCell}>
+                      <span
+                        className={styles.isoHybridLegendSwatch}
+                        style={{
+                          backgroundColor: ISO_HYBRID_MAP_COLORS.distance.fill,
+                          borderColor: ISO_HYBRID_MAP_COLORS.distance.stroke,
+                        }}
+                        aria-hidden
+                      />
+                    </td>
+                    <td className={styles.isoHybridLegendTextCell}>
+                      <strong>Verde</strong>
+                      <span className={styles.isoHybridLegendDesc}> isócrona por distancia (metros)</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          ) : null}
 
           {isoRequestError ? <div className={styles.toolsModalError}>{isoRequestError}</div> : null}
 

@@ -63,6 +63,8 @@ export type GravitationalIsochroneProperties = {
   trafficProfile: IsoTrafficProfile;
   contourUnit: IsoContourUnit;
   mode: "minutes" | "meters" | "hibrido" | "calculada";
+  /** En modo híbrido, cada feature corresponde a una capa (tiempo vs distancia). */
+  layerId?: "time" | "distance" | "calculated";
   contour?: number;
 };
 
