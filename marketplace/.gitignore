@@ -60,6 +60,7 @@ migration.sql
 migration_lock.toml
 load-subzonas.js
 migration.sql*
+docker-compose.yml
 
 
 
@@ -76,7 +77,7 @@ README-AGENTE-FRONTEND.md
 README-ISOCHRONES-LIFESTYLE.md
 README-MIGRACION.md
 README-PRUEBAS-ISOCHRONES.md
-README-places-suggestions-api.md
+
 
 
 #QA

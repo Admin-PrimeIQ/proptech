@@ -3,6 +3,7 @@ import bbox from "@turf/bbox";
 import transformScale from "@turf/transform-scale";
 import type { FeatureCollection, GeoJsonProperties, MultiPolygon, Polygon } from "geojson";
 import { successResponse } from "@/lib/api-helpers";
+import { getClientIpFromHeaders, getIsoRateLimitConfig, rateLimitFixedWindow } from "@/lib/rateLimit";
 
 type IsoCorrectedRequest = {
   center?: { lat?: unknown; lng?: unknown };
@@ -181,6 +182,36 @@ function fallbackResponse(params: {
 
 export async function POST(request: NextRequest) {
   try {
+    const rateConfig = getIsoRateLimitConfig();
+    if (rateConfig.enabled && process.env.REDIS_URL) {
+      const clientIp = getClientIpFromHeaders(request.headers);
+      const limited = await rateLimitFixedWindow({
+        key: `isochrone-corrected:${clientIp}`,
+        windowMs: rateConfig.windowMs,
+        max: rateConfig.maxRequests,
+      });
+
+      if (!limited.allowed) {
+        const response = successResponse(
+          {
+            corrected_geojson: { type: "FeatureCollection", features: [] },
+            metadata: {
+              original_time: 0,
+              google_avg_time: null,
+              scale_factor: 1,
+              explanation: "Demasiadas solicitudes. Intenta nuevamente en unos segundos.",
+              fallback: true,
+              samples_used: 0,
+              reason: "rate-limit",
+            },
+          },
+          429
+        );
+        response.headers.set("Retry-After", String(limited.retryAfterSec));
+        return response;
+      }
+    }
+
     const body = (await request.json()) as IsoCorrectedRequest;
     const geoJson = sanitizeFeatureCollection(body.mapbox_geojson);
     const targetMinutes = toFiniteNumber(body.target_time_minutes);

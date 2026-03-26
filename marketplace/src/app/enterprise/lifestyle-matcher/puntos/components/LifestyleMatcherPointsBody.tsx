@@ -1512,7 +1512,7 @@ export default function LifestyleMatcherPointsBody() {
                 }}
               >
                 <img
-                  src="/assets/img/svg/iso-svgrepo-com.svg"
+                  src="/assets/img/svg/iso%20icon.svg"
                   alt=""
                   aria-hidden="true"
                   className={styles.mapIconSvg}

@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { handleApiError, successResponse } from "@/lib/api-helpers";
+import { buildCacheKey, withCacheJson } from "@/lib/cache";
 
 type CommercialGeoJsonRow = {
   id: number;
@@ -314,13 +315,29 @@ export async function GET(request: NextRequest) {
     }
 
     const limit = Math.min(Math.max(Number(searchParams.get("limit") || "5000"), 1), 20000);
-    const rows = await queryCommercialCenters({
-      filters,
-      limit,
-      bbox,
-      spatialFilter: null,
+    const cacheKey = buildCacheKey({
+      prefix: "api:commercial-centers:geojson:get",
+      version: "v1",
+      payload: { filters, bbox: bbox ?? null, limit },
     });
-    return successResponse(mapRowsToFeatureCollection(rows, limit));
+
+    const cached = await withCacheJson({
+      key: cacheKey,
+      ttlSeconds: 120,
+      compute: async () => {
+        const rows = await queryCommercialCenters({
+          filters,
+          limit,
+          bbox,
+          spatialFilter: null,
+        });
+        return mapRowsToFeatureCollection(rows, limit);
+      },
+    });
+
+    const response = successResponse(cached.value);
+    response.headers.set("X-Cache", cached.cache);
+    return response;
   } catch (error) {
     return handleApiError(error);
   }
@@ -352,13 +369,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const rows = await queryCommercialCenters({
-      filters: normalizeFilters(body?.filters),
-      limit,
-      bbox,
-      spatialFilter,
+    const cacheKey = buildCacheKey({
+      prefix: "api:commercial-centers:geojson:post",
+      version: "v1",
+      payload: {
+        filters: normalizeFilters(body?.filters),
+        bbox: bbox ?? null,
+        limit,
+        geojson: body?.geojson ?? null,
+      },
     });
-    return successResponse(mapRowsToFeatureCollection(rows, limit));
+
+    const cached = await withCacheJson({
+      key: cacheKey,
+      ttlSeconds: 120,
+      compute: async () => {
+        const rows = await queryCommercialCenters({
+          filters: normalizeFilters(body?.filters),
+          limit,
+          bbox,
+          spatialFilter,
+        });
+        return mapRowsToFeatureCollection(rows, limit);
+      },
+    });
+
+    const response = successResponse(cached.value);
+    response.headers.set("X-Cache", cached.cache);
+    return response;
   } catch (error) {
     return handleApiError(error);
   }

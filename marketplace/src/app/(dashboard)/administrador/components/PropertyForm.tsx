@@ -152,10 +152,7 @@ export default function PropertyForm({
   useEffect(() => {
     let cancelled = false;
     fetch("/api/paises")
-      .then((r) => {
-        if (!r.ok) return r.json().then((err) => ({ ok: false, body: err }));
-        return r.json().then((body) => ({ ok: true, body }));
-      })
+      .then(async (r) => ({ ok: r.ok, body: await r.json() }))
       .then((result) => {
         if (cancelled) return;
         const d = result.body;

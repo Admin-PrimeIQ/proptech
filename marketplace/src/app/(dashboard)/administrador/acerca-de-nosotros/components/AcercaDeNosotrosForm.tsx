@@ -504,7 +504,8 @@ export default function AcercaDeNosotrosForm() {
       </div>
 
       {/* Sección cómo hacemos esto fácil para ti */}
-      <AdminSectionCard style={{ marginTop: "24px" }}>
+      <div style={{ marginTop: "24px" }}>
+        <AdminSectionCard>
         <SectionHeader
           title="Cómo hacemos esto fácil para ti"
           subtitle="Información de excelencia, logros, calidad y transparencia"
@@ -567,7 +568,8 @@ export default function AcercaDeNosotrosForm() {
             </div>
           </div>
         </div>
-      </AdminSectionCard>
+        </AdminSectionCard>
+      </div>
     </>
   );
 }
