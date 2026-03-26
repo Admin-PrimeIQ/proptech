@@ -1,6 +1,6 @@
 import PropertyPagination from "@/components/Common/pagination/PropertyPagination";
 import DashboardLayout from "@/layouts/DashboardLayout";
-import DashboardPropertyItem from "../property/components/DashboardPropertyItem";
+import DashboardPropertyItem from "@/app/(dashboard)/administrador/propiedades/components/DashboardPropertyItem";
 import { propertyData } from "@/data/propertyData";
 import { Metadata } from "next";
 

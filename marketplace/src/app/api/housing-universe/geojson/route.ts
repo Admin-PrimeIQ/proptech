@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { handleApiError, successResponse } from "@/lib/api-helpers";
+import { buildCacheKey, withCacheJson } from "@/lib/cache";
 
 type HousingGeoJsonRow = {
   id: number;
@@ -368,14 +369,29 @@ export async function GET(request: NextRequest) {
     }
 
     const limit = Math.min(Math.max(Number(searchParams.get("limit") || "5000"), 1), 20000);
-    const rows = await queryMarkers({
-      filters,
-      limit,
-      bbox,
-      spatialFilter: null,
+    const cacheKey = buildCacheKey({
+      prefix: "api:housing-universe:geojson:get",
+      version: "v1",
+      payload: { filters, bbox: bbox ?? null, limit },
     });
 
-    return successResponse(mapRowsToFeatureCollection(rows, limit));
+    const cached = await withCacheJson({
+      key: cacheKey,
+      ttlSeconds: 120,
+      compute: async () => {
+        const rows = await queryMarkers({
+          filters,
+          limit,
+          bbox,
+          spatialFilter: null,
+        });
+        return mapRowsToFeatureCollection(rows, limit);
+      },
+    });
+
+    const response = successResponse(cached.value);
+    response.headers.set("X-Cache", cached.cache);
+    return response;
   } catch (error) {
     return handleApiError(error);
   }
@@ -407,14 +423,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const rows = await queryMarkers({
-      filters: normalizeFilters(body?.filters),
-      limit,
-      bbox,
-      spatialFilter,
+    const normalizedFilters = normalizeFilters(body?.filters);
+    const cacheKey = buildCacheKey({
+      prefix: "api:housing-universe:geojson:post",
+      version: "v1",
+      payload: {
+        filters: normalizedFilters,
+        bbox: bbox ?? null,
+        limit,
+        geojson: body?.geojson ?? null,
+      },
     });
 
-    return successResponse(mapRowsToFeatureCollection(rows, limit));
+    const cached = await withCacheJson({
+      key: cacheKey,
+      ttlSeconds: 120,
+      compute: async () => {
+        const rows = await queryMarkers({
+          filters: normalizedFilters,
+          limit,
+          bbox,
+          spatialFilter,
+        });
+        return mapRowsToFeatureCollection(rows, limit);
+      },
+    });
+
+    const response = successResponse(cached.value);
+    response.headers.set("X-Cache", cached.cache);
+    return response;
   } catch (error) {
     return handleApiError(error);
   }

@@ -1,0 +1,53 @@
+{
+  "_comment": "Muestra generada con scripts/fetch-distance-matrix-sample.mjs. Origen/destino: Ciudad de Guatemala Zona 1 → Zona 10 (coordenadas aproximadas).",
+  "request": {
+    "origins": "14.6425,-90.5132",
+    "destinations": "14.5855,-90.4792",
+    "mode": "driving",
+    "departure_time": "now",
+    "traffic_model": "pessimistic"
+  },
+  "points": {
+    "zona1": {
+      "lat": 14.6425,
+      "lng": -90.5132,
+      "label": "Zona 1 (centro aprox.)"
+    },
+    "zona10": {
+      "lat": 14.5855,
+      "lng": -90.4792,
+      "label": "Zona 10 (aprox.)"
+    }
+  },
+  "httpStatus": 200,
+  "googleResponse": {
+    "destination_addresses": [
+      "Ruta Sin Nombre, Ciudad de Guatemala, Guatemala"
+    ],
+    "origin_addresses": [
+      "5A Calle 696, Cdad. de Guatemala 10001, Guatemala"
+    ],
+    "rows": [
+      {
+        "elements": [
+          {
+            "distance": {
+              "text": "10.6 km",
+              "value": 10592
+            },
+            "duration": {
+              "text": "26 mins",
+              "value": 1530
+            },
+            "duration_in_traffic": {
+              "text": "43 mins",
+              "value": 2551
+            },
+            "status": "OK"
+          }
+        ]
+      }
+    ],
+    "status": "OK"
+  }
+}

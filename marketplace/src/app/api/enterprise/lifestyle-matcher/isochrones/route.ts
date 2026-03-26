@@ -7,6 +7,7 @@ import union from "@turf/union";
 import { featureCollection } from "@turf/helpers";
 import type { Feature, MultiPolygon, Polygon } from "geojson";
 import { handleApiError } from "@/lib/api-helpers";
+import { getClientIpFromHeaders, getIsoRateLimitConfig, rateLimitFixedWindow } from "@/lib/rateLimit";
 import type {
   GravitationalIsochroneProperties,
   GravitationalProcessedLayer,
@@ -48,39 +49,39 @@ function jsonWithCors(body: unknown, init?: ResponseInit): NextResponse {
   return withCors(NextResponse.json(body, init));
 }
 
-function getClientIdentifier(request: NextRequest): string {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (!forwardedFor) return "unknown-client";
-  return forwardedFor.split(",")[0].trim() || "unknown-client";
-}
+async function checkAndUpdateRateLimit(
+  request: NextRequest
+): Promise<{ allowed: boolean; retryAfterSec?: number }> {
+  const config = getIsoRateLimitConfig();
+  if (!config.enabled) return { allowed: true };
 
-function isRateLimitEnabled(): boolean {
-  if (process.env.ISO_RATE_LIMIT_ENABLED === "1") return true;
-  if (process.env.NODE_ENV === "production") return true;
-  return false;
-}
+  const clientIp = getClientIpFromHeaders(request.headers);
 
-function getRateLimitWindowMs(): number {
-  const parsed = Number(process.env.ISO_RATE_LIMIT_WINDOW_MS);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 60_000;
-}
+  if (process.env.REDIS_URL) {
+    try {
+      const result = await rateLimitFixedWindow({
+        key: `isochrones:${clientIp}`,
+        windowMs: config.windowMs,
+        max: config.maxRequests,
+      });
 
-function getRateLimitMaxRequests(): number {
-  const parsed = Number(process.env.ISO_RATE_LIMIT_MAX_REQUESTS);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : 120;
-}
+      if (!result.allowed) {
+        return { allowed: false, retryAfterSec: result.retryAfterSec };
+      }
 
-function checkAndUpdateRateLimit(request: NextRequest): { allowed: boolean; retryAfterSec?: number } {
-  if (!isRateLimitEnabled()) return { allowed: true };
+      return { allowed: true };
+    } catch {
+      // Fallback defensivo a memoria si Redis falla.
+    }
+  }
 
   const now = Date.now();
-  const windowMs = getRateLimitWindowMs();
-  const maxRequests = getRateLimitMaxRequests();
-  const clientId = getClientIdentifier(request);
+  const windowMs = config.windowMs;
+  const maxRequests = config.maxRequests;
 
-  const existing = rateLimitStore.get(clientId);
+  const existing = rateLimitStore.get(clientIp);
   if (!existing || now - existing.windowStart >= windowMs) {
-    rateLimitStore.set(clientId, { windowStart: now, count: 1 });
+    rateLimitStore.set(clientIp, { windowStart: now, count: 1 });
     return { allowed: true };
   }
 
@@ -90,7 +91,7 @@ function checkAndUpdateRateLimit(request: NextRequest): { allowed: boolean; retr
   }
 
   existing.count += 1;
-  rateLimitStore.set(clientId, existing);
+  rateLimitStore.set(clientIp, existing);
   return { allowed: true };
 }
 
@@ -540,7 +541,7 @@ function processLayerWithGravitationalUnion(params: {
 
 export async function POST(request: NextRequest) {
   try {
-    const rateLimit = checkAndUpdateRateLimit(request);
+    const rateLimit = await checkAndUpdateRateLimit(request);
     if (!rateLimit.allowed) {
       const response = jsonWithCors(
         { error: "Demasiadas solicitudes. Intenta nuevamente en unos segundos." },
