@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba Clusters + Propiedades</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+      }
+      #layout {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        width: 100%;
+        height: 100%;
+      }
+      #panel {
+        padding: 16px;
+        box-sizing: border-box;
+        border-right: 1px solid #d9dee5;
+        background: #ffffff;
+        overflow: auto;
+      }
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 12px;
+      }
+      .meta {
+        font-size: 13px;
+        margin: 6px 0;
+      }
+      .legend {
+        margin-top: 14px;
+        font-size: 13px;
+      }
+      .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 6px;
+      }
+      .row {
+        margin: 6px 0;
+      }
+      code {
+        background: #eef1f4;
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="layout">
+      <aside id="panel">
+        <h1>Mapa de Prueba</h1>
+        <div class="meta">Periodo: <strong id="periodo">-</strong></div>
+        <div class="meta">Clusters: <strong id="totalClusters">0</strong></div>
+        <div class="meta">Propiedades: <strong id="totalProps">0</strong></div>
+        <div class="meta">Radio cluster: <strong id="radius">500m</strong></div>
+        <div class="meta">Alta: <strong id="alta">0</strong></div>
+        <div class="meta">Media: <strong id="media">0</strong></div>
+        <div class="meta">Baja: <strong id="baja">0</strong></div>
+
+        <div class="legend">
+          <div class="row"><span class="dot" style="background:#1e67ff"></span>Puntos de propiedades (azul)</div>
+          <div class="row"><span class="dot" style="background:#ef4444"></span>Cluster prioridad alta</div>
+          <div class="row"><span class="dot" style="background:#f59e0b"></span>Cluster prioridad media</div>
+          <div class="row"><span class="dot" style="background:#10b981"></span>Cluster prioridad baja</div>
+        </div>
+
+        <p class="meta" style="margin-top: 16px;">
+          Carga datos desde <code>prueba/data/clusters-map-data.json</code>.
+        </p>
+      </aside>
+      <main id="map"></main>
+    </div>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
+

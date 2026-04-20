@@ -1,0 +1,939 @@
+{
+  "periodo": "2025-3T",
+  "radiusMeters": 500,
+  "totals": {
+    "clusters": 29,
+    "propiedades": 96
+  },
+  "byPriority": {
+    "alta": 1,
+    "media": 2,
+    "baja": 26
+  },
+  "clusters": [
+    {
+      "clusterId": 15,
+      "prioridad": "alta",
+      "basePropertyId": 179739,
+      "propiedadesEnCluster": 16,
+      "center": {
+        "lat": 14.468151832499997,
+        "lng": -90.53128526750001
+      },
+      "points": [
+        {
+          "pointId": 35,
+          "propertyId": 179739,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 36,
+          "propertyId": 179739,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 37,
+          "propertyId": 179740,
+          "lat": 14.46817383,
+          "lng": -90.53107507
+        },
+        {
+          "pointId": 38,
+          "propertyId": 179740,
+          "lat": 14.46817383,
+          "lng": -90.53107507
+        },
+        {
+          "pointId": 39,
+          "propertyId": 179741,
+          "lat": 14.46817383,
+          "lng": -90.53107507
+        },
+        {
+          "pointId": 40,
+          "propertyId": 179741,
+          "lat": 14.46817383,
+          "lng": -90.53107507
+        },
+        {
+          "pointId": 41,
+          "propertyId": 179742,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 42,
+          "propertyId": 179742,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 43,
+          "propertyId": 179743,
+          "lat": 14.4681445,
+          "lng": -90.5313553
+        },
+        {
+          "pointId": 44,
+          "propertyId": 179743,
+          "lat": 14.4681445,
+          "lng": -90.5313553
+        },
+        {
+          "pointId": 45,
+          "propertyId": 179744,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 46,
+          "propertyId": 179744,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 47,
+          "propertyId": 179745,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 48,
+          "propertyId": 179745,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 49,
+          "propertyId": 179746,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        },
+        {
+          "pointId": 50,
+          "propertyId": 179746,
+          "lat": 14.4681445,
+          "lng": -90.53135534
+        }
+      ]
+    },
+    {
+      "clusterId": 1,
+      "prioridad": "media",
+      "basePropertyId": 179721,
+      "propiedadesEnCluster": 10,
+      "center": {
+        "lat": 14.586797719999998,
+        "lng": -90.49044765599999
+      },
+      "points": [
+        {
+          "pointId": 1,
+          "propertyId": 179721,
+          "lat": 14.58601474,
+          "lng": -90.49180857
+        },
+        {
+          "pointId": 2,
+          "propertyId": 179721,
+          "lat": 14.58601474,
+          "lng": -90.49180857
+        },
+        {
+          "pointId": 7,
+          "propertyId": 179725,
+          "lat": 14.58742267,
+          "lng": -90.48757937
+        },
+        {
+          "pointId": 8,
+          "propertyId": 179725,
+          "lat": 14.58742267,
+          "lng": -90.48757937
+        },
+        {
+          "pointId": 25,
+          "propertyId": 179734,
+          "lat": 14.58892408,
+          "lng": -90.49176313
+        },
+        {
+          "pointId": 26,
+          "propertyId": 179734,
+          "lat": 14.58892408,
+          "lng": -90.49176313
+        },
+        {
+          "pointId": 27,
+          "propertyId": 179735,
+          "lat": 14.58680548,
+          "lng": -90.49271841
+        },
+        {
+          "pointId": 28,
+          "propertyId": 179735,
+          "lat": 14.58680548,
+          "lng": -90.49271841
+        },
+        {
+          "pointId": 85,
+          "propertyId": 179765,
+          "lat": 14.58482163,
+          "lng": -90.4883688
+        },
+        {
+          "pointId": 86,
+          "propertyId": 179765,
+          "lat": 14.58482163,
+          "lng": -90.4883688
+        }
+      ]
+    },
+    {
+      "clusterId": 2,
+      "prioridad": "media",
+      "basePropertyId": 179770,
+      "propiedadesEnCluster": 6,
+      "center": {
+        "lat": 14.573717373333336,
+        "lng": -90.52633601000001
+      },
+      "points": [
+        {
+          "pointId": 3,
+          "propertyId": 179722,
+          "lat": 14.57201558,
+          "lng": -90.52669796
+        },
+        {
+          "pointId": 4,
+          "propertyId": 179722,
+          "lat": 14.57201558,
+          "lng": -90.52669796
+        },
+        {
+          "pointId": 89,
+          "propertyId": 179767,
+          "lat": 14.575183,
+          "lng": -90.525487
+        },
+        {
+          "pointId": 90,
+          "propertyId": 179767,
+          "lat": 14.575183,
+          "lng": -90.525487
+        },
+        {
+          "pointId": 95,
+          "propertyId": 179770,
+          "lat": 14.57395354,
+          "lng": -90.52682307
+        },
+        {
+          "pointId": 96,
+          "propertyId": 179770,
+          "lat": 14.57395354,
+          "lng": -90.52682307
+        }
+      ]
+    },
+    {
+      "clusterId": 6,
+      "prioridad": "baja",
+      "basePropertyId": 179728,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.591002165,
+        "lng": -90.494257695
+      },
+      "points": [
+        {
+          "pointId": 13,
+          "propertyId": 179728,
+          "lat": 14.58992013,
+          "lng": -90.49462959
+        },
+        {
+          "pointId": 14,
+          "propertyId": 179728,
+          "lat": 14.58992013,
+          "lng": -90.49462959
+        },
+        {
+          "pointId": 91,
+          "propertyId": 179768,
+          "lat": 14.5920842,
+          "lng": -90.4938858
+        },
+        {
+          "pointId": 92,
+          "propertyId": 179768,
+          "lat": 14.5920842,
+          "lng": -90.4938858
+        }
+      ]
+    },
+    {
+      "clusterId": 19,
+      "prioridad": "baja",
+      "basePropertyId": 179750,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.6346946,
+        "lng": -90.45525497
+      },
+      "points": [
+        {
+          "pointId": 57,
+          "propertyId": 179750,
+          "lat": 14.6346946,
+          "lng": -90.45525497
+        },
+        {
+          "pointId": 58,
+          "propertyId": 179750,
+          "lat": 14.6346946,
+          "lng": -90.45525497
+        },
+        {
+          "pointId": 59,
+          "propertyId": 179751,
+          "lat": 14.6346946,
+          "lng": -90.45525497
+        },
+        {
+          "pointId": 60,
+          "propertyId": 179751,
+          "lat": 14.6346946,
+          "lng": -90.45525497
+        }
+      ]
+    },
+    {
+      "clusterId": 22,
+      "prioridad": "baja",
+      "basePropertyId": 179754,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.57301924,
+        "lng": -90.54778481
+      },
+      "points": [
+        {
+          "pointId": 65,
+          "propertyId": 179754,
+          "lat": 14.57301924,
+          "lng": -90.54778481
+        },
+        {
+          "pointId": 66,
+          "propertyId": 179754,
+          "lat": 14.57301924,
+          "lng": -90.54778481
+        },
+        {
+          "pointId": 67,
+          "propertyId": 179755,
+          "lat": 14.57301924,
+          "lng": -90.54778481
+        },
+        {
+          "pointId": 68,
+          "propertyId": 179755,
+          "lat": 14.57301924,
+          "lng": -90.54778481
+        }
+      ]
+    },
+    {
+      "clusterId": 23,
+      "prioridad": "baja",
+      "basePropertyId": 179756,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.599258975000001,
+        "lng": -90.514482525
+      },
+      "points": [
+        {
+          "pointId": 69,
+          "propertyId": 179756,
+          "lat": 14.5977075,
+          "lng": -90.5131512
+        },
+        {
+          "pointId": 70,
+          "propertyId": 179756,
+          "lat": 14.5977075,
+          "lng": -90.5131512
+        },
+        {
+          "pointId": 79,
+          "propertyId": 179761,
+          "lat": 14.60081045,
+          "lng": -90.51581385
+        },
+        {
+          "pointId": 80,
+          "propertyId": 179761,
+          "lat": 14.60081045,
+          "lng": -90.51581385
+        }
+      ]
+    },
+    {
+      "clusterId": 25,
+      "prioridad": "baja",
+      "basePropertyId": 179758,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.58707357,
+        "lng": -90.50505494000001
+      },
+      "points": [
+        {
+          "pointId": 73,
+          "propertyId": 179758,
+          "lat": 14.58532,
+          "lng": -90.505734
+        },
+        {
+          "pointId": 74,
+          "propertyId": 179758,
+          "lat": 14.58532,
+          "lng": -90.505734
+        },
+        {
+          "pointId": 83,
+          "propertyId": 179764,
+          "lat": 14.58882714,
+          "lng": -90.50437588
+        },
+        {
+          "pointId": 84,
+          "propertyId": 179764,
+          "lat": 14.58882714,
+          "lng": -90.50437588
+        }
+      ]
+    },
+    {
+      "clusterId": 26,
+      "prioridad": "baja",
+      "basePropertyId": 179759,
+      "propiedadesEnCluster": 4,
+      "center": {
+        "lat": 14.5063914,
+        "lng": -90.5379495
+      },
+      "points": [
+        {
+          "pointId": 75,
+          "propertyId": 179759,
+          "lat": 14.5063914,
+          "lng": -90.5379495
+        },
+        {
+          "pointId": 76,
+          "propertyId": 179759,
+          "lat": 14.5063914,
+          "lng": -90.5379495
+        },
+        {
+          "pointId": 77,
+          "propertyId": 179760,
+          "lat": 14.5063914,
+          "lng": -90.5379495
+        },
+        {
+          "pointId": 78,
+          "propertyId": 179760,
+          "lat": 14.5063914,
+          "lng": -90.5379495
+        }
+      ]
+    },
+    {
+      "clusterId": 3,
+      "prioridad": "baja",
+      "basePropertyId": 179724,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.61970258,
+        "lng": -90.5397252
+      },
+      "points": [
+        {
+          "pointId": 5,
+          "propertyId": 179724,
+          "lat": 14.61970258,
+          "lng": -90.5397252
+        },
+        {
+          "pointId": 6,
+          "propertyId": 179724,
+          "lat": 14.61970258,
+          "lng": -90.5397252
+        }
+      ]
+    },
+    {
+      "clusterId": 4,
+      "prioridad": "baja",
+      "basePropertyId": 179726,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.60033112,
+        "lng": -90.50017438
+      },
+      "points": [
+        {
+          "pointId": 9,
+          "propertyId": 179726,
+          "lat": 14.60033112,
+          "lng": -90.50017438
+        },
+        {
+          "pointId": 10,
+          "propertyId": 179726,
+          "lat": 14.60033112,
+          "lng": -90.50017438
+        }
+      ]
+    },
+    {
+      "clusterId": 5,
+      "prioridad": "baja",
+      "basePropertyId": 179727,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.58527732,
+        "lng": -90.52239323
+      },
+      "points": [
+        {
+          "pointId": 11,
+          "propertyId": 179727,
+          "lat": 14.58527732,
+          "lng": -90.52239323
+        },
+        {
+          "pointId": 12,
+          "propertyId": 179727,
+          "lat": 14.58527732,
+          "lng": -90.52239323
+        }
+      ]
+    },
+    {
+      "clusterId": 7,
+      "prioridad": "baja",
+      "basePropertyId": 179729,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.52348719,
+        "lng": -90.56846942
+      },
+      "points": [
+        {
+          "pointId": 15,
+          "propertyId": 179729,
+          "lat": 14.52348719,
+          "lng": -90.56846942
+        },
+        {
+          "pointId": 16,
+          "propertyId": 179729,
+          "lat": 14.52348719,
+          "lng": -90.56846942
+        }
+      ]
+    },
+    {
+      "clusterId": 8,
+      "prioridad": "baja",
+      "basePropertyId": 179730,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.5213292,
+        "lng": -90.5381172
+      },
+      "points": [
+        {
+          "pointId": 17,
+          "propertyId": 179730,
+          "lat": 14.5213292,
+          "lng": -90.5381172
+        },
+        {
+          "pointId": 18,
+          "propertyId": 179730,
+          "lat": 14.5213292,
+          "lng": -90.5381172
+        }
+      ]
+    },
+    {
+      "clusterId": 9,
+      "prioridad": "baja",
+      "basePropertyId": 179731,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.6483442,
+        "lng": -90.4770697
+      },
+      "points": [
+        {
+          "pointId": 19,
+          "propertyId": 179731,
+          "lat": 14.6483442,
+          "lng": -90.4770697
+        },
+        {
+          "pointId": 20,
+          "propertyId": 179731,
+          "lat": 14.6483442,
+          "lng": -90.4770697
+        }
+      ]
+    },
+    {
+      "clusterId": 10,
+      "prioridad": "baja",
+      "basePropertyId": 179732,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.58047011,
+        "lng": -90.48211486
+      },
+      "points": [
+        {
+          "pointId": 21,
+          "propertyId": 179732,
+          "lat": 14.58047011,
+          "lng": -90.48211486
+        },
+        {
+          "pointId": 22,
+          "propertyId": 179732,
+          "lat": 14.58047011,
+          "lng": -90.48211486
+        }
+      ]
+    },
+    {
+      "clusterId": 11,
+      "prioridad": "baja",
+      "basePropertyId": 179733,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.60561941,
+        "lng": -90.47595835
+      },
+      "points": [
+        {
+          "pointId": 23,
+          "propertyId": 179733,
+          "lat": 14.60561941,
+          "lng": -90.47595835
+        },
+        {
+          "pointId": 24,
+          "propertyId": 179733,
+          "lat": 14.60561941,
+          "lng": -90.47595835
+        }
+      ]
+    },
+    {
+      "clusterId": 12,
+      "prioridad": "baja",
+      "basePropertyId": 179736,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.63748522,
+        "lng": -90.56139279
+      },
+      "points": [
+        {
+          "pointId": 29,
+          "propertyId": 179736,
+          "lat": 14.63748522,
+          "lng": -90.56139279
+        },
+        {
+          "pointId": 30,
+          "propertyId": 179736,
+          "lat": 14.63748522,
+          "lng": -90.56139279
+        }
+      ]
+    },
+    {
+      "clusterId": 13,
+      "prioridad": "baja",
+      "basePropertyId": 179737,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.71995243,
+        "lng": -90.50363558
+      },
+      "points": [
+        {
+          "pointId": 31,
+          "propertyId": 179737,
+          "lat": 14.71995243,
+          "lng": -90.50363558
+        },
+        {
+          "pointId": 32,
+          "propertyId": 179737,
+          "lat": 14.71995243,
+          "lng": -90.50363558
+        }
+      ]
+    },
+    {
+      "clusterId": 14,
+      "prioridad": "baja",
+      "basePropertyId": 179738,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.69211429,
+        "lng": -90.63926166
+      },
+      "points": [
+        {
+          "pointId": 33,
+          "propertyId": 179738,
+          "lat": 14.69211429,
+          "lng": -90.63926166
+        },
+        {
+          "pointId": 34,
+          "propertyId": 179738,
+          "lat": 14.69211429,
+          "lng": -90.63926166
+        }
+      ]
+    },
+    {
+      "clusterId": 16,
+      "prioridad": "baja",
+      "basePropertyId": 179747,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.60294244,
+        "lng": -90.55577916
+      },
+      "points": [
+        {
+          "pointId": 51,
+          "propertyId": 179747,
+          "lat": 14.60294244,
+          "lng": -90.55577916
+        },
+        {
+          "pointId": 52,
+          "propertyId": 179747,
+          "lat": 14.60294244,
+          "lng": -90.55577916
+        }
+      ]
+    },
+    {
+      "clusterId": 17,
+      "prioridad": "baja",
+      "basePropertyId": 179748,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.59427922,
+        "lng": -90.51919654
+      },
+      "points": [
+        {
+          "pointId": 53,
+          "propertyId": 179748,
+          "lat": 14.59427922,
+          "lng": -90.51919654
+        },
+        {
+          "pointId": 54,
+          "propertyId": 179748,
+          "lat": 14.59427922,
+          "lng": -90.51919654
+        }
+      ]
+    },
+    {
+      "clusterId": 18,
+      "prioridad": "baja",
+      "basePropertyId": 179749,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.63109105,
+        "lng": -90.58547275
+      },
+      "points": [
+        {
+          "pointId": 55,
+          "propertyId": 179749,
+          "lat": 14.63109105,
+          "lng": -90.58547275
+        },
+        {
+          "pointId": 56,
+          "propertyId": 179749,
+          "lat": 14.63109105,
+          "lng": -90.58547275
+        }
+      ]
+    },
+    {
+      "clusterId": 20,
+      "prioridad": "baja",
+      "basePropertyId": 179752,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.61504278,
+        "lng": -90.55522978
+      },
+      "points": [
+        {
+          "pointId": 61,
+          "propertyId": 179752,
+          "lat": 14.61504278,
+          "lng": -90.55522978
+        },
+        {
+          "pointId": 62,
+          "propertyId": 179752,
+          "lat": 14.61504278,
+          "lng": -90.55522978
+        }
+      ]
+    },
+    {
+      "clusterId": 21,
+      "prioridad": "baja",
+      "basePropertyId": 179753,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.58627448,
+        "lng": -90.48712175
+      },
+      "points": [
+        {
+          "pointId": 63,
+          "propertyId": 179753,
+          "lat": 14.58627448,
+          "lng": -90.48712175
+        },
+        {
+          "pointId": 64,
+          "propertyId": 179753,
+          "lat": 14.58627448,
+          "lng": -90.48712175
+        }
+      ]
+    },
+    {
+      "clusterId": 24,
+      "prioridad": "baja",
+      "basePropertyId": 179757,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.604527,
+        "lng": -90.4869948
+      },
+      "points": [
+        {
+          "pointId": 71,
+          "propertyId": 179757,
+          "lat": 14.604527,
+          "lng": -90.4869948
+        },
+        {
+          "pointId": 72,
+          "propertyId": 179757,
+          "lat": 14.604527,
+          "lng": -90.4869948
+        }
+      ]
+    },
+    {
+      "clusterId": 27,
+      "prioridad": "baja",
+      "basePropertyId": 179763,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.59890244,
+        "lng": -90.64932096
+      },
+      "points": [
+        {
+          "pointId": 81,
+          "propertyId": 179763,
+          "lat": 14.59890244,
+          "lng": -90.64932096
+        },
+        {
+          "pointId": 82,
+          "propertyId": 179763,
+          "lat": 14.59890244,
+          "lng": -90.64932096
+        }
+      ]
+    },
+    {
+      "clusterId": 28,
+      "prioridad": "baja",
+      "basePropertyId": 179766,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.599784,
+        "lng": -90.540215
+      },
+      "points": [
+        {
+          "pointId": 87,
+          "propertyId": 179766,
+          "lat": 14.599784,
+          "lng": -90.540215
+        },
+        {
+          "pointId": 88,
+          "propertyId": 179766,
+          "lat": 14.599784,
+          "lng": -90.540215
+        }
+      ]
+    },
+    {
+      "clusterId": 29,
+      "prioridad": "baja",
+      "basePropertyId": 179769,
+      "propiedadesEnCluster": 2,
+      "center": {
+        "lat": 14.6130157,
+        "lng": -90.526246
+      },
+      "points": [
+        {
+          "pointId": 93,
+          "propertyId": 179769,
+          "lat": 14.6130157,
+          "lng": -90.526246
+        },
+        {
+          "pointId": 94,
+          "propertyId": 179769,
+          "lat": 14.6130157,
+          "lng": -90.526246
+        }
+      ]
+    }
+  ]
+}
