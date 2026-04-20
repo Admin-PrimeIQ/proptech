@@ -1,0 +1,155 @@
+{
+  "periodo": "2025-3T",
+  "clusterRadiusMeters": 500,
+  "rules": {
+    "alta": "> 15 propiedades",
+    "media": "entre 5 y 15 propiedades (incluye 5 y 15)",
+    "baja": "< 5 propiedades"
+  },
+  "totals": {
+    "clusters": 27,
+    "propiedades": 96
+  },
+  "byPriority": {
+    "alta": 2,
+    "media": 1,
+    "baja": 24
+  },
+  "clusters": [
+    {
+      "clusterId": 0,
+      "propiedadesEnCluster": 16,
+      "prioridad": "alta"
+    },
+    {
+      "clusterId": 13,
+      "propiedadesEnCluster": 16,
+      "prioridad": "alta"
+    },
+    {
+      "clusterId": 1,
+      "propiedadesEnCluster": 6,
+      "prioridad": "media"
+    },
+    {
+      "clusterId": 17,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 19,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 20,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 22,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 23,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 2,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 3,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 4,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 5,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 6,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 7,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 8,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 9,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 10,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 11,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 12,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 14,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 15,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 16,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 18,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 21,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 24,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 25,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    },
+    {
+      "clusterId": 26,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja"
+    }
+  ]
+}

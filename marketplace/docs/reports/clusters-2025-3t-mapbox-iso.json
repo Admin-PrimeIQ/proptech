@@ -1,0 +1,513 @@
+{
+  "periodo": "2025-3T",
+  "clusterRadiusMeters": 500,
+  "isochroneMeters": 500,
+  "isoProvider": "mapbox",
+  "isoSource": "mapbox-isochrone-api",
+  "rules": {
+    "base": "propiedad real (medoid del cluster)",
+    "membership": "dentro de 500m de la base y con intersección de isocrona con la base",
+    "alta": "> 15 propiedades",
+    "media": "entre 5 y 15 propiedades (incluye 5 y 15)",
+    "baja": "< 5 propiedades"
+  },
+  "totals": {
+    "clusters": 29,
+    "propiedades": 96
+  },
+  "byPriority": {
+    "alta": 1,
+    "media": 2,
+    "baja": 26
+  },
+  "metrics": {
+    "propertiesInput": 96,
+    "isoRequests": 96,
+    "isoCacheHits": 392,
+    "elapsedMs": 3412
+  },
+  "clusters": [
+    {
+      "clusterId": 15,
+      "basePropertyId": 179739,
+      "propiedadesEnCluster": 16,
+      "prioridad": "alta",
+      "pointIds": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "propertyIds": [
+        179739,
+        179739,
+        179740,
+        179740,
+        179741,
+        179741,
+        179742,
+        179742,
+        179743,
+        179743,
+        179744,
+        179744,
+        179745,
+        179745,
+        179746,
+        179746
+      ]
+    },
+    {
+      "clusterId": 1,
+      "basePropertyId": 179721,
+      "propiedadesEnCluster": 10,
+      "prioridad": "media",
+      "pointIds": [
+        1,
+        2,
+        7,
+        8,
+        25,
+        26,
+        27,
+        28,
+        85,
+        86
+      ],
+      "propertyIds": [
+        179721,
+        179721,
+        179725,
+        179725,
+        179734,
+        179734,
+        179735,
+        179735,
+        179765,
+        179765
+      ]
+    },
+    {
+      "clusterId": 2,
+      "basePropertyId": 179770,
+      "propiedadesEnCluster": 6,
+      "prioridad": "media",
+      "pointIds": [
+        3,
+        4,
+        89,
+        90,
+        95,
+        96
+      ],
+      "propertyIds": [
+        179722,
+        179722,
+        179767,
+        179767,
+        179770,
+        179770
+      ]
+    },
+    {
+      "clusterId": 6,
+      "basePropertyId": 179728,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        13,
+        14,
+        91,
+        92
+      ],
+      "propertyIds": [
+        179728,
+        179728,
+        179768,
+        179768
+      ]
+    },
+    {
+      "clusterId": 19,
+      "basePropertyId": 179750,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        57,
+        58,
+        59,
+        60
+      ],
+      "propertyIds": [
+        179750,
+        179750,
+        179751,
+        179751
+      ]
+    },
+    {
+      "clusterId": 22,
+      "basePropertyId": 179754,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        65,
+        66,
+        67,
+        68
+      ],
+      "propertyIds": [
+        179754,
+        179754,
+        179755,
+        179755
+      ]
+    },
+    {
+      "clusterId": 23,
+      "basePropertyId": 179756,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        69,
+        70,
+        79,
+        80
+      ],
+      "propertyIds": [
+        179756,
+        179756,
+        179761,
+        179761
+      ]
+    },
+    {
+      "clusterId": 25,
+      "basePropertyId": 179758,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        73,
+        74,
+        83,
+        84
+      ],
+      "propertyIds": [
+        179758,
+        179758,
+        179764,
+        179764
+      ]
+    },
+    {
+      "clusterId": 26,
+      "basePropertyId": 179759,
+      "propiedadesEnCluster": 4,
+      "prioridad": "baja",
+      "pointIds": [
+        75,
+        76,
+        77,
+        78
+      ],
+      "propertyIds": [
+        179759,
+        179759,
+        179760,
+        179760
+      ]
+    },
+    {
+      "clusterId": 3,
+      "basePropertyId": 179724,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        5,
+        6
+      ],
+      "propertyIds": [
+        179724,
+        179724
+      ]
+    },
+    {
+      "clusterId": 4,
+      "basePropertyId": 179726,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        9,
+        10
+      ],
+      "propertyIds": [
+        179726,
+        179726
+      ]
+    },
+    {
+      "clusterId": 5,
+      "basePropertyId": 179727,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        11,
+        12
+      ],
+      "propertyIds": [
+        179727,
+        179727
+      ]
+    },
+    {
+      "clusterId": 7,
+      "basePropertyId": 179729,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        15,
+        16
+      ],
+      "propertyIds": [
+        179729,
+        179729
+      ]
+    },
+    {
+      "clusterId": 8,
+      "basePropertyId": 179730,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        17,
+        18
+      ],
+      "propertyIds": [
+        179730,
+        179730
+      ]
+    },
+    {
+      "clusterId": 9,
+      "basePropertyId": 179731,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        19,
+        20
+      ],
+      "propertyIds": [
+        179731,
+        179731
+      ]
+    },
+    {
+      "clusterId": 10,
+      "basePropertyId": 179732,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        21,
+        22
+      ],
+      "propertyIds": [
+        179732,
+        179732
+      ]
+    },
+    {
+      "clusterId": 11,
+      "basePropertyId": 179733,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        23,
+        24
+      ],
+      "propertyIds": [
+        179733,
+        179733
+      ]
+    },
+    {
+      "clusterId": 12,
+      "basePropertyId": 179736,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        29,
+        30
+      ],
+      "propertyIds": [
+        179736,
+        179736
+      ]
+    },
+    {
+      "clusterId": 13,
+      "basePropertyId": 179737,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        31,
+        32
+      ],
+      "propertyIds": [
+        179737,
+        179737
+      ]
+    },
+    {
+      "clusterId": 14,
+      "basePropertyId": 179738,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        33,
+        34
+      ],
+      "propertyIds": [
+        179738,
+        179738
+      ]
+    },
+    {
+      "clusterId": 16,
+      "basePropertyId": 179747,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        51,
+        52
+      ],
+      "propertyIds": [
+        179747,
+        179747
+      ]
+    },
+    {
+      "clusterId": 17,
+      "basePropertyId": 179748,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        53,
+        54
+      ],
+      "propertyIds": [
+        179748,
+        179748
+      ]
+    },
+    {
+      "clusterId": 18,
+      "basePropertyId": 179749,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        55,
+        56
+      ],
+      "propertyIds": [
+        179749,
+        179749
+      ]
+    },
+    {
+      "clusterId": 20,
+      "basePropertyId": 179752,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        61,
+        62
+      ],
+      "propertyIds": [
+        179752,
+        179752
+      ]
+    },
+    {
+      "clusterId": 21,
+      "basePropertyId": 179753,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        63,
+        64
+      ],
+      "propertyIds": [
+        179753,
+        179753
+      ]
+    },
+    {
+      "clusterId": 24,
+      "basePropertyId": 179757,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        71,
+        72
+      ],
+      "propertyIds": [
+        179757,
+        179757
+      ]
+    },
+    {
+      "clusterId": 27,
+      "basePropertyId": 179763,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        81,
+        82
+      ],
+      "propertyIds": [
+        179763,
+        179763
+      ]
+    },
+    {
+      "clusterId": 28,
+      "basePropertyId": 179766,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        87,
+        88
+      ],
+      "propertyIds": [
+        179766,
+        179766
+      ]
+    },
+    {
+      "clusterId": 29,
+      "basePropertyId": 179769,
+      "propiedadesEnCluster": 2,
+      "prioridad": "baja",
+      "pointIds": [
+        93,
+        94
+      ],
+      "propertyIds": [
+        179769,
+        179769
+      ]
+    }
+  ]
+}
